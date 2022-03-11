@@ -17,12 +17,12 @@ public class MenuItemsExample
 	/// HOME, END, PGUP, PGDN
 	/// </summary>
 
-	// Add a new menu item with hotkey CTRL-SHIFT-A
-	[MenuItem("Tools/New Option %#a")]
-    private static void NewMenuOption()
-	{
-		Debug.Log("hello new option with CTRL-SHIFT-A");
-	}
+	//// Add a new menu item with hotkey CTRL-SHIFT-A
+	//[MenuItem("Tools/New Option %#a")]
+    //private static void NewMenuOption()
+	//{
+	//	Debug.Log("hello new option with CTRL-SHIFT-A");
+	//}
 
 	// Add a new menu item with hotkey CTRL-G
 	[MenuItem("Tools/Item %g")]
@@ -115,5 +115,45 @@ public class MenuItemsExample
 
 	#endregion
 
+	#region Controlling Order with Priority
+
+	/// <summary>
+	/// 
+	/// </summary>
+
+
+	[MenuItem("NewMenu/Option1", false, 1)]
+	private static void NewMenuOption1()
+	{
+
+	}
+
+	[MenuItem("NewMenu/Option2", false, 2)]
+	private static void NewMenuOption2()
+	{
+
+	}
+
+	[MenuItem("NewMenu/Option3", false, 3)]
+	private static void NewMenuOption3()
+	{
+
+	}
+
+	[MenuItem("NewMenu/Option4", false, 51)]
+	private static void NewMenuOption4()
+	{
+
+	}
+
+	[MenuItem("NewMenu/Option5", false, 52)]
+	private static void NewMenuOption5()
+	{
+
+	}
+
+	#endregion
 
 }
+
+
