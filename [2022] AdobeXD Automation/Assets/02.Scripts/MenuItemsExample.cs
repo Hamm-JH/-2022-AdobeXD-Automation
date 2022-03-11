@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -46,18 +46,18 @@ public class MenuItemsExample
 	/// Special Paths :: MenuItem attribute controls under which top level menu the new item will be placed
 	/// 
 	/// Assets - items will be available under the "Assets" menu, as well using right-click inside the project view
-	/// Assets - Assets¸Ş´º ¾Æ·¡ È°¼ºÈ­µÇ´Â ¸Ş´º. ÇÁ·ÎÁ§Æ® Ã¢¿¡¼­ ¿ìÅ¬¸¯½Ã È®ÀÎ °¡´ÉÇÏ´Ù.
+	/// Assets - Assetsë©”ë‰´ ì•„ë˜ í™œì„±í™”ë˜ëŠ” ë©”ë‰´. í”„ë¡œì íŠ¸ ì°½ì—ì„œ ìš°í´ë¦­ì‹œ í™•ì¸ ê°€ëŠ¥í•˜ë‹¤.
 	/// 
 	/// Asset/Create - items will be listed when clicking on the "Create" button in the project view
 	///		(useful when adding new types that can be added to the project)
-	///	Asset/Create - ¾ÆÀÌÅÛÀÌ ÇÁ·ÎÁ§Æ® ºä ¿ìÅ¬¸¯ - CreateÃ¢¿¡ »ı¼ºµÈ´Ù.
+	///	Asset/Create - ì•„ì´í…œì´ í”„ë¡œì íŠ¸ ë·° ìš°í´ë¦­ - Createì°½ì— ìƒì„±ëœë‹¤.
 	///	
 	///	CONTEXT/ComponentName - items will be available by right-clicking inside the inspector of the given component
-	///	CONTEXT/ComponentName - inspector Ã¢ÀÇ ´ë»óÀ» ¿ìÅ¬¸¯½Ã ³ªÅ¸³ª´Â ¸Ş´º
+	///	CONTEXT/ComponentName - inspector ì°½ì˜ ëŒ€ìƒì„ ìš°í´ë¦­ì‹œ ë‚˜íƒ€ë‚˜ëŠ” ë©”ë‰´
 	/// </summary>
 
 	// Add a new menu item that is accessed by right-clicking on an asset in the project view
-	// ÇÁ·ÎÁ§Æ® Ã¢ ³»ºÎ ¿ìÅ¬¸¯ ³»ºÎ¿¡ ¸Ş´º »ı¼º
+	// í”„ë¡œì íŠ¸ ì°½ ë‚´ë¶€ ìš°í´ë¦­ ë‚´ë¶€ì— ë©”ë‰´ ìƒì„±
 
 	[MenuItem("Assets/Load Additive Scene")]
 	private static void LoadAdditiveScene()
@@ -69,7 +69,7 @@ public class MenuItemsExample
 	}
 
 	// Adding a new menu item under Assets/Create
-	// ÇÁ·ÎÁ§Æ® ¾Æ¹« ÆÄÀÏ ¿ìÅ¬¸¯ - Create ³»ºÎ¿¡ ¸Ş´º »ı¼º
+	// í”„ë¡œì íŠ¸ ì•„ë¬´ íŒŒì¼ ìš°í´ë¦­ - Create ë‚´ë¶€ì— ë©”ë‰´ ìƒì„±
 	[MenuItem("Assets/Create/Add configuration")]
 	private static void AddConfig()
 	{
@@ -78,7 +78,7 @@ public class MenuItemsExample
 	}
 
 	// Add a new menu item that is accessed by right-clicking inside the RigidBody component
-	// ÀÎ½ºÆåÅÍ Ã¢ÀÇ Rigidbody ÄÄÆ÷³ÍÆ® ¿ìÅ¬¸¯½Ã ¹ß»ıÇÏ´Â ¸Ş´º
+	// ì¸ìŠ¤í™í„° ì°½ì˜ Rigidbody ì»´í¬ë„ŒíŠ¸ ìš°í´ë¦­ì‹œ ë°œìƒí•˜ëŠ” ë©”ë‰´
 	[MenuItem("CONTEXT/Rigidbody/New Option")]
 	private static void NewOpenForRigidBody()
 	{
@@ -90,11 +90,11 @@ public class MenuItemsExample
 	#region Validation
 
 	/// <summary>
-	/// Validation :: ¸î¸î ¸Ş´º´Â Á¶°ÇÀÌ ¸ÂÀ»¶§¸¸ º¸¿©¾ß µÇ´Â ¸Ş´ºÀÏ °æ¿ì°¡ ÀÖ´Ù
+	/// Validation :: ëª‡ëª‡ ë©”ë‰´ëŠ” ì¡°ê±´ì´ ë§ì„ë•Œë§Œ ë³´ì—¬ì•¼ ë˜ëŠ” ë©”ë‰´ì¼ ê²½ìš°ê°€ ìˆë‹¤
 	/// 
-	/// Validation ¸Ş¼­µå µéÀº static methodsÀÌ´Ù.
+	/// Validation ë©”ì„œë“œ ë“¤ì€ static methodsì´ë‹¤.
 	/// 
-	/// Validation method´Â °°Àº °æ·ÎÀÇ menu method°¡ ÀÖ¾î¾ß ÇÑ´Ù.
+	/// Validation methodëŠ” ê°™ì€ ê²½ë¡œì˜ menu methodê°€ ìˆì–´ì•¼ í•œë‹¤.
 	/// 
 	/// </summary>
 
@@ -118,7 +118,7 @@ public class MenuItemsExample
 	#region Controlling Order with Priority
 
 	/// <summary>
-	/// 
+	/// ìš°ì„ ìˆœìœ„ëŠ” ë©”ë‰´ ì•„ì´í…œì˜ ì†ì„±ì—ì„œ ìˆ«ìë¡œ ì •ì˜í•  ìˆ˜ ìˆë‹¤.
 	/// </summary>
 
 
@@ -154,6 +154,17 @@ public class MenuItemsExample
 
 	#endregion
 
+	#region #Menu Command#
+
+	
+	[MenuItem("CONTEXT/Rigidbody/New Option")]
+	private static void NewMenuOption_(MenuCommand menuCommand)
+	{
+		// The RigidBody component can be extracted from the menu command using the context field.
+		var rigid = menuCommand.context as Rigidbody;
+	}
+
+	#endregion
 }
 
 
