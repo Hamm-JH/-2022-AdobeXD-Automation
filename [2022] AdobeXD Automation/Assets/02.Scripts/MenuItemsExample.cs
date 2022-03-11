@@ -6,6 +6,7 @@ using UnityEditor.SceneManagement;
 
 public class MenuItemsExample
 {
+	#region menu item key rule
 	/// <summary>
 	/// Menu Item support key rule
 	/// % - CTRL on Windows / CMD on OSX
@@ -36,6 +37,10 @@ public class MenuItemsExample
 	{
 		Debug.Log("hello hotkey with g");
 	}
+
+	#endregion
+
+	#region Special paths
 
 	/// <summary>
 	/// Special Paths :: MenuItem attribute controls under which top level menu the new item will be placed
@@ -79,4 +84,36 @@ public class MenuItemsExample
 	{
 		Debug.Log("NewOpenForRigidBody");
 	}
+
+	#endregion
+
+	#region Validation
+
+	/// <summary>
+	/// Validation :: 몇몇 메뉴는 조건이 맞을때만 보여야 되는 메뉴일 경우가 있다
+	/// 
+	/// Validation 메서드 들은 static methods이다.
+	/// 
+	/// Validation method는 같은 경로의 menu method가 있어야 한다.
+	/// 
+	/// </summary>
+
+	[MenuItem("Assets/ProcessTexture")]
+	private static void DoSomethingWithTexture()
+	{
+
+	}
+
+	// Note that we pass the same path, and also pass "true" to the second argument
+	[MenuItem("Assets/ProcessTexture", true)]
+	private static bool NewMenuOptionValidation()
+	{
+		// This return true the selected object is a texture2D 
+		// (the menu item will be disabled otherwise).
+		return Selection.activeObject.GetType() == typeof(Texture2D);
+	}
+
+	#endregion
+
+
 }
