@@ -1,18 +1,33 @@
-using Preset;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace UIs
 {
+	using Preset;
+	using UnityEngine.UI;
 	using static Automation.Automation_Adobe;
 
 	public class Panel
 	{
+		public Panel()
+		{
+			inElements = new List<Transform>();
+			m_instancedElements = new Dictionary<LabelCode, List<GameObject>>();
+		}
+
 		private GameObject target;
 		private string parentID;
 
+		/// <summary>
+		/// 받아온 시안의 요소들
+		/// </summary>
 		private List<Transform> inElements;
+
+		/// <summary>
+		/// 생성단계중에 생성된 요소들
+		/// </summary>
+		private Dictionary<LabelCode, List<GameObject>> m_instancedElements;
 
 		public GameObject Target { get => target; set => target=value; }
 		public List<Transform> InElements { get => inElements; set => inElements=value; }
@@ -67,13 +82,20 @@ namespace UIs
 			LabelCode lCode = LabelCode.Null;
 			string id = "";
 
+			// 1 Element 생성단계
 			inElements.ForEach(x =>
 			{
-				CreateElement(x);
+				CreateElement(_rootPanel, x);
 			});
+
+			// 2 Element 내부 배치단계
 		}
 
-		private void CreateElement(Transform _tr)
+		/// <summary>
+		/// 각 Element들을 생성한다.
+		/// </summary>
+		/// <param name="_tr"></param>
+		private void CreateElement(GameObject _rootPanel, Transform _tr)
 		{
 			LabelCode lCode = LabelCode.Null;
 			string id = "";
@@ -82,27 +104,123 @@ namespace UIs
 					m_labelButton, m_labelBoundary, m_labelBackground, m_labelText, m_labelImage,
 					m_tagID, m_splitKeyValue, out lCode, out id);
 
+			Debug.Log($"code name : {lCode.ToString()}");
+
 			switch(lCode)
 			{
 				case LabelCode.Boundary:
-
+					Create_Boundary(_rootPanel, _tr, lCode, id);
 					break;
 
 				case LabelCode.Button:
-
+					Create_Button(_rootPanel, _tr, lCode, id);
 					break;
 
 				case LabelCode.Background:
-
+					Create_Background(_rootPanel, _tr, lCode, id);
 					break;
 
 				case LabelCode.Image:
-
+					Create_Image(_rootPanel, _tr, lCode, id);
 					break;
 
 				case LabelCode.Text:
-
+					Create_Text(_rootPanel, _tr, lCode, id);
 					break;
+			}
+		}
+
+
+
+		/// <summary>
+		/// Boundary 생성
+		/// </summary>
+		/// <param name="_rootPanel"></param>
+		/// <param name="_tr"></param>
+		/// <param name="_lCode"></param>
+		/// <param name="_id"></param>
+		private void Create_Boundary(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
+		{
+			// tr에서 추출할 데이터 : RectTransform
+			GameObject obj = Objects.CreatePanel($"ID{_id}_bb", _tr.GetComponent<RectTransform>());
+
+			obj.transform.SetParent(_rootPanel.transform);
+
+			AddNewInstance(obj, _lCode);
+		}
+
+		private void Create_Button(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
+		{
+			GameObject obj = Objects.CreatePanel($"ID{_id}_btn", _tr.GetComponent<RectTransform>());
+			Objects.AddButton(obj);
+
+			obj.transform.SetParent(_rootPanel.transform);
+
+			AddNewInstance(obj, _lCode);
+		}
+
+		/// <summary>
+		/// 배경 생성
+		/// </summary>
+		/// <param name="_rootPanel"></param>
+		/// <param name="_tr"></param>
+		/// <param name="_lCode"></param>
+		/// <param name="_id"></param>
+		private void Create_Background(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
+		{
+			GameObject obj = Objects.CreatePanel($"ID{_id}_bg", _tr.GetComponent<RectTransform>());
+			Objects.AddImage(obj, _tr.GetComponent<Image>());
+			obj.transform.SetParent(_rootPanel.transform);
+
+			AddNewInstance(obj, _lCode);
+		}
+
+		/// <summary>
+		/// Image 생성
+		/// </summary>
+		/// <param name="_rootPanel"></param>
+		/// <param name="_tr"></param>
+		/// <param name="_lCode"></param>
+		/// <param name="_id"></param>
+		private void Create_Image(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
+		{
+			// _tr에서 추출할 데이터 : Image sprite
+			GameObject obj = Objects.CreatePanel($"ID{_id}_im", _tr.GetComponent<RectTransform>());
+			Objects.AddImage(obj, _tr.GetComponent<Image>());
+
+			obj.transform.SetParent(_rootPanel.transform);
+
+			AddNewInstance(obj, _lCode);
+		}
+
+		/// <summary>
+		/// Text 생성
+		/// </summary>
+		/// <param name="_rootPanel"></param>
+		/// <param name="_tr"></param>
+		/// <param name="_lCode"></param>
+		/// <param name="_id"></param>
+		private void Create_Text(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
+		{
+			Debug.Log($"tr name {_tr.name}");
+			GameObject obj = Objects.CreatePanel($"ID{_id}_tx", _tr.GetComponent<RectTransform>());
+			Objects.AddText(obj, _tr.GetComponent<Text>());
+
+			obj.transform.SetParent(_rootPanel.transform);
+
+			AddNewInstance(obj, _lCode);
+		}
+
+		private void AddNewInstance(GameObject _instance, LabelCode _lCode)
+		{
+			if (!m_instancedElements.ContainsKey(_lCode))
+			{
+				m_instancedElements.Add(_lCode, new List<GameObject>());
+				m_instancedElements[_lCode].Add(_instance);
+			}
+			else
+			{
+				m_instancedElements[_lCode].Add(_instance);
 			}
 		}
 
