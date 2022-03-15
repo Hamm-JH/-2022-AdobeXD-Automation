@@ -41,6 +41,14 @@ namespace Automation
 			//Check(trs, m_labelImage);
 			//Debug.Log("-------------------------------------");
 
+			trs.ForEach(x =>
+			{
+				if(x.name.Contains(m_tagID))
+				{
+					Debug.Log($"find tag : id {x.name.Replace("::", ":").Split(':')[1]}");
+				}
+			});
+
 			// 라벨 문자 확인 끝나고 생성단계 진행][
 			return;
 
@@ -92,5 +100,14 @@ namespace Automation
 			return result;
 		}
 
+
+		private string GetID(string _name, string _idCode)
+		{
+			string result = "";
+
+
+
+			return result;
+		}
 	}
 }

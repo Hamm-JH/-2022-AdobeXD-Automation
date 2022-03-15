@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +17,8 @@ namespace Automation
 		GameObject m_target;
 
 		string m_split;
+		string m_splitKeyValue;
+
 		string m_labelButton;
 		string m_labelBoundary;
 		string m_labelBackground;
@@ -40,13 +42,14 @@ namespace Automation
 		private void OnGUI()
 		{
 			GUILayout.Label("Base settings", EditorStyles.boldLabel);
-			// ¸¶Áö¸· ÀÎÀÚ¸¦ true·Î µÎ¾î¾ß Hierarchy¿¡¼­ °´Ã¼¸¦ °¡Á®¿Ã ¼ö ÀÖ´Ù.
+			// ë§ˆì§€ë§‰ ì¸ìë¥¼ trueë¡œ ë‘ì–´ì•¼ Hierarchyì—ì„œ ê°ì²´ë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ìˆë‹¤.
 			m_rootCanvas = (Canvas)EditorGUILayout.ObjectField("root canvas", m_rootCanvas, typeof(Canvas), true);
 			m_target = (GameObject)EditorGUILayout.ObjectField("target object", m_target, typeof(GameObject), true);
 
 			EditorGUILayout.Space();
-			GUILayout.Label("Á¤ÀÇµÈ ¹®ÀÚÄÚµå", EditorStyles.boldLabel);
+			GUILayout.Label("ì •ì˜ëœ ë¬¸ìì½”ë“œ", EditorStyles.boldLabel);
 			m_split = EditorGUILayout.TextField("split string", m_split);
+			m_splitKeyValue = EditorGUILayout.TextField("split KeyValue", m_splitKeyValue);
 			
 			GUILayout.Label("Labels", EditorStyles.boldLabel);
 			m_labelButton = EditorGUILayout.TextField("button", m_labelButton);
@@ -62,11 +65,11 @@ namespace Automation
 
 			if (operatable)
 			{
-				EditorGUILayout.HelpBox("º¯È¯ ÁØºñ ¿Ï·á", MessageType.Info);
+				EditorGUILayout.HelpBox("ë³€í™˜ ì¤€ë¹„ ì™„ë£Œ", MessageType.Info);
 			}
 			else
 			{
-				EditorGUILayout.HelpBox("root canvas¿Í root object¸¦ ÇÒ´çÇÏ¼¼¿ä", MessageType.Warning);
+				EditorGUILayout.HelpBox("root canvasì™€ root objectë¥¼ í• ë‹¹í•˜ì„¸ìš”", MessageType.Warning);
 			}
 
 			EditorGUI.BeginDisabledGroup(!operatable);
@@ -74,8 +77,14 @@ namespace Automation
 			{
 				Debug.Log("do Button");
 
-				// µğ¹ö±ë
+				// ë””ë²„ê¹…
 				StartAutomation(m_rootCanvas, m_target);
+
+				
+				//if (EditorUtility.DisplayDialog("Title :: ê°ì²´ ìƒì„±", "Message : ê°ì²´ë¥¼ ìƒì„±í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "OK", "Cancel"))
+				//{
+				//	StartAutomation(m_rootCanvas, m_target);
+				//}
 			}
 			EditorGUI.EndDisabledGroup();
 		}
