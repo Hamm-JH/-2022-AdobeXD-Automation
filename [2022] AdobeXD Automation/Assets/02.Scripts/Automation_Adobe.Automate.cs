@@ -39,15 +39,20 @@ namespace Automation
 			// 2 패널화 가능 대상들을 분류해서 Dictionary에 저장한다.
 			Dictionary<string, Panel> id_panels = SetPanelInstance(elements);
 
+			// 3 변환하고자 하는 객체의 ID값 기반 사전변수 배치 및 부모객체 ID값 지정이 완료된 상태에서
+			// 올바른 재배치를 위해 기존 객체를 재배치한다.
+			ReplacePanels(trs, _obj);
+
 			// 루트 패널 객체를 생성한다.
-			// 루트 패널 객체를 캔버스의 자식으로 할당한다.
+			// - 루트 패널 객체를 캔버스의 자식으로 할당한다.
 			GameObject rootPanel = Objects.CreateRootPanel("UI Panel", m_rootCanvas.GetComponent<RectTransform>().sizeDelta);
 			rootPanel.transform.SetParent(m_rootCanvas.transform);
 
-			// 각 패널 객체들을 생성한다.
+			// 4 각 패널 객체들을 생성한다.
 			CretaePanels(id_panels, rootPanel);
 
-			// 생성한 객체들을 
+			// 5 생성된 패널객체들 간에 부모설정을 진행한다.
+			SetPanelParents(id_panels);
 
 			//new GameObject("UI Panel");
 			//rootPanel.AddComponent<RectTransform>();
@@ -132,15 +137,6 @@ namespace Automation
 			return result;
 		}
 
-		//private void GetSplitDatas(string _name, string _split, out LabelCode _lCode, out string _id)
-		//{
-		//	string[] splits = _name.Split(_split.ToCharArray());
-
-		//	_lCode = GetCode(splits[0]);
-
-		//	_id = GetID(splits[1]);
-		//}
-
 		/// <summary>
 		/// Dictionary의 패널 Value에 id값에 맞는 Transform을 할당합니다.
 		/// </summary>
@@ -184,7 +180,7 @@ namespace Automation
 			// 최상위 개체가 아닌 경우
 			if(splits.Length >= 2)
 			{
-				id = GetID(splits[1]);
+				id = Utilities.GetID(splits[1], m_tagID, m_splitKeyValue);
 			}
 
 			// 최상위 개체인 경우 null값은 없다.
@@ -193,7 +189,53 @@ namespace Automation
 
 		#endregion
 
-		#region 3 Create Panels
+		#region 3 Replace Panel 
+
+		private void ReplacePanels(List<Transform> _trs, GameObject _rootPanel)
+		{
+			Debug.LogWarning("TODO Anchor Pos, Pivot 위치값 초기화는 추후에 진행 // 지금은 수동으로 앵커링, 피봇팅 에디터에서 초기화");
+			// TODO Anchor Pos, Pivot 위치값 초기화는 추후에 진행 // 지금은 수동으로 앵커링, 피봇팅 에디터에서 초기화
+			//_trs.ForEach(x =>
+			//{
+			//	if (x.parent != _rootPanel.transform)
+			//	{
+			//		x.transform.SetParent(_rootPanel.transform);
+
+			//		RectTransform rectT;
+			//		if(x.TryGetComponent<RectTransform>(out rectT))
+			//		{
+			//			Debug.Log($"---------------------------------");
+
+			//			Debug.Log($"{rectT} {rectT.rect}");
+
+			//			//Vector2 pos = new Vector2(rectT.rect.x, rectT.rect.y);
+			//			float width = rectT.rect.width;
+			//			float height = rectT.rect.height;
+
+			//			Debug.Log($"width : {width}");
+			//			Debug.Log($"height : {height}");
+
+			//			rectT.pivot = new Vector2(0.5f, 0.5f);
+			//			rectT.anchorMin = new Vector2(0.5f, 0.5f);
+			//			rectT.anchorMax = new Vector2(0.5f, 0.5f);
+			//			//rectT.position = pos;
+			//			rectT.sizeDelta = new Vector2(width, height);
+
+			//			Debug.Log($"{rectT} {rectT.rect}");
+			//			width = rectT.rect.width;
+			//			height = rectT.rect.height;
+			//			Debug.Log($"width : {width}");
+			//			Debug.Log($"height : {height}");
+
+			//			Debug.Log($"---------------------------------");
+			//		}
+			//	}
+			//});
+		}
+
+		#endregion
+
+		#region 4 Create Panels
 
 		/// <summary>
 		/// Dictionary 기반으로 패널을 생성한다.
@@ -211,11 +253,14 @@ namespace Automation
 
 		#endregion
 
-		#region 4 Set Panel parents
+		#region 5 Set Panel parents
 
-		private void SetPanelParents()
+		private void SetPanelParents(Dictionary<string, Panel> _panels)
 		{
-
+			foreach(Panel pan in _panels.Values)
+			{
+				pan.SetPanelParent(_panels);
+			}
 		}
 
 		#endregion
@@ -256,10 +301,10 @@ namespace Automation
 
 		#endregion
 
-		private string[] SplitName(string name, string _split)
-		{
-			return name.Split(_split.ToCharArray());
-		}
+		//private string[] SplitName(string name, string _split)
+		//{
+		//	return name.Split(_split.ToCharArray());
+		//}
 
 		private LabelCode GetCode(string _code)
 		{
@@ -289,13 +334,13 @@ namespace Automation
 			return result;
 		}
 
-		private string GetID(string _code)
-		{
-			string result = "";
+		//private string GetID(string _code, string m_tagID, string m_splitKeyValue)
+		//{
+		//	string result = "";
 
-			result = _code.Replace($"{m_tagID}{m_splitKeyValue}", "");
+		//	result = _code.Replace($"{m_tagID}{m_splitKeyValue}", "");
 
-			return result;
-		}
+		//	return result;
+		//}
 	}
 }

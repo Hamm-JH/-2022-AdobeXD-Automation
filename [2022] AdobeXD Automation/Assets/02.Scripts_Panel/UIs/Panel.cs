@@ -12,25 +12,38 @@ namespace UIs
 	{
 		public Panel()
 		{
-			inElements = new List<Transform>();
+			m_inElements = new List<Transform>();
+			m_subElements = new List<GameObject>();
 			m_instancedElements = new Dictionary<LabelCode, List<GameObject>>();
 		}
 
-		private GameObject target;
-		private string parentID;
+		/// <summary>
+		/// 패널 요소들의 root가 되는 객체
+		/// </summary>
+		private GameObject m_panel;
+
+		private List<GameObject> m_subElements;
+
+		/// <summary>
+		/// 부모 개체의 ID
+		/// 패널 간의 위치 배치시에 필요하다.
+		/// </summary>
+		private string m_parentID;
 
 		/// <summary>
 		/// 받아온 시안의 요소들
 		/// </summary>
-		private List<Transform> inElements;
+		private List<Transform> m_inElements;
 
 		/// <summary>
+		/// TODO 작업 보류 (이 개체의 목적은 subElements로 이전됨)
 		/// 생성단계중에 생성된 요소들
 		/// </summary>
 		private Dictionary<LabelCode, List<GameObject>> m_instancedElements;
 
-		public GameObject Target { get => target; set => target=value; }
-		public List<Transform> InElements { get => inElements; set => inElements=value; }
+		public GameObject IPanel { get => m_panel; set => m_panel=value; }
+		public List<GameObject> SubElements { get => m_subElements; set => m_subElements=value; }
+		public List<Transform> InElements { get => m_inElements; set => m_inElements=value; }
 
 		/// <summary>
 		/// window에서 가져온 데이터
@@ -47,7 +60,7 @@ namespace UIs
 
 		public void AddElement(Transform _tr)
 		{
-			if (inElements == null) inElements = new List<Transform>();
+			if (m_inElements == null) m_inElements = new List<Transform>();
 
 			InElements.Add(_tr);
 		}
@@ -59,8 +72,10 @@ namespace UIs
 		/// <param name="_id"></param>
 		public void SetParentID(string _id)
 		{
-			parentID = _id;
+			m_parentID = _id;
 		}
+
+		#region 1 Create Panel
 
 		/// <summary>
 		/// 패널을 생성한다.
@@ -83,13 +98,21 @@ namespace UIs
 			string id = "";
 
 			// 1 Element 생성단계
-			inElements.ForEach(x =>
+			// id 단위로 element 집계된 대상에 대해 새롭게 생성된 element 객체를 생성한다.
+			// X 단일 패널 내부에서 생성된 객체들은 m_instancedElements 사전 변수에 할당한다.
+			// X 단일 패널 내부에서 생성된 객체들은 라벨에 따라 target또는 subElement변수/리스트에 할당한다.
+			// 1차적으로 rootPanel에 수평적으로 할당한다.
+			m_inElements.ForEach(x =>
 			{
 				CreateElement(_rootPanel, x);
 			});
 
 			// 2 Element 내부 배치단계
+			// 1번 과정에서 m_instancedElements 사전 변수에 할당된 객체들을 대상으로 패널 내부의 배치를 진행한다.
+			SetElementPos(IPanel, SubElements);
 		}
+
+		#region 1-1 Element 생성단계
 
 		/// <summary>
 		/// 각 Element들을 생성한다.
@@ -104,7 +127,7 @@ namespace UIs
 					m_labelButton, m_labelBoundary, m_labelBackground, m_labelText, m_labelImage,
 					m_tagID, m_splitKeyValue, out lCode, out id);
 
-			Debug.Log($"code name : {lCode.ToString()}");
+			//Debug.Log($"code name : {lCode.ToString()}");
 
 			switch(lCode)
 			{
@@ -130,7 +153,7 @@ namespace UIs
 			}
 		}
 
-
+		#region Create Element
 
 		/// <summary>
 		/// Boundary 생성
@@ -146,15 +169,28 @@ namespace UIs
 
 			obj.transform.SetParent(_rootPanel.transform);
 
+			// 요소들의 root로 지정한다.
+			IPanel = obj;
+
 			AddNewInstance(obj, _lCode);
 		}
 
+		/// <summary>
+		/// Button 생성
+		/// </summary>
+		/// <param name="_rootPanel"></param>
+		/// <param name="_tr"></param>
+		/// <param name="_lCode"></param>
+		/// <param name="_id"></param>
 		private void Create_Button(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
 		{
 			GameObject obj = Objects.CreatePanel($"ID{_id}_btn", _tr.GetComponent<RectTransform>());
 			Objects.AddButton(obj);
 
 			obj.transform.SetParent(_rootPanel.transform);
+
+			// 요소들의 root로 지정한다.
+			IPanel = obj;
 
 			AddNewInstance(obj, _lCode);
 		}
@@ -171,6 +207,9 @@ namespace UIs
 			GameObject obj = Objects.CreatePanel($"ID{_id}_bg", _tr.GetComponent<RectTransform>());
 			Objects.AddImage(obj, _tr.GetComponent<Image>());
 			obj.transform.SetParent(_rootPanel.transform);
+
+			// 재배치 요소로 할당한다.
+			SubElements.Add(obj);
 
 			AddNewInstance(obj, _lCode);
 		}
@@ -190,6 +229,9 @@ namespace UIs
 
 			obj.transform.SetParent(_rootPanel.transform);
 
+			// 재배치 요소로 할당한다.
+			SubElements.Add(obj);
+
 			AddNewInstance(obj, _lCode);
 		}
 
@@ -208,6 +250,9 @@ namespace UIs
 
 			obj.transform.SetParent(_rootPanel.transform);
 
+			// 재배치 요소로 할당한다.
+			SubElements.Add(obj);
+
 			AddNewInstance(obj, _lCode);
 		}
 
@@ -223,6 +268,43 @@ namespace UIs
 				m_instancedElements[_lCode].Add(_instance);
 			}
 		}
+
+		#endregion
+
+		#endregion
+
+		#region 1-2 Element 내부 배치단계
+
+		private void SetElementPos(GameObject _panel, List<GameObject> _subs)
+		{
+			_subs.ForEach(x => x.transform.SetParent(_panel.transform));
+		}
+
+		#endregion
+
+		#endregion
+
+		#region 2 Set Panel's parent
+
+		/// <summary>
+		/// EditorWindow에서 가공되어있는 Dictionary 변수를 갖고와서 이 패널 인스턴스의 부모를 할당한다.
+		/// </summary>
+		/// <param name="_panels"> 패널 사전 변수 </param>
+		public void SetPanelParent(Dictionary<string, Panel> _panels)
+		{
+			// 부모의 ID를 가지고 옴
+			string parentID = m_parentID;
+
+			// 부모 ID와 매칭되는 패널이 존재하는 경우
+			if(parentID != null && _panels.ContainsKey(parentID))
+			{
+				// 부모 ID를 가진 객체로 이 인스턴스의 패널 부모 할당
+				IPanel.transform.SetParent(_panels[parentID].IPanel.transform);
+			}
+
+		}
+
+		#endregion
 
 	}
 }
