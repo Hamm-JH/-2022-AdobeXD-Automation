@@ -31,6 +31,11 @@ namespace Automation
 
 		string doButton = "Do It";
 
+		public string IDTag
+		{
+			get => $"{m_tagID}{m_splitKeyValue}";
+		}
+
 		// Add menu named "My Window" to the Window menu
 		[MenuItem("Window/Adobe Automation")]
 		static void Init()
@@ -100,10 +105,13 @@ namespace Automation
 			EditorGUI.BeginDisabledGroup(!operatable);
 			if (GUILayout.Button(doButton))
 			{
-				Debug.Log("do Button");
+				Debug.Log("----- do Button -----");
 
-				// 디버깅
-				StartAutomation(m_rootCanvas, m_target);
+				// 자동화 전 복사 및 아이디 부여
+				GameObject readyAutomata = PrepareAutomation(m_rootCanvas, m_target);
+
+				// 자동화 시작
+				StartAutomation(m_rootCanvas, readyAutomata);
 
 				
 				//if (EditorUtility.DisplayDialog("Title :: 객체 생성", "Message : 객체를 생성하시겠습니까?", "OK", "Cancel"))

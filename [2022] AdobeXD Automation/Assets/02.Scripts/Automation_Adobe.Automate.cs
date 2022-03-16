@@ -81,22 +81,50 @@ namespace Automation
 
 			_trs.ForEach(x =>
 			{
-				// 이름에 id 태그가 존재하는가?
-				bool isTagContains = x.name.Contains(m_tagID);
-
-				// 이름에 지정된 라벨중에 하나가 존재하는가?
-				bool isLabelExist = GetCode(x.name) != LabelCode.Null;
-
-				// 이름을 주 스플릿 코드로 나누었을때 수가 2 이상인가?
-				bool isMinSplitArgsConfirmed = x.name.Split(m_split.ToCharArray()).Length >= 2;
-
-				if(isTagContains
-				&& isLabelExist
-				&& isMinSplitArgsConfirmed)
+				if (IsTargetObject(x, m_tagID, m_split))
 				{
 					result.Add(x);
 				}
+				// TODO Check
+				//// 이름에 id 태그가 존재하는가?
+				//bool isTagContains = x.name.Contains(m_tagID);
+
+				//// 이름에 지정된 라벨중에 하나가 존재하는가?
+				//bool isLabelExist = GetCode(x.name) != LabelCode.Null;
+
+				//// 이름을 주 스플릿 코드로 나누었을때 수가 2 이상인가?
+				//bool isMinSplitArgsConfirmed = x.name.Split(m_split.ToCharArray()).Length >= 2;
+
+				//if(isTagContains
+				//&& isLabelExist
+				//&& isMinSplitArgsConfirmed)
+				//{
+				//	result.Add(x);
+				//}
 			});
+
+			return result;
+		}
+
+		private bool IsTargetObject(Transform _tr, string _tagID, string _split)
+		{
+			bool result = false;
+
+			// 이름에 id 태그가 존재하는가?
+			bool isTagContains = _tr.name.Contains(_tagID);
+
+			// 이름에 지정된 라벨중에 하나가 존재하는가?
+			bool isLabelExist = GetCode(_tr.name) != LabelCode.Null;
+
+			// 이름을 주 스플릿 코드로 나누었을때 수가 2 이상인가?
+			bool isMinSplitArgsConfirmed = _tr.name.Split(_split.ToCharArray()).Length >= 2;
+
+			if (isTagContains
+			&& isLabelExist
+			&& isMinSplitArgsConfirmed)
+			{
+				result = true;
+			}
 
 			return result;
 		}

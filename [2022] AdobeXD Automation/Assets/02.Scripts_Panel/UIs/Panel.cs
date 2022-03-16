@@ -5,6 +5,7 @@ using UnityEngine;
 namespace UIs
 {
 	using Preset;
+	using System.Linq;
 	using UnityEngine.UI;
 	using static Automation.Automation_Adobe;
 
@@ -277,6 +278,11 @@ namespace UIs
 
 		private void SetElementPos(GameObject _panel, List<GameObject> _subs)
 		{
+			if(_panel == null)
+			{
+				//Debug.LogError($"element : {_subs.First().name} have not parent panel");
+				throw new System.Exception($"element : {_subs.First().name} have not parent panel");
+			}
 			_subs.ForEach(x => x.transform.SetParent(_panel.transform));
 		}
 
