@@ -1,0 +1,159 @@
+{
+  "info": {
+    "version": "0.9.8",
+    "dependency": []
+  },
+  "root": {
+    "type": "Group",
+    "name": "0324 test",
+    "elements": [
+      {
+        "type": "Group",
+        "name": "bb_id::_00",
+        "elements": [
+          {
+            "type": "Image",
+            "name": "bg_id::_Rounded Rectangle 1 copy 2",
+            "guid": "0f0c31f0-82ff-48ed-a8ab-9df6cca12e74",
+            "active": true,
+            "global_draw_bounds": {
+              "x": 2759.5,
+              "y": 3301,
+              "width": 441,
+              "height": 60,
+              "ex": 3200.5,
+              "ey": 3361
+            },
+            "rect_transform": {
+              "fix": {
+                "left": true,
+                "right": true,
+                "top": true,
+                "bottom": true,
+                "width": false,
+                "height": false
+              },
+              "pivot": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "anchor_min": {
+                "x": 0,
+                "y": 0
+              },
+              "anchor_max": {
+                "x": 1,
+                "y": 1
+              },
+              "offset_min": {
+                "x": 0,
+                "y": 0
+              },
+              "offset_max": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "layer": "UI",
+            "parsed_names": [
+              "bg_id___Rounded_Rectangle_1_copy_2"
+            ],
+            "opacity": 100,
+            "image": {
+              "source_image": "bg_id___Rounded Rect+0f0c3"
+            }
+          }
+        ],
+        "guid": "eb836687-b6b8-4ab0-9c10-a83b59a14bb0",
+        "active": true,
+        "global_draw_bounds": {
+          "x": 2759.5,
+          "y": 3301,
+          "width": 441,
+          "height": 60,
+          "ex": 3200.5,
+          "ey": 3361
+        },
+        "rect_transform": {
+          "fix": {
+            "left": null,
+            "right": null,
+            "top": null,
+            "bottom": null,
+            "width": null,
+            "height": null
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchor_min": {
+            "x": 0.5,
+            "y": 0.10092592592592592
+          },
+          "anchor_max": {
+            "x": 0.5,
+            "y": 0.10092592592592592
+          },
+          "offset_min": {
+            "x": -220.5,
+            "y": -30
+          },
+          "offset_max": {
+            "x": 220.5,
+            "y": 30
+          }
+        },
+        "layer": "UI",
+        "parsed_names": [
+          "bb_id___00"
+        ]
+      }
+    ],
+    "guid": "878e798f-bd92-4673-90a9-7975de6ec174",
+    "active": true,
+    "global_draw_bounds": {
+      "x": 2020,
+      "y": 2360,
+      "width": 1920,
+      "height": 1080,
+      "ex": 3940,
+      "ey": 3440
+    },
+    "rect_transform": {
+      "fix": {
+        "left": null,
+        "right": null,
+        "top": null,
+        "bottom": null,
+        "width": null,
+        "height": null
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "anchor_min": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "anchor_max": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "offset_min": {
+        "x": -960,
+        "y": -540
+      },
+      "offset_max": {
+        "x": 960,
+        "y": 540
+      }
+    },
+    "layer": "UI",
+    "parsed_names": [
+      "_324_test"
+    ],
+    "fill_color": "#ffffff"
+  }
+}
