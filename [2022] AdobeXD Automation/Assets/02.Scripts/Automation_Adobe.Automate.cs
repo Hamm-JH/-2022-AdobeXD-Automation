@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +9,7 @@ namespace Automation
 	using System.Linq;
 	using Preset;
 	using UIs;
+	using UnityEngine.UI;
 
 	public partial class Automation_Adobe : EditorWindow
 	{
@@ -31,36 +32,36 @@ namespace Automation
 
 			List<Transform> trs = _obj.transform.GetComponentsInChildren<Transform>().ToList();
 
-			// ÆĞ³ÎÈ­ °¡´É ´ë»óÀ» °Ë»ö, ºĞ·ùÇÑ´Ù.
-			// 1 ¾ÆÀÌµğ °ª°ú, ¶óº§, ½ºÇÃ¸´ ¼ö°¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎÇÑ´Ù.
+			// íŒ¨ë„í™” ê°€ëŠ¥ ëŒ€ìƒì„ ê²€ìƒ‰, ë¶„ë¥˜í•œë‹¤.
+			// 1 ì•„ì´ë”” ê°’ê³¼, ë¼ë²¨, ìŠ¤í”Œë¦¿ ìˆ˜ê°€ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸í•œë‹¤.
 			List<Transform> elements = SetTargetList(trs);
 
-			// ¾ÆÀÌµğ, ¶óº§ÀÌ Á¸ÀçÇÑ´Ù¸é panelÈ­ °¡´É ´ë»óÀ¸·Î º»´Ù.
-			// 2 ÆĞ³ÎÈ­ °¡´É ´ë»óµéÀ» ºĞ·ùÇØ¼­ Dictionary¿¡ ÀúÀåÇÑ´Ù.
+			// ì•„ì´ë””, ë¼ë²¨ì´ ì¡´ì¬í•œë‹¤ë©´ panelí™” ê°€ëŠ¥ ëŒ€ìƒìœ¼ë¡œ ë³¸ë‹¤.
+			// 2 íŒ¨ë„í™” ê°€ëŠ¥ ëŒ€ìƒë“¤ì„ ë¶„ë¥˜í•´ì„œ Dictionaryì— ì €ì¥í•œë‹¤.
 			Dictionary<string, Panel> id_panels = SetPanelInstance(elements);
 
-			// 3 º¯È¯ÇÏ°íÀÚ ÇÏ´Â °´Ã¼ÀÇ ID°ª ±â¹İ »çÀüº¯¼ö ¹èÄ¡ ¹× ºÎ¸ğ°´Ã¼ ID°ª ÁöÁ¤ÀÌ ¿Ï·áµÈ »óÅÂ¿¡¼­
-			// ¿Ã¹Ù¸¥ Àç¹èÄ¡¸¦ À§ÇØ ±âÁ¸ °´Ã¼¸¦ Àç¹èÄ¡ÇÑ´Ù.
+			// 3 ë³€í™˜í•˜ê³ ì í•˜ëŠ” ê°ì²´ì˜ IDê°’ ê¸°ë°˜ ì‚¬ì „ë³€ìˆ˜ ë°°ì¹˜ ë° ë¶€ëª¨ê°ì²´ IDê°’ ì§€ì •ì´ ì™„ë£Œëœ ìƒíƒœì—ì„œ
+			// ì˜¬ë°”ë¥¸ ì¬ë°°ì¹˜ë¥¼ ìœ„í•´ ê¸°ì¡´ ê°ì²´ë¥¼ ì¬ë°°ì¹˜í•œë‹¤.
 			ReplacePanels(trs, _obj);
 
-			// ·çÆ® ÆĞ³Î °´Ã¼¸¦ »ı¼ºÇÑ´Ù.
-			// - ·çÆ® ÆĞ³Î °´Ã¼¸¦ Äµ¹ö½ºÀÇ ÀÚ½ÄÀ¸·Î ÇÒ´çÇÑ´Ù.
+			// ë£¨íŠ¸ íŒ¨ë„ ê°ì²´ë¥¼ ìƒì„±í•œë‹¤.
+			// - ë£¨íŠ¸ íŒ¨ë„ ê°ì²´ë¥¼ ìº”ë²„ìŠ¤ì˜ ìì‹ìœ¼ë¡œ í• ë‹¹í•œë‹¤.
 			GameObject rootPanel = Objects.CreateRootPanel("UI Panel", m_rootCanvas.GetComponent<RectTransform>().sizeDelta);
 			rootPanel.transform.SetParent(m_rootCanvas.transform);
 
-			// 4 °¢ ÆĞ³Î °´Ã¼µéÀ» »ı¼ºÇÑ´Ù.
+			// 4 ê° íŒ¨ë„ ê°ì²´ë“¤ì„ ìƒì„±í•œë‹¤.
 			CretaePanels(id_panels, rootPanel);
 
-			// 5 »ı¼ºµÈ ÆĞ³Î°´Ã¼µé °£¿¡ ºÎ¸ğ¼³Á¤À» ÁøÇàÇÑ´Ù.
+			// 5 ìƒì„±ëœ íŒ¨ë„ê°ì²´ë“¤ ê°„ì— ë¶€ëª¨ì„¤ì •ì„ ì§„í–‰í•œë‹¤.
 			SetPanelParents(id_panels);
 
 			//new GameObject("UI Panel");
 			//rootPanel.AddComponent<RectTransform>();
 			//rootPanel.AddComponent<CanvasRenderer>().cullTransparentMesh = true;
 
-			// ÀúÀåµÈ DictionaryÀÇ °¢ ValueÀÇ Å¬·¡½º¿¡ °´Ã¼ »ı¼ºÀ» Áö½ÃÇÑ´Ù. - ³¡
+			// ì €ì¥ëœ Dictionaryì˜ ê° Valueì˜ í´ë˜ìŠ¤ì— ê°ì²´ ìƒì„±ì„ ì§€ì‹œí•œë‹¤. - ë
 
-			// »ı¼ºµÈ °´Ã¼µéÀÇ ºÎ¸ğ ÀÚ½Ä ±¸Á¶¸¦ ÇÒ´çÇÑ´Ù.
+			// ìƒì„±ëœ ê°ì²´ë“¤ì˜ ë¶€ëª¨ ìì‹ êµ¬ì¡°ë¥¼ í• ë‹¹í•œë‹¤.
 
 			return;
 
@@ -71,7 +72,7 @@ namespace Automation
 		#region 1 Set target list
 
 		/// <summary>
-		/// 1. ID¿Í ÅÂ±×, ºĞÇÒ ¹®ÀÚ¿­ ¼ö°¡ ÃÖ¼Ò 2°³ ÀÌ»óÀÎ °³Ã¼ÀÇ ¸®½ºÆ®¸¦ ¹İÈ¯ÇÑ´Ù.
+		/// 1. IDì™€ íƒœê·¸, ë¶„í•  ë¬¸ìì—´ ìˆ˜ê°€ ìµœì†Œ 2ê°œ ì´ìƒì¸ ê°œì²´ì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°˜í™˜í•œë‹¤.
 		/// </summary>
 		/// <param name="_trs"></param>
 		/// <returns></returns>
@@ -86,13 +87,13 @@ namespace Automation
 					result.Add(x);
 				}
 				// TODO Check
-				//// ÀÌ¸§¿¡ id ÅÂ±×°¡ Á¸ÀçÇÏ´Â°¡?
+				//// ì´ë¦„ì— id íƒœê·¸ê°€ ì¡´ì¬í•˜ëŠ”ê°€?
 				//bool isTagContains = x.name.Contains(m_tagID);
 
-				//// ÀÌ¸§¿¡ ÁöÁ¤µÈ ¶óº§Áß¿¡ ÇÏ³ª°¡ Á¸ÀçÇÏ´Â°¡?
+				//// ì´ë¦„ì— ì§€ì •ëœ ë¼ë²¨ì¤‘ì— í•˜ë‚˜ê°€ ì¡´ì¬í•˜ëŠ”ê°€?
 				//bool isLabelExist = GetCode(x.name) != LabelCode.Null;
 
-				//// ÀÌ¸§À» ÁÖ ½ºÇÃ¸´ ÄÚµå·Î ³ª´©¾úÀ»¶§ ¼ö°¡ 2 ÀÌ»óÀÎ°¡?
+				//// ì´ë¦„ì„ ì£¼ ìŠ¤í”Œë¦¿ ì½”ë“œë¡œ ë‚˜ëˆ„ì—ˆì„ë•Œ ìˆ˜ê°€ 2 ì´ìƒì¸ê°€?
 				//bool isMinSplitArgsConfirmed = x.name.Split(m_split.ToCharArray()).Length >= 2;
 
 				//if(isTagContains
@@ -110,13 +111,13 @@ namespace Automation
 		{
 			bool result = false;
 
-			// ÀÌ¸§¿¡ id ÅÂ±×°¡ Á¸ÀçÇÏ´Â°¡?
+			// ì´ë¦„ì— id íƒœê·¸ê°€ ì¡´ì¬í•˜ëŠ”ê°€?
 			bool isTagContains = _tr.name.Contains(_tagID);
 
-			// ÀÌ¸§¿¡ ÁöÁ¤µÈ ¶óº§Áß¿¡ ÇÏ³ª°¡ Á¸ÀçÇÏ´Â°¡?
+			// ì´ë¦„ì— ì§€ì •ëœ ë¼ë²¨ì¤‘ì— í•˜ë‚˜ê°€ ì¡´ì¬í•˜ëŠ”ê°€?
 			bool isLabelExist = GetCode(_tr.name) != LabelCode.Null;
 
-			// ÀÌ¸§À» ÁÖ ½ºÇÃ¸´ ÄÚµå·Î ³ª´©¾úÀ»¶§ ¼ö°¡ 2 ÀÌ»óÀÎ°¡?
+			// ì´ë¦„ì„ ì£¼ ìŠ¤í”Œë¦¿ ì½”ë“œë¡œ ë‚˜ëˆ„ì—ˆì„ë•Œ ìˆ˜ê°€ 2 ì´ìƒì¸ê°€?
 			bool isMinSplitArgsConfirmed = _tr.name.Split(_split.ToCharArray()).Length >= 2;
 
 			if (isTagContains
@@ -134,7 +135,7 @@ namespace Automation
 		#region 2 Set panel instance dictionary
 
 		/// <summary>
-		/// Transform ¸®½ºÆ®¿¡¼­ Dictionary¿¡ idº°·Î °ªÀ» ÇÒ´çÇÑ´Ù.
+		/// Transform ë¦¬ìŠ¤íŠ¸ì—ì„œ Dictionaryì— idë³„ë¡œ ê°’ì„ í• ë‹¹í•œë‹¤.
 		/// </summary>
 		/// <param name="_elems"></param>
 		/// <returns></returns>
@@ -144,9 +145,9 @@ namespace Automation
 
 			_elems.ForEach(x =>
 			{
-				//splits[0]; // ¶óº§
+				//splits[0]; // ë¼ë²¨
 				LabelCode lCode = LabelCode.Null;
-				//splits[1]; // ¾ÆÀÌµğ
+				//splits[1]; // ì•„ì´ë””
 				string id = "";
 
 				Utilities.GetSplitDatas(x.name, m_split, 
@@ -166,7 +167,7 @@ namespace Automation
 		}
 
 		/// <summary>
-		/// DictionaryÀÇ ÆĞ³Î Value¿¡ id°ª¿¡ ¸Â´Â TransformÀ» ÇÒ´çÇÕ´Ï´Ù.
+		/// Dictionaryì˜ íŒ¨ë„ Valueì— idê°’ì— ë§ëŠ” Transformì„ í• ë‹¹í•©ë‹ˆë‹¤.
 		/// </summary>
 		/// <param name="elem"></param>
 		/// <param name="_id"></param>
@@ -193,8 +194,8 @@ namespace Automation
 		}
 
 		/// <summary>
-		/// ºÎ¸ğ °³Ã¼ÀÇ ID¸¦ ¾ò´Â´Ù.
-		/// ÃÖ»óÀ§ °³Ã¼ÀÎ °æ¿ì null°ªÀ» ÁØ´Ù.
+		/// ë¶€ëª¨ ê°œì²´ì˜ IDë¥¼ ì–»ëŠ”ë‹¤.
+		/// ìµœìƒìœ„ ê°œì²´ì¸ ê²½ìš° nullê°’ì„ ì¤€ë‹¤.
 		/// </summary>
 		/// <param name="_tr"></param>
 		private string GetParentID(Transform _tr)
@@ -205,13 +206,13 @@ namespace Automation
 
 			string id = null;
 
-			// ÃÖ»óÀ§ °³Ã¼°¡ ¾Æ´Ñ °æ¿ì
+			// ìµœìƒìœ„ ê°œì²´ê°€ ì•„ë‹Œ ê²½ìš°
 			if(splits.Length >= 2)
 			{
 				id = Utilities.GetID(splits[1], m_tagID, m_splitKeyValue);
 			}
 
-			// ÃÖ»óÀ§ °³Ã¼ÀÎ °æ¿ì null°ªÀº ¾ø´Ù.
+			// ìµœìƒìœ„ ê°œì²´ì¸ ê²½ìš° nullê°’ì€ ì—†ë‹¤.
 			return id;
 		}
 
@@ -221,8 +222,8 @@ namespace Automation
 
 		private void ReplacePanels(List<Transform> _trs, GameObject _rootPanel)
 		{
-			Debug.LogWarning("TODO Anchor Pos, Pivot À§Ä¡°ª ÃÊ±âÈ­´Â ÃßÈÄ¿¡ ÁøÇà // Áö±İÀº ¼öµ¿À¸·Î ¾ŞÄ¿¸µ, ÇÇº¿ÆÃ ¿¡µğÅÍ¿¡¼­ ÃÊ±âÈ­");
-			// TODO Anchor Pos, Pivot À§Ä¡°ª ÃÊ±âÈ­´Â ÃßÈÄ¿¡ ÁøÇà // Áö±İÀº ¼öµ¿À¸·Î ¾ŞÄ¿¸µ, ÇÇº¿ÆÃ ¿¡µğÅÍ¿¡¼­ ÃÊ±âÈ­
+			Debug.LogWarning("TODO Anchor Pos, Pivot ìœ„ì¹˜ê°’ ì´ˆê¸°í™”ëŠ” ì¶”í›„ì— ì§„í–‰ // ì§€ê¸ˆì€ ìˆ˜ë™ìœ¼ë¡œ ì•µì»¤ë§, í”¼ë´‡íŒ… ì—ë””í„°ì—ì„œ ì´ˆê¸°í™”");
+			// TODO Anchor Pos, Pivot ìœ„ì¹˜ê°’ ì´ˆê¸°í™”ëŠ” ì¶”í›„ì— ì§„í–‰ // ì§€ê¸ˆì€ ìˆ˜ë™ìœ¼ë¡œ ì•µì»¤ë§, í”¼ë´‡íŒ… ì—ë””í„°ì—ì„œ ì´ˆê¸°í™”
 			//_trs.ForEach(x =>
 			//{
 			//	if (x.parent != _rootPanel.transform)
@@ -266,7 +267,7 @@ namespace Automation
 		#region 4 Create Panels
 
 		/// <summary>
-		/// Dictionary ±â¹İÀ¸·Î ÆĞ³ÎÀ» »ı¼ºÇÑ´Ù.
+		/// Dictionary ê¸°ë°˜ìœ¼ë¡œ íŒ¨ë„ì„ ìƒì„±í•œë‹¤.
 		/// </summary>
 		/// <param name="_panels"></param>
 		private void CretaePanels(Dictionary<string, Panel> _panels, GameObject _rootPanel)
@@ -295,7 +296,7 @@ namespace Automation
 
 		#region Debug Elements
 		/// <summary>
-		/// label º° °³Ã¼¸¦ È®ÀÎÇÑ´Ù.
+		/// label ë³„ ê°œì²´ë¥¼ í™•ì¸í•œë‹¤.
 		/// </summary>
 		/// <param name="_trs"></param>
 		private void DebugElements(List<Transform> _trs)

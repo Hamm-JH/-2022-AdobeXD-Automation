@@ -205,14 +205,19 @@ namespace UIs
 		/// <param name="_id"></param>
 		private void Create_Background(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
 		{
-			GameObject obj = Objects.CreatePanel($"ID{_id}_bg", _tr.GetComponent<RectTransform>());
-			Objects.AddImage(obj, _tr.GetComponent<Image>());
-			obj.transform.SetParent(_rootPanel.transform);
+			// 이미지 요소가 존재할 경우에만 신규 인스턴스 할당
+			Image image;
+			if(_tr.TryGetComponent<Image>(out image))
+			{
+				GameObject obj = Objects.CreatePanel($"ID{_id}_bg", _tr.GetComponent<RectTransform>());
+				Objects.AddImage(obj, _tr.GetComponent<Image>());
+				obj.transform.SetParent(_rootPanel.transform);
 
-			// 재배치 요소로 할당한다.
-			SubElements.Add(obj);
+				// 재배치 요소로 할당한다.
+				SubElements.Add(obj);
 
-			AddNewInstance(obj, _lCode);
+				AddNewInstance(obj, _lCode);
+			}
 		}
 
 		/// <summary>
@@ -224,16 +229,21 @@ namespace UIs
 		/// <param name="_id"></param>
 		private void Create_Image(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
 		{
-			// _tr에서 추출할 데이터 : Image sprite
-			GameObject obj = Objects.CreatePanel($"ID{_id}_im", _tr.GetComponent<RectTransform>());
-			Objects.AddImage(obj, _tr.GetComponent<Image>());
+			// 이미지 요소가 존재할 경우에만 신규 인스턴스 할당
+			Image image;
+			if(_tr.TryGetComponent<Image>(out image))
+			{
+				// _tr에서 추출할 데이터 : Image sprite
+				GameObject obj = Objects.CreatePanel($"ID{_id}_im", _tr.GetComponent<RectTransform>());
+				Objects.AddImage(obj, _tr.GetComponent<Image>());
 
-			obj.transform.SetParent(_rootPanel.transform);
+				obj.transform.SetParent(_rootPanel.transform);
 
-			// 재배치 요소로 할당한다.
-			SubElements.Add(obj);
+				// 재배치 요소로 할당한다.
+				SubElements.Add(obj);
 
-			AddNewInstance(obj, _lCode);
+				AddNewInstance(obj, _lCode);
+			}
 		}
 
 		/// <summary>
