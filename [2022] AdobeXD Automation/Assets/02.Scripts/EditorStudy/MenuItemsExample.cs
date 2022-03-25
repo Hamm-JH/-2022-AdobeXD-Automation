@@ -105,13 +105,13 @@ public class MenuItemsExample
 	}
 
 	// Note that we pass the same path, and also pass "true" to the second argument
-	[MenuItem("Assets/ProcessTexture", true)]
-	private static bool NewMenuOptionValidation()
-	{
-		// This return true the selected object is a texture2D 
-		// (the menu item will be disabled otherwise).
-		return Selection.activeObject.GetType() == typeof(Texture2D);
-	}
+	//[MenuItem("Assets/ProcessTexture", true)]
+	//private static bool NewMenuOptionValidation()
+	//{
+	//	// This return true the selected object is a texture2D 
+	//	// (the menu item will be disabled otherwise).
+	//	return Selection.activeObject.GetType() == typeof(Texture2D);
+	//}
 
 	#endregion
 

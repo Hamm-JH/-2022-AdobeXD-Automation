@@ -6,6 +6,8 @@ namespace Automation.Data
 {
     public class AutomationArguments
     {
+		public bool m_isVer2;
+
 		public string m_split = "_";
 		public string m_splitKeyValue = "::";
 		public bool   m_isRemainResourceName = false;
@@ -21,6 +23,8 @@ namespace Automation.Data
 
 		public AutomationArguments()
 		{
+			m_isVer2 = true;
+
 			m_split = "_";
 			m_splitKeyValue = "::";
 			m_isRemainResourceName = false;

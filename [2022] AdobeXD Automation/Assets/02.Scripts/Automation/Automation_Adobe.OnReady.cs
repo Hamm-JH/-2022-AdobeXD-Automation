@@ -55,6 +55,13 @@ namespace Automation
 			// 이 Transform이 자동화 대상인가?
 			if (IsTargetObject(_tr, arguments.m_tagID, arguments.m_split))
 			{
+				if(arguments.m_isVer2)
+				{
+					//_tr.name = "hello";
+					SetAutomation_AddIDTag(_tr);
+				}
+
+
 				// 대상이 자동화 대상인 경우 ID 태그를 찾아서 Replace( -> parentID + idCount )
 				// 자식 개체의, 새 요소인
 				// bb_ :: 경계
@@ -108,7 +115,21 @@ namespace Automation
 			Text text;
 			if(_tr.TryGetComponent<Text>(out text))
 			{
-				_tr.name = _tr.name.Replace(_tr.name, $"tx_id::_{_tr.name}");
+				_tr.name = _tr.name.Replace(_tr.name, $"tx_{_tr.name}");
+			}
+		}
+
+		/// <summary>
+		/// Transform에 ID 태그를 달아둔다.
+		/// </summary>
+		/// <param name="_tr"></param>
+		private void SetAutomation_AddIDTag(Transform _tr)
+		{
+			LabelCode lCode = GetCode(_tr.name);
+			string lString = GetLabelString(lCode);
+			if(lCode != LabelCode.Null)
+			{
+				_tr.name = _tr.name.Replace($"{lString}_", $"{lString}_id::_");
 			}
 		}
 

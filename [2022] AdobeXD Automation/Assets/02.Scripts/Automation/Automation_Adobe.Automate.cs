@@ -91,11 +91,22 @@ namespace Automation
 			// 이름을 주 스플릿 코드로 나누었을때 수가 2 이상인가?
 			bool isMinSplitArgsConfirmed = _tr.name.Split(_split.ToCharArray()).Length >= 2;
 
-			if (isTagContains
-			&& isLabelExist
-			&& isMinSplitArgsConfirmed)
+			if(!arguments.m_isVer2)
 			{
-				result = true;
+				if (isTagContains
+				&& isLabelExist
+				&& isMinSplitArgsConfirmed)
+				{
+					result = true;
+				}
+			}
+			else
+			{
+				if (isLabelExist
+				&& isMinSplitArgsConfirmed)
+				{
+					result = true;
+				}
 			}
 
 			return result;
@@ -299,11 +310,6 @@ namespace Automation
 
 		#endregion
 
-		//private string[] SplitName(string name, string _split)
-		//{
-		//	return name.Split(_split.ToCharArray());
-		//}
-
 		private LabelCode GetCode(string _code)
 		{
 			LabelCode result = LabelCode.Null;
@@ -327,6 +333,34 @@ namespace Automation
 			else if (_code.Contains(arguments.m_labelImage))
 			{
 				result = LabelCode.Image;
+			}
+
+			return result;
+		}
+
+		private string GetLabelString(LabelCode _code)
+		{
+			string result = "";
+
+			if(_code == LabelCode.Button)
+			{
+				result = "btn";
+			}
+			else if(_code == LabelCode.Boundary)
+			{
+				result = "bb";
+			}
+			else if(_code == LabelCode.Background)
+			{
+				result = "bg";
+			}
+			else if(_code == LabelCode.Text)
+			{
+				result = "tx";
+			}
+			else if(_code == LabelCode.Image)
+			{
+				result = "im";
 			}
 
 			return result;

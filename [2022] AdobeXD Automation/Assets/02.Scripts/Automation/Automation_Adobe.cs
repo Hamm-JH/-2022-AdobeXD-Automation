@@ -79,6 +79,7 @@ namespace Automation
 			m_rootCanvas = (Canvas)EditorGUILayout.ObjectField("root canvas", m_rootCanvas, typeof(Canvas), true);
 			m_target = (GameObject)EditorGUILayout.ObjectField("target object", m_target, typeof(GameObject), true);
 			arguments.m_isRemainResourceName = EditorGUILayout.Toggle("is name remaining", arguments.m_isRemainResourceName);
+			arguments.m_isVer2 = EditorGUILayout.Toggle("is ver 2", arguments.m_isVer2);
 
 			EditorGUILayout.Space();
 			GUILayout.Label("정의된 문자코드", EditorStyles.boldLabel);
