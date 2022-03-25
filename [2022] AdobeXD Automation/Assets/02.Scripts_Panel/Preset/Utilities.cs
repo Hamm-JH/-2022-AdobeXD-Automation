@@ -8,16 +8,15 @@ namespace Preset
 
 	public static class Utilities
 	{
-		public static void GetSplitDatas(string _name, string _split,
-			string m_labelButton, string m_labelBoundary, string m_labelBackground, string m_labelText, string m_labelImage,
-			string _tagID, string _splitKV,
+		public static void GetSplitDatas(string _name, Automation.Data.AutomationArguments _arguments,
 			out LabelCode _lCode, out string _id)
 		{
-			string[] splits = _name.Split(_split.ToCharArray());
+			string[] splits = _name.Split(_arguments.m_split.ToCharArray());
 
-			_lCode = GetCode(splits[0], m_labelButton, m_labelBoundary, m_labelBackground, m_labelText, m_labelImage);
+			_lCode = GetCode(splits[0], 
+				_arguments.m_labelButton, _arguments.m_labelBoundary, _arguments.m_labelBackground, _arguments.m_labelText, _arguments.m_labelImage);
 
-			_id = GetID(splits[1], _tagID, _splitKV);
+			_id = GetID(splits[1], _arguments.m_tagID, _arguments.m_splitKeyValue);
 		}
 
 		public static LabelCode GetCode(string _code,

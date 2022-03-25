@@ -49,15 +49,7 @@ namespace UIs
 		/// <summary>
 		/// window에서 가져온 데이터
 		/// </summary>
-		string m_split = "_";
-		string m_splitKeyValue = "::";
-		string m_labelButton = "btn";
-		string m_labelBoundary = "bb";
-		string m_labelBackground = "bg";
-		string m_labelText = "tx";
-		string m_labelImage = "im";
-		string m_tagID = "id";
-		string m_tagFunction = "fn";
+		Automation.Data.AutomationArguments m_arguments;
 
 		public void AddElement(Transform _tr)
 		{
@@ -82,18 +74,9 @@ namespace UIs
 		/// 패널을 생성한다.
 		/// </summary>
 		/// <param name="_rootPanel"></param>
-		public void CreatePanel(GameObject _rootPanel, string _split, 
-			string _labelButton, string _labelBoundary, string _labelBackground, string _labelText, string _labelImage,
-			string _tagID, string _splitKeyValue)
+		public void CreatePanel(GameObject _rootPanel, Automation.Data.AutomationArguments _arguments)
 		{
-			m_split = _split;
-			m_labelButton = _labelButton;
-			m_labelBoundary = _labelBoundary;
-			m_labelBackground = _labelBackground;
-			m_labelText = _labelText;
-			m_labelImage = _labelImage;
-			m_tagID = _tagID;
-			m_splitKeyValue = _splitKeyValue;
+			m_arguments = _arguments;
 
 			LabelCode lCode = LabelCode.Null;
 			string id = "";
@@ -124,9 +107,7 @@ namespace UIs
 			LabelCode lCode = LabelCode.Null;
 			string id = "";
 
-			Utilities.GetSplitDatas(_tr.name, m_split,
-					m_labelButton, m_labelBoundary, m_labelBackground, m_labelText, m_labelImage,
-					m_tagID, m_splitKeyValue, out lCode, out id);
+			Utilities.GetSplitDatas(_tr.name, m_arguments, out lCode, out id);
 
 			//Debug.Log($"code name : {lCode.ToString()}");
 
@@ -165,8 +146,10 @@ namespace UIs
 		/// <param name="_id"></param>
 		private void Create_Boundary(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
 		{
+			string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+
 			// tr에서 추출할 데이터 : RectTransform
-			GameObject obj = Objects.CreatePanel($"ID{_id}_bb", _tr.GetComponent<RectTransform>());
+			GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
 
 			obj.transform.SetParent(_rootPanel.transform);
 
@@ -185,7 +168,9 @@ namespace UIs
 		/// <param name="_id"></param>
 		private void Create_Button(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
 		{
-			GameObject obj = Objects.CreatePanel($"ID{_id}_btn", _tr.GetComponent<RectTransform>());
+			string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+
+			GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
 			Objects.AddButton(obj);
 
 			obj.transform.SetParent(_rootPanel.transform);
@@ -205,11 +190,13 @@ namespace UIs
 		/// <param name="_id"></param>
 		private void Create_Background(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
 		{
+			string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+
 			// 이미지 요소가 존재할 경우에만 신규 인스턴스 할당
 			Image image;
 			if(_tr.TryGetComponent<Image>(out image))
 			{
-				GameObject obj = Objects.CreatePanel($"ID{_id}_bg", _tr.GetComponent<RectTransform>());
+				GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
 				Objects.AddImage(obj, _tr.GetComponent<Image>());
 				obj.transform.SetParent(_rootPanel.transform);
 
@@ -229,12 +216,14 @@ namespace UIs
 		/// <param name="_id"></param>
 		private void Create_Image(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
 		{
+			string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+
 			// 이미지 요소가 존재할 경우에만 신규 인스턴스 할당
 			Image image;
 			if(_tr.TryGetComponent<Image>(out image))
 			{
 				// _tr에서 추출할 데이터 : Image sprite
-				GameObject obj = Objects.CreatePanel($"ID{_id}_im", _tr.GetComponent<RectTransform>());
+				GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
 				Objects.AddImage(obj, _tr.GetComponent<Image>());
 
 				obj.transform.SetParent(_rootPanel.transform);
@@ -255,8 +244,9 @@ namespace UIs
 		/// <param name="_id"></param>
 		private void Create_Text(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
 		{
-			Debug.Log($"tr name {_tr.name}");
-			GameObject obj = Objects.CreatePanel($"ID{_id}_tx", _tr.GetComponent<RectTransform>());
+			string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+
+			GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
 			Objects.AddText(obj, _tr.GetComponent<Text>());
 
 			obj.transform.SetParent(_rootPanel.transform);
@@ -278,6 +268,61 @@ namespace UIs
 			{
 				m_instancedElements[_lCode].Add(_instance);
 			}
+		}
+
+		private string SetInstanceName(string _originalName, LabelCode _lCode, string _id, Automation.Data.AutomationArguments _arguments)
+		{
+			string result = "";
+			string splitCode = _arguments.m_splitKeyValue;
+
+			// lCode에 대응되는 이름
+			string lName = SetLabelCodeName(_lCode);
+			
+			if(_arguments.m_isRemainResourceName)
+			{
+				string original = _originalName.Split('_')[2];
+
+				result = string.Format("ID{0}{1}_{2}_{3}", splitCode, _id, lName, original);
+			}
+			else
+			{
+				result = string.Format("ID{0}{1}_{2}", splitCode, _id, lName);
+			}
+
+			return result;
+		}
+
+		private string SetLabelCodeName(LabelCode _lCode)
+		{
+			string result = "";
+
+			switch(_lCode)
+			{
+				case LabelCode.Boundary:
+					result = "bb";
+					break;
+
+				case LabelCode.Button:
+					result = "btn";
+					break;
+
+				case LabelCode.Background:
+					result = "bg";
+					break;
+
+				case LabelCode.Image:
+					result = "im";
+					break;
+
+				case LabelCode.Text:
+					result = "tx";
+					break;
+
+				default:
+					throw new System.Exception("Label code not matched");
+			}
+
+			return result;
 		}
 
 		#endregion

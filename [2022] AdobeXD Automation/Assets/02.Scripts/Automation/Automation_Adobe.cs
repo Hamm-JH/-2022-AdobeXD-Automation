@@ -16,24 +16,26 @@ namespace Automation
 		Canvas m_rootCanvas;
 		GameObject m_target;
 
-		string m_split = "_";
-		string m_splitKeyValue = "::";
-		
+		public Data.AutomationArguments arguments;
 
-		string m_labelButton = "btn";
-		string m_labelBoundary = "bb";
-		string m_labelBackground = "bg";
-		string m_labelText = "tx";
-		string m_labelImage = "im";
+		//string m_split = "_";
+		//string m_splitKeyValue = "::";
+		//bool m_isRemainResourceName = false;
 
-		string m_tagID = "id";
-		string m_tagFunction = "fn";
+		//string m_labelButton = "btn";
+		//string m_labelBoundary = "bb";
+		//string m_labelBackground = "bg";
+		//string m_labelText = "tx";
+		//string m_labelImage = "im";
+
+		//string m_tagID = "id";
+		//string m_tagFunction = "fn";
 
 		string doButton = "Do It";
 
 		public string IDTag
 		{
-			get => $"{m_tagID}{m_splitKeyValue}";
+			get => $"{arguments.m_tagID}{arguments.m_splitKeyValue}";
 		}
 
 		// Add menu named "My Window" to the Window menu
@@ -41,6 +43,8 @@ namespace Automation
 		static void Init()
 		{
 			Automation_Adobe window = (Automation_Adobe)EditorWindow.GetWindow(typeof(Automation_Adobe));
+
+			window.arguments = new Data.AutomationArguments();
 
 			// 캔버스 검색
 			Canvas canvas;
@@ -74,22 +78,23 @@ namespace Automation
 			// 마지막 인자를 true로 두어야 Hierarchy에서 객체를 가져올 수 있다.
 			m_rootCanvas = (Canvas)EditorGUILayout.ObjectField("root canvas", m_rootCanvas, typeof(Canvas), true);
 			m_target = (GameObject)EditorGUILayout.ObjectField("target object", m_target, typeof(GameObject), true);
+			arguments.m_isRemainResourceName = EditorGUILayout.Toggle("is name remaining", arguments.m_isRemainResourceName);
 
 			EditorGUILayout.Space();
 			GUILayout.Label("정의된 문자코드", EditorStyles.boldLabel);
-			m_split = EditorGUILayout.TextField("split string", m_split);
-			m_splitKeyValue = EditorGUILayout.TextField("split KeyValue", m_splitKeyValue);
+			arguments.m_split = EditorGUILayout.TextField("split string", arguments.m_split);
+			arguments.m_splitKeyValue = EditorGUILayout.TextField("split KeyValue", arguments.m_splitKeyValue);
 			
 			GUILayout.Label("Labels", EditorStyles.boldLabel);
-			m_labelButton = EditorGUILayout.TextField("button", m_labelButton);
-			m_labelBoundary = EditorGUILayout.TextField("boundary", m_labelBoundary);
-			m_labelBackground = EditorGUILayout.TextField("background", m_labelBackground);
-			m_labelText = EditorGUILayout.TextField("text", m_labelText);
-			m_labelImage = EditorGUILayout.TextField("image", m_labelImage);
+			arguments.m_labelButton = EditorGUILayout.TextField("button", arguments.m_labelButton);
+			arguments.m_labelBoundary = EditorGUILayout.TextField("boundary", arguments.m_labelBoundary);
+			arguments.m_labelBackground = EditorGUILayout.TextField("background", arguments.m_labelBackground);
+			arguments.m_labelText = EditorGUILayout.TextField("text", arguments.m_labelText);
+			arguments.m_labelImage = EditorGUILayout.TextField("image", arguments.m_labelImage);
 
 			GUILayout.Label("tags", EditorStyles.boldLabel);
-			m_tagID = EditorGUILayout.TextField("id", m_tagID);
-			m_tagFunction = EditorGUILayout.TextField("function", m_tagFunction);
+			arguments.m_tagID = EditorGUILayout.TextField("id", arguments.m_tagID);
+			arguments.m_tagFunction = EditorGUILayout.TextField("function", arguments.m_tagFunction);
 
 			bool operatable = IsCanOperate(m_rootCanvas, m_target);
 

@@ -54,19 +54,6 @@ namespace Automation
 
 			// 5 생성된 패널객체들 간에 부모설정을 진행한다.
 			SetPanelParents(id_panels);
-
-			//new GameObject("UI Panel");
-			//rootPanel.AddComponent<RectTransform>();
-			//rootPanel.AddComponent<CanvasRenderer>().cullTransparentMesh = true;
-
-			// 저장된 Dictionary의 각 Value의 클래스에 객체 생성을 지시한다. - 끝
-
-			// 생성된 객체들의 부모 자식 구조를 할당한다.
-
-			return;
-
-			// Debug
-			//DebugElements(trs);
 		}
 
 		#region 1 Set target list
@@ -82,26 +69,10 @@ namespace Automation
 
 			_trs.ForEach(x =>
 			{
-				if (IsTargetObject(x, m_tagID, m_split))
+				if (IsTargetObject(x, arguments.m_tagID, arguments.m_split))
 				{
 					result.Add(x);
 				}
-				// TODO Check
-				//// 이름에 id 태그가 존재하는가?
-				//bool isTagContains = x.name.Contains(m_tagID);
-
-				//// 이름에 지정된 라벨중에 하나가 존재하는가?
-				//bool isLabelExist = GetCode(x.name) != LabelCode.Null;
-
-				//// 이름을 주 스플릿 코드로 나누었을때 수가 2 이상인가?
-				//bool isMinSplitArgsConfirmed = x.name.Split(m_split.ToCharArray()).Length >= 2;
-
-				//if(isTagContains
-				//&& isLabelExist
-				//&& isMinSplitArgsConfirmed)
-				//{
-				//	result.Add(x);
-				//}
 			});
 
 			return result;
@@ -150,13 +121,11 @@ namespace Automation
 				//splits[1]; // 아이디
 				string id = "";
 
-				Utilities.GetSplitDatas(x.name, m_split, 
-					m_labelButton, m_labelBoundary, m_labelBackground, m_labelText, m_labelImage,
-					m_tagID, m_splitKeyValue, out lCode, out id);
+				Utilities.GetSplitDatas(x.name, arguments, out lCode, out id);
 
 				SetPanel(x, id, lCode, result);
 
-				string res = "";
+				//string res = "";
 				
 				//string[] splits = x.name.Split(m_split.ToCharArray());
 				//splits.ToList().ForEach(y => res += $" [{y}]");
@@ -175,8 +144,10 @@ namespace Automation
 		/// <param name="_result"></param>
 		private void SetPanel(Transform elem, string _id, LabelCode _lCode, Dictionary<string, Panel> _result)
 		{
+			// elem Transform의 ID값을 Dictionary가 가지고 있다면
 			if (_result.ContainsKey(_id))
 			{
+				// Dictionary ID값에 대응되는 Value리스트에 elem 추가
 				_result[_id].AddElement(elem);
 			}
 			else
@@ -202,14 +173,14 @@ namespace Automation
 		{
 			string pName = _tr.parent.name;
 
-			string[] splits = pName.Split(m_split.ToCharArray());
+			string[] splits = pName.Split(arguments.m_split.ToCharArray());
 
 			string id = null;
 
 			// 최상위 개체가 아닌 경우
 			if(splits.Length >= 2)
 			{
-				id = Utilities.GetID(splits[1], m_tagID, m_splitKeyValue);
+				id = Utilities.GetID(splits[1], arguments.m_tagID, arguments.m_splitKeyValue);
 			}
 
 			// 최상위 개체인 경우 null값은 없다.
@@ -274,9 +245,7 @@ namespace Automation
 		{
 			foreach(Panel pan in _panels.Values)
 			{
-				pan.CreatePanel(_rootPanel, m_split,
-					m_labelButton, m_labelBoundary, m_labelBackground, m_labelText, m_labelImage,
-					m_tagID, m_splitKeyValue);
+				pan.CreatePanel(_rootPanel, arguments);
 			}
 		}
 
@@ -302,15 +271,15 @@ namespace Automation
 		private void DebugElements(List<Transform> _trs)
 		{
 			Debug.Log("-------------------------------------");
-			Check(_trs, m_labelButton);
+			Check(_trs, arguments.m_labelButton);
 			Debug.Log("-------------------------------------");
-			Check(_trs, m_labelBoundary);
+			Check(_trs, arguments.m_labelBoundary);
 			Debug.Log("-------------------------------------");
-			Check(_trs, m_labelBackground);
+			Check(_trs, arguments.m_labelBackground);
 			Debug.Log("-------------------------------------");
-			Check(_trs, m_labelText);
+			Check(_trs, arguments.m_labelText);
 			Debug.Log("-------------------------------------");
-			Check(_trs, m_labelImage);
+			Check(_trs, arguments.m_labelImage);
 			Debug.Log("-------------------------------------");
 		}
 
@@ -339,37 +308,28 @@ namespace Automation
 		{
 			LabelCode result = LabelCode.Null;
 
-			if (_code.Contains(m_labelButton))
+			if (_code.Contains(arguments.m_labelButton))
 			{
 				result = LabelCode.Button;
 			}
-			else if (_code.Contains(m_labelBoundary))
+			else if (_code.Contains(arguments.m_labelBoundary))
 			{
 				result = LabelCode.Boundary;
 			}
-			else if (_code.Contains(m_labelBackground))
+			else if (_code.Contains(arguments.m_labelBackground))
 			{
 				result = LabelCode.Background;
 			}
-			else if (_code.Contains(m_labelText))
+			else if (_code.Contains(arguments.m_labelText))
 			{
 				result = LabelCode.Text;
 			}
-			else if (_code.Contains(m_labelImage))
+			else if (_code.Contains(arguments.m_labelImage))
 			{
 				result = LabelCode.Image;
 			}
 
 			return result;
 		}
-
-		//private string GetID(string _code, string m_tagID, string m_splitKeyValue)
-		//{
-		//	string result = "";
-
-		//	result = _code.Replace($"{m_tagID}{m_splitKeyValue}", "");
-
-		//	return result;
-		//}
 	}
 }

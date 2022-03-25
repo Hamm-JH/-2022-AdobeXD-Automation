@@ -53,15 +53,15 @@ namespace Automation
 			string ID = "";
 
 			// 이 Transform이 자동화 대상인가?
-			if (IsTargetObject(_tr, m_tagID, m_split))
+			if (IsTargetObject(_tr, arguments.m_tagID, arguments.m_split))
 			{
 				// 대상이 자동화 대상인 경우 ID 태그를 찾아서 Replace( -> parentID + idCount )
 				// 자식 개체의, 새 요소인
 				// bb_ :: 경계
 				// btn_ :: 버튼
 				// 의 경우에는 부모 아이디에서 변형된 새 아이디를 배치받는다.
-				if(_tr.name.Contains(m_labelButton) 
-				|| _tr.name.Contains(m_labelBoundary))
+				if(_tr.name.Contains(arguments.m_labelButton) 
+				|| _tr.name.Contains(arguments.m_labelBoundary))
 				{
 					ID = $"{parentID*10+idCount}";
 					_tr.name = _tr.name.Replace(IDTag, $"{IDTag}{ID}");
@@ -74,8 +74,8 @@ namespace Automation
 				else
 				{
 					// 부모 개체가 버튼(btn_) 또는 경계(bb_)를 가진 경우
-					if(_tr.parent.name.Contains(m_labelButton) 
-					|| _tr.parent.name.Contains(m_labelBoundary))
+					if(_tr.parent.name.Contains(arguments.m_labelButton) 
+					|| _tr.parent.name.Contains(arguments.m_labelBoundary))
 					{
 						// 자식의 요소(im, tx, bg)를 변환한다.
 						ID = $"{parentID}";
@@ -139,7 +139,8 @@ namespace Automation
 
 		private bool IsContainsLabel(Transform _tr)
 		{
-			if(_tr.name.Contains(m_labelButton) || _tr.name.Contains(m_labelBoundary))
+			if(_tr.name.Contains(arguments.m_labelButton) 
+			|| _tr.name.Contains(arguments.m_labelBoundary))
 			{
 				return true;
 			}
