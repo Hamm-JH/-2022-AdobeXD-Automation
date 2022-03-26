@@ -171,7 +171,7 @@ namespace UIs
 			string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
 			GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
-			Objects.AddButton(obj);
+			Objects.AddButton(obj, m_arguments.m_style);
 
 			obj.transform.SetParent(_rootPanel.transform);
 
@@ -197,7 +197,7 @@ namespace UIs
 			if(_tr.TryGetComponent<Image>(out image))
 			{
 				GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
-				Objects.AddImage(obj, _tr.GetComponent<Image>());
+				Objects.AddImage(obj, _tr.GetComponent<Image>(), m_arguments);
 				obj.transform.SetParent(_rootPanel.transform);
 
 				// 재배치 요소로 할당한다.
@@ -224,7 +224,7 @@ namespace UIs
 			{
 				// _tr에서 추출할 데이터 : Image sprite
 				GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
-				Objects.AddImage(obj, _tr.GetComponent<Image>());
+				Objects.AddImage(obj, _tr.GetComponent<Image>(), m_arguments);
 
 				obj.transform.SetParent(_rootPanel.transform);
 
@@ -247,7 +247,7 @@ namespace UIs
 			string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
 			GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
-			Objects.AddText(obj, _tr.GetComponent<Text>());
+			Objects.AddText(obj, _tr.GetComponent<Text>(), m_arguments);
 
 			obj.transform.SetParent(_rootPanel.transform);
 

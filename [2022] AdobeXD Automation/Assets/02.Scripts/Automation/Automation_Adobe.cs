@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Automation
 {
+	using Automation.Definition;
 	using UnityEditor;
 	using UnityEditor.EditorTools;
 
@@ -78,8 +79,13 @@ namespace Automation
 			// 마지막 인자를 true로 두어야 Hierarchy에서 객체를 가져올 수 있다.
 			m_rootCanvas = (Canvas)EditorGUILayout.ObjectField("root canvas", m_rootCanvas, typeof(Canvas), true);
 			m_target = (GameObject)EditorGUILayout.ObjectField("target object", m_target, typeof(GameObject), true);
+			arguments.m_fontAsset = (TMPro.TMP_FontAsset)EditorGUILayout.ObjectField("TmPro FontAsset", arguments.m_fontAsset, typeof(TMPro.TMP_FontAsset), true);
+
+			EditorGUILayout.Space();
+			GUILayout.Label("옵션 코드", EditorStyles.boldLabel);
 			arguments.m_isRemainResourceName = EditorGUILayout.Toggle("is name remaining", arguments.m_isRemainResourceName);
 			arguments.m_isVer2 = EditorGUILayout.Toggle("is ver 2", arguments.m_isVer2);
+			arguments.m_style = (Styles)EditorGUILayout.EnumPopup("enums", arguments.m_style);
 
 			EditorGUILayout.Space();
 			GUILayout.Label("정의된 문자코드", EditorStyles.boldLabel);

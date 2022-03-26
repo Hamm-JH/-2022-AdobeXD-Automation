@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Preset
 {
+	using Automation.Definition;
 	using UnityEngine.UI;
 
 	public static class Objects
@@ -48,44 +49,19 @@ namespace Preset
 			return obj;
 		}
 
-		public static void AddButton(GameObject _obj)
+		public static void AddButton(GameObject _obj, Styles _style)
 		{
-			Button objButton;
-			if(!_obj.TryGetComponent<Button>(out objButton))
-			{
-				objButton = _obj.AddComponent<Button>();
-			}
+			Template.SetButton(_obj, _style);
 		}
 
-		public static void AddImage(GameObject _obj, Image _image)
+		public static void AddImage(GameObject _obj, Image _image, Automation.Data.AutomationArguments _arguments)
 		{
-			Image objImage;
-			if(!_obj.TryGetComponent<Image>(out objImage))
-			{
-				objImage = _obj.AddComponent<Image>();
-			}
-
-			objImage.sprite = _image.sprite;
-			objImage.enabled = true;
+			Template.SetImage(_obj, _image, _arguments);
 		}
 
-		public static void AddText(GameObject _obj, Text _text)
+		public static void AddText(GameObject _obj, Text _text, Automation.Data.AutomationArguments _arguments)
 		{
-			Text objText;
-			if(!_obj.TryGetComponent<Text>(out objText))
-			{
-				Image image;
-				if(_obj.TryGetComponent<Image>(out image))
-				{
-					GameObject.DestroyImmediate(image);
-				}
-				objText = _obj.AddComponent<Text>();
-			}
-
-			objText.font = _text.font;
-			objText.text = _text.text;
-			objText.fontSize = _text.fontSize;
-			objText.alignment = _text.alignment;
+			Template.SetText(_obj, _text, _arguments);
 		}
 	}
 }
