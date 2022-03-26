@@ -71,7 +71,7 @@ namespace Automation.Definition
 			}
 
 			text = _obj.AddComponent<TextMeshProUGUI>();
-			text.font = _arguments.m_fontAsset;
+			text.font = _arguments.Tmp_TMPro.m_fontAsset;
 			text.text = _text.text;
 
 			text.enableAutoSizing = true;

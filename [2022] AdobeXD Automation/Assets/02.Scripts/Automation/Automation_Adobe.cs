@@ -19,19 +19,6 @@ namespace Automation
 
 		public Data.AutomationArguments arguments;
 
-		//string m_split = "_";
-		//string m_splitKeyValue = "::";
-		//bool m_isRemainResourceName = false;
-
-		//string m_labelButton = "btn";
-		//string m_labelBoundary = "bb";
-		//string m_labelBackground = "bg";
-		//string m_labelText = "tx";
-		//string m_labelImage = "im";
-
-		//string m_tagID = "id";
-		//string m_tagFunction = "fn";
-
 		string doButton = "Do It";
 
 		public string IDTag
@@ -54,22 +41,6 @@ namespace Automation
 				window.m_rootCanvas = canvas;
 			}
 
-			// TODO 템플릿별 자동화 코드 적용시 이 구간에서 템플릿 코드에 따라 분할코드를 다르게 적용한다.
-			
-			{
-				//window.m_split = "_";
-				//window.m_splitKeyValue = "::";
-
-				//window.m_labelButton = "btn";
-				//window.m_labelBoundary = "bb";
-				//window.m_labelBackground = "bg";
-				//window.m_labelText = "tx";
-				//window.m_labelImage = "im";
-
-				//window.m_tagID = "id";
-				//window.m_tagFunction = "fn";
-			} // 예시
-
 			window.Show();
 		}
 
@@ -79,7 +50,11 @@ namespace Automation
 			// 마지막 인자를 true로 두어야 Hierarchy에서 객체를 가져올 수 있다.
 			m_rootCanvas = (Canvas)EditorGUILayout.ObjectField("root canvas", m_rootCanvas, typeof(Canvas), true);
 			m_target = (GameObject)EditorGUILayout.ObjectField("target object", m_target, typeof(GameObject), true);
-			arguments.m_fontAsset = (TMPro.TMP_FontAsset)EditorGUILayout.ObjectField("TmPro FontAsset", arguments.m_fontAsset, typeof(TMPro.TMP_FontAsset), true);
+
+			EditorGUILayout.Space();
+			GUILayout.Label("TMPro 템플릿");
+			arguments.Tmp_TMPro.m_fontAsset = (TMPro.TMP_FontAsset)EditorGUILayout.ObjectField("TmPro FontAsset", arguments.Tmp_TMPro.m_fontAsset, typeof(TMPro.TMP_FontAsset), true);
+			//arguments.m_fontAsset = (TMPro.TMP_FontAsset)EditorGUILayout.ObjectField("TmPro FontAsset", arguments.m_fontAsset, typeof(TMPro.TMP_FontAsset), true);
 
 			EditorGUILayout.Space();
 			GUILayout.Label("옵션 코드", EditorStyles.boldLabel);
