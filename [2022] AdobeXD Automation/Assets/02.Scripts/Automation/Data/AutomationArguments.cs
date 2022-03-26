@@ -14,8 +14,6 @@ namespace Automation.Data
 		public Styles m_style;
 		public T_TMPro Tmp_TMPro;
 
-		//public TMPro.TMP_FontAsset m_fontAsset;
-
 		public string m_split = "_";
 		public string m_splitKeyValue = "::";
 		public bool   m_isRemainResourceName = false;
@@ -34,7 +32,6 @@ namespace Automation.Data
 			m_isVer2 = true;
 			m_style = Styles.Default_UI;
 			Tmp_TMPro = new T_TMPro();
-			//m_fontAsset = Init_GetTMPro_FontAsset();
 
 			m_split = "_";
 			m_splitKeyValue = "::";
@@ -49,18 +46,5 @@ namespace Automation.Data
 			m_tagID = "id";
 			m_tagFunction = "fn";
 		}
-
-		//private TMPro.TMP_FontAsset Init_GetTMPro_FontAsset()
-		//{
-		//	TMPro.TMP_FontAsset fontAsset = null;
-
-		//	//Debug.Log(AssetDatabase.FindAssets(Assets.Definitions.TMP_FONTASSET)[0]);
-		//	string guid = AssetDatabase.FindAssets(Assets.Definitions.TMP_FONTASSET)[0];
-		//	//Debug.Log(AssetDatabase.GUIDToAssetPath(guid));
-		//	string path = AssetDatabase.GUIDToAssetPath(guid);
-		//	fontAsset = (TMPro.TMP_FontAsset)AssetDatabase.LoadAssetAtPath<TMPro.TMP_Asset>(path);
-
-		//	return fontAsset;
-		//}
 	}
 }

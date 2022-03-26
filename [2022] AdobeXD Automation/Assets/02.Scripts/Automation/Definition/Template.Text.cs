@@ -9,7 +9,7 @@ namespace Automation.Definition
 
 	public static partial class Template
 	{
-		public static void SetText(GameObject _obj, Text _text, Automation.Data.AutomationArguments _arguments /*Styles _style*/)
+		public static void SetText(GameObject _obj, Text _text, Automation.Data.AutomationArguments _arguments)
 		{
 			switch(_arguments.m_style)
 			{
@@ -55,9 +55,6 @@ namespace Automation.Definition
 				{
 					GameObject.DestroyImmediate(image);
 				}
-				
-				
-				//objText = _obj.AddComponent<Text>();
 			}
 			else
 			{
