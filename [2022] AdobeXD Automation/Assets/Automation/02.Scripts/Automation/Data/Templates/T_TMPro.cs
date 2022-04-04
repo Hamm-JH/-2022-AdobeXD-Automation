@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEditor;
 
 namespace Automation.Data.Templates
 {
-	using TMPro;
-	using UnityEditor;
-
 	public class T_TMPro
 	{
 		public TMP_FontAsset m_fontAsset;
