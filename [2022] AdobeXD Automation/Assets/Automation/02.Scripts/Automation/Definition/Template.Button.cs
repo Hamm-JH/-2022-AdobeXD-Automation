@@ -19,6 +19,7 @@ namespace Automation.Definition
 					case Styles.Default_UI:
 					case Styles.TextmeshPro:
 						_obj.AddComponent<Button>();
+						_obj.GetComponent<Image>().enabled = true;
 						_obj.AddComponent<UI_Selectable>();
 						break;
 				}

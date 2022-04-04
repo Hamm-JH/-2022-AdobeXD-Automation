@@ -120,14 +120,14 @@ namespace Automation
 		}
 
 		/// <summary>
-		/// Transform에 ID 태그를 달아둔다.
+		/// Transform (Text 태그를 가졌다면)에 ID 태그를 달아둔다.
 		/// </summary>
 		/// <param name="_tr"></param>
 		private void SetAutomation_AddIDTag(Transform _tr)
 		{
 			LabelCode lCode = GetCode(_tr.name);
 			string lString = GetLabelString(lCode);
-			if(lCode != LabelCode.Null)
+			if(lCode != LabelCode.Null && lCode == LabelCode.Text)
 			{
 				_tr.name = _tr.name.Replace($"{lString}_", $"{lString}_id::_");
 			}

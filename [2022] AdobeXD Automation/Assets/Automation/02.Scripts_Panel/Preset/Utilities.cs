@@ -8,6 +8,13 @@ namespace Presets
 
 	public static class Utilities
 	{
+		/// <summary>
+		/// 이름 안에 있는 라벨 코드와 아이디 값을 가져온다.
+		/// </summary>
+		/// <param name="_name"></param>
+		/// <param name="_arguments"></param>
+		/// <param name="_lCode"></param>
+		/// <param name="_id"></param>
 		public static void GetSplitDatas(string _name, Automation.Data.AutomationArguments _arguments,
 			out LabelCode _lCode, out string _id)
 		{
