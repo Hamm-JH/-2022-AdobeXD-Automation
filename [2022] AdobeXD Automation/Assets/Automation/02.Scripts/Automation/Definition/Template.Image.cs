@@ -14,6 +14,7 @@ namespace Automation.Definition
 			{
 				case Styles.Default_UI:
 				case Styles.TextmeshPro:
+				case Styles.ModernUI:
 					SetSingleImage<Image>(_obj, _image);
 					break;
 			}

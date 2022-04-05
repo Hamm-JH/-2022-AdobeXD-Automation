@@ -10,15 +10,15 @@ namespace Automation
 	{
 		// 템플릿
 
-		public enum LabelCode
-		{
-			Null = -1,
+		//public enum LabelCode
+		//{
+		//	Null = -1,
 
-			Button,
-			Boundary,
-			Background,
-			Text,
-			Image
-		}
+		//	Button,
+		//	Boundary,
+		//	Background,
+		//	Text,
+		//	Image
+		//}
 	}
 }

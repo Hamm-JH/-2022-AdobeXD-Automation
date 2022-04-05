@@ -14,6 +14,7 @@ namespace Automation
 	public partial class Automation_Adobe : EditorWindow
 	{
 		/// <summary>
+		/// ID, Tag 부여가 완료된 객체들을 가지고 시안 자동화를 진행한다.
 		/// root of UI
 		/// </summary>
 		/// <param name="_obj"></param>
@@ -86,7 +87,7 @@ namespace Automation
 			bool isTagContains = _tr.name.Contains(_tagID);
 
 			// 이름에 지정된 라벨중에 하나가 존재하는가?
-			bool isLabelExist = GetCode(_tr.name) != LabelCode.Null;
+			bool isLabelExist = LabelCodes.GetCode(_tr.name, arguments) != LabelCode.Null;
 
 			// 이름을 주 스플릿 코드로 나누었을때 수가 2 이상인가?
 			bool isMinSplitArgsConfirmed = _tr.name.Split(_split.ToCharArray()).Length >= 2;
@@ -296,7 +297,7 @@ namespace Automation
 
 		private void Check(List<Transform> _trs, string _code)
 		{
-			LabelCode lCode = GetCode(_code);
+			LabelCode lCode = LabelCodes.GetCode(_code, arguments);
 
 			Debug.Log($"***** codename : {lCode.ToString()}");
 			_trs.ForEach(x =>
@@ -309,34 +310,6 @@ namespace Automation
 		}
 
 		#endregion
-
-		private LabelCode GetCode(string _code)
-		{
-			LabelCode result = LabelCode.Null;
-
-			if (_code.Contains(arguments.m_labelButton))
-			{
-				result = LabelCode.Button;
-			}
-			else if (_code.Contains(arguments.m_labelBoundary))
-			{
-				result = LabelCode.Boundary;
-			}
-			else if (_code.Contains(arguments.m_labelBackground))
-			{
-				result = LabelCode.Background;
-			}
-			else if (_code.Contains(arguments.m_labelText))
-			{
-				result = LabelCode.Text;
-			}
-			else if (_code.Contains(arguments.m_labelImage))
-			{
-				result = LabelCode.Image;
-			}
-
-			return result;
-		}
 
 		private string GetLabelString(LabelCode _code)
 		{

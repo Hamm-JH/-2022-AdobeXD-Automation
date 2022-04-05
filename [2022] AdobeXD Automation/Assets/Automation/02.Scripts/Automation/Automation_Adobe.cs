@@ -57,6 +57,21 @@ namespace Automation
 
 		#endregion
 
+		private static Automation_Adobe instance;
+
+		public static Automation_Adobe Instance
+        {
+			get
+            {
+				if(instance == null)
+                {
+					return null;
+                }
+
+				return instance;
+            }
+        }
+
 		// Add menu named "My Window" to the Window menu
 		[MenuItem("Window/Adobe Automation")]
 		static void Init()
@@ -75,10 +90,17 @@ namespace Automation
 				window.m_rootCanvas = canvas;
 			}
 
-			window.Show();
-		}
+			instance = window;
 
-		private void OnGUI()
+			window.Show();
+        }
+
+        private void OnDestroy()
+        {
+			instance = null;
+        }
+
+        private void OnGUI()
 		{
 			GUILayout.Label("Base settings", EditorStyles.boldLabel);
 			// 마지막 인자를 true로 두어야 Hierarchy에서 객체를 가져올 수 있다.
@@ -144,6 +166,14 @@ namespace Automation
 							arguments.Tmp_TMPro.m_fontAsset = (TMPro.TMP_FontAsset)EditorGUILayout.ObjectField("TmPro FontAsset", arguments.Tmp_TMPro.m_fontAsset, typeof(TMPro.TMP_FontAsset), true);
 							//arguments.m_fontAsset = (TMPro.TMP_FontAsset)EditorGUILayout.ObjectField("TmPro FontAsset", arguments.m_fontAsset, typeof(TMPro.TMP_FontAsset), true);
 						}
+						break;
+
+					case Styles.ModernUI:
+                        {
+							EditorGUILayout.Space();
+							GUILayout.Label("ModernUI 템플릿");
+							arguments.MUI_Templates.progressBar = (Templates.ModernUI.MUI_ProgressBar)EditorGUILayout.ObjectField("ModernUI ProgressBar 1", arguments.MUI_Templates.progressBar, typeof(Templates.ModernUI.MUI_ProgressBar), true);
+                        }
 						break;
 				}
 			}

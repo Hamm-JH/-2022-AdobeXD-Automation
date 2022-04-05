@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Presets
 {
+	using Automation;
+
 	using static Automation.Automation_Adobe;
 
 	public static class Utilities

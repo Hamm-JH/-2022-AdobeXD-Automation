@@ -19,6 +19,10 @@ namespace Automation.Definition
 				case Styles.TextmeshPro:
 
 					break;
+
+				case Styles.ModernUI:
+
+					break;
 			}
 		}
 	}

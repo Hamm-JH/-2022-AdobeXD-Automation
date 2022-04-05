@@ -17,7 +17,7 @@ namespace Automation
 		{
 			GameObject clone = CloneRootUI(_canvas, _rootObj);
 
-			SetAutomationObjectID(clone.transform, 0, 0, _rootObj);
+			SetAutomationObjectID(clone.transform, "0", 0, _rootObj);
 
 			return clone;
 		}
@@ -42,10 +42,10 @@ namespace Automation
 		
 
 		/// <summary>
-		/// 자동화 준비
+		/// 자동화 준비 (재귀)
 		/// </summary>
 		/// <param name="_tr"></param>
-		private void SetAutomationObjectID(Transform _tr, int parentID, int idCount, GameObject _rootObj)
+		private void SetAutomationObjectID(Transform _tr, string parentID, int idCount, GameObject _rootObj)
 		{
 			// 텍스트 요소에 라벨, id 태그 부여
 			SetAutomation_TextObject(_tr);
@@ -70,7 +70,7 @@ namespace Automation
 				if(_tr.name.Contains(arguments.m_labelButton) 
 				|| _tr.name.Contains(arguments.m_labelBoundary))
 				{
-					ID = $"{parentID*10+idCount}";
+					ID = $"{parentID}-{idCount}";
 					_tr.name = _tr.name.Replace(IDTag, $"{IDTag}{ID}");
 				}
 				// 부모 개체의 요소로 붙어야 할
@@ -85,6 +85,7 @@ namespace Automation
 					|| _tr.parent.name.Contains(arguments.m_labelBoundary))
 					{
 						// 자식의 요소(im, tx, bg)를 변환한다.
+						// ★ 부모의 ID값을 따라가야 하므로 parentID를 할당한다.
 						ID = $"{parentID}";
 						_tr.name = _tr.name.Replace(IDTag, $"{IDTag}{ID}");
 					}
@@ -92,6 +93,7 @@ namespace Automation
 					else
 					{
 						// btn, bb를 가진 부모개체를 찾아 id값을 반환한다.
+						// ★ 종속이 필요한 객체들은 parent ID를 가진 btn, bb를 찾을 때까지 ID찾기를 시행한다.
 						ID = GetParent_BB_BTN_ID(_tr.parent, _rootObj.transform);
 						_tr.name = _tr.name.Replace(IDTag, $"{IDTag}{ID}");
 					}
@@ -102,12 +104,12 @@ namespace Automation
 			for (int i = 0; i < index; i++)
 			{
 				// 자식 개체가 
-				SetAutomationObjectID(_tr.GetChild(i), parentID*10+idCount, i, _rootObj);
+				SetAutomationObjectID(_tr.GetChild(i), ID, i, _rootObj);
 			}
 		}
 
 		/// <summary>
-		/// 텍스트 요소에 tx 라벨, id 태그를 부여한다.
+		/// 텍스트 요소에 tx 라벨을 부여한다.
 		/// </summary>
 		/// <param name="_tr"></param>
 		private void SetAutomation_TextObject(Transform _tr)
@@ -121,15 +123,22 @@ namespace Automation
 
 		/// <summary>
 		/// Transform (Text 태그를 가졌다면)에 ID 태그를 달아둔다.
+		/// 2nd Version :: ID 태그를 가지고 있지 않다면 ID 태그를 달아둔다.
 		/// </summary>
 		/// <param name="_tr"></param>
 		private void SetAutomation_AddIDTag(Transform _tr)
 		{
-			LabelCode lCode = GetCode(_tr.name);
+			LabelCode lCode = LabelCodes.GetCode(_tr.name, arguments);
 			string lString = GetLabelString(lCode);
-			if(lCode != LabelCode.Null && lCode == LabelCode.Text)
+
+			//if(lCode != LabelCode.Null && lCode == LabelCode.Text)
+			if(lCode != LabelCode.Null)
 			{
-				_tr.name = _tr.name.Replace($"{lString}_", $"{lString}_id::_");
+				// 이름에 ID 태그가 들어가있지 않다면 태그 부여
+				if(!_tr.name.Contains(IDTag))
+                {
+					_tr.name = _tr.name.Replace($"{lString}_", $"{lString}_{IDTag}_");
+                }
 			}
 		}
 
@@ -169,6 +178,7 @@ namespace Automation
 			{
 				return false;
 			}
+			
 		}
 
 		/// <summary>

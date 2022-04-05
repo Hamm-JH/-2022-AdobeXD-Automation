@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEditor;
 
-namespace Automation.Data.Templates
+namespace Automation.Templates
 {
 	public class T_TMPro
 	{

@@ -8,5 +8,6 @@ namespace Automation.Definition
 	{
 		Default_UI,
 		TextmeshPro,
+		ModernUI,
 	}
 }

@@ -6,13 +6,14 @@ namespace Automation.Data
 {
 	using UnityEditor;
 	using Automation.Definition;
-	using Automation.Data.Templates;
+    using Automation.Templates;
 
     public class AutomationArguments
     {
 		public bool m_isVer2;
 		public Styles m_style;
 		public T_TMPro Tmp_TMPro;
+		public MUI_Templates MUI_Templates;
 
 		public string m_split = "_";
 		public string m_splitKeyValue = "::";
@@ -30,12 +31,13 @@ namespace Automation.Data
 		public AutomationArguments()
 		{
 			m_isVer2 = true;
-			m_style = Styles.Default_UI;
+			m_style = Styles.TextmeshPro;
 			Tmp_TMPro = new T_TMPro();
+			MUI_Templates = new MUI_Templates();
 
 			m_split = "_";
 			m_splitKeyValue = "::";
-			m_isRemainResourceName = false;
+			m_isRemainResourceName = true;
 
 			m_labelButton = "btn";
 			m_labelBoundary = "bb";

@@ -18,6 +18,7 @@ namespace Automation.Definition
 					break;
 
 				case Styles.TextmeshPro:
+				case Styles.ModernUI:
 					SetText_TextmeshPro(_obj, _text, _arguments);
 					break;
 			}
