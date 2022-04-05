@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,23 +17,37 @@ namespace Automation
 		Image,
 		
 		/// <summary>
-		/// «¡∑Œ±◊∑πΩ∫πŸ
+		/// ÌîÑÎ°úÍ∑∏Î†àÏä§Î∞î
 		/// </summary>
 		Progressbar,
 
 		/// <summary>
-		/// «¡∑Œ±◊∑πΩ∫πŸ πË∞Ê
+		/// ÌîÑÎ°úÍ∑∏Î†àÏä§Î∞î Î∞∞Í≤Ω
 		/// </summary>
 		Progressbar_background,
 		
 		/// <summary>
-		/// «¡∑Œ±◊∑πΩ∫πŸ «œ¿Ã∂Û¿Ã∆Æ
+		/// ÌîÑÎ°úÍ∑∏Î†àÏä§Î∞î ÌïòÏù¥ÎùºÏù¥Ìä∏
 		/// </summary>
 		Progressbar_highlight
 	}
 
 	public static class LabelCodes
     {
+		public static bool IsMainPanelElement(string _name, Automation.Data.AutomationArguments _arguments)
+		{
+			bool result = false;
+
+			LabelCode lCode = GetCode(_name, _arguments);
+			if(lCode == LabelCode.Boundary ||
+				lCode == LabelCode.Button ||
+				lCode == LabelCode.Progressbar)
+			{
+				result = true;
+			}
+
+			return result;
+		}
 
 		public static LabelCode GetCode(string _code, Automation.Data.AutomationArguments _arguments)
 		{
@@ -59,33 +73,57 @@ namespace Automation
 			{
 				result = LabelCode.Image;
 			}
+			else if(_code.Contains(_arguments.MUI_Templates.m_progressbar))
+			{
+				result = LabelCode.Progressbar;
+			}
+			else if(_code.Contains(_arguments.MUI_Templates.m_progressbar_background))
+			{
+				result = LabelCode.Progressbar_background;
+			}
+			else if(_code.Contains(_arguments.MUI_Templates.m_progressbar_highlight))
+			{
+				result = LabelCode.Progressbar_highlight;
+			}
 
 			return result;
 		}
 
-		public static string GetLabelString(LabelCode _code)
+		public static string GetLabelString(LabelCode _code, Automation.Data.AutomationArguments _arguments)
 		{
 			string result = "";
 
 			if (_code == LabelCode.Button)
 			{
-				result = "btn";
+				result = _arguments.m_labelButton;
 			}
 			else if (_code == LabelCode.Boundary)
 			{
-				result = "bb";
+				result = _arguments.m_labelBoundary;
 			}
 			else if (_code == LabelCode.Background)
 			{
-				result = "bg";
+				result = _arguments.m_labelBackground;
 			}
 			else if (_code == LabelCode.Text)
 			{
-				result = "tx";
+				result = _arguments.m_labelText;
 			}
 			else if (_code == LabelCode.Image)
 			{
-				result = "im";
+				result = _arguments.m_labelImage;
+			}
+			else if(_code == LabelCode.Progressbar)
+			{
+				result = _arguments.MUI_Templates.m_progressbar;
+			}
+			else if(_code == LabelCode.Progressbar_background)
+			{
+				result = _arguments.MUI_Templates.m_progressbar_background;
+			}
+			else if(_code == LabelCode.Progressbar_highlight)
+			{
+				result = _arguments.MUI_Templates.m_progressbar_highlight;
 			}
 
 			return result;

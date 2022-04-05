@@ -45,6 +45,9 @@ namespace Automation
 		/// </summary>
 		bool toggle_definedTextLayout;
 
+		[SerializeField]
+		private Vector2 scrollPos = Vector2.zero;
+
 		/// <summary>
 		/// 두잇.
 		/// </summary>
@@ -102,6 +105,11 @@ namespace Automation
 
         private void OnGUI()
 		{
+			// 런타임시 비활성화
+			if (Application.isPlaying) return;
+
+			scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+
 			GUILayout.Label("Base settings", EditorStyles.boldLabel);
 			// 마지막 인자를 true로 두어야 Hierarchy에서 객체를 가져올 수 있다.
 			m_rootCanvas = (Canvas)EditorGUILayout.ObjectField("root canvas", m_rootCanvas, typeof(Canvas), true);
@@ -124,6 +132,8 @@ namespace Automation
 
 			bool operatable = IsCanOperate(m_rootCanvas, m_target);
 			StanbyFields_RunProcess(operatable);
+
+			EditorGUILayout.EndScrollView();
 		}
 
 		#region method
@@ -173,6 +183,9 @@ namespace Automation
 							EditorGUILayout.Space();
 							GUILayout.Label("ModernUI 템플릿");
 							arguments.MUI_Templates.progressBar = (Templates.ModernUI.MUI_ProgressBar)EditorGUILayout.ObjectField("ModernUI ProgressBar 1", arguments.MUI_Templates.progressBar, typeof(Templates.ModernUI.MUI_ProgressBar), true);
+							arguments.MUI_Templates.m_progressbar = EditorGUILayout.TextField("L_progressbar", arguments.MUI_Templates.m_progressbar);
+							arguments.MUI_Templates.m_progressbar_background = EditorGUILayout.TextField("L_pBar background", arguments.MUI_Templates.m_progressbar_background);
+							arguments.MUI_Templates.m_progressbar_highlight = EditorGUILayout.TextField("L_pBar highlight", arguments.MUI_Templates.m_progressbar_highlight);
                         }
 						break;
 				}

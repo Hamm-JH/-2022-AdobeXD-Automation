@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,26 +22,26 @@ namespace UIs
         }
 
         /// <summary>
-        /// ÆĞ³Î ¿ä¼ÒµéÀÇ root°¡ µÇ´Â °´Ã¼
+        /// íŒ¨ë„ ìš”ì†Œë“¤ì˜ rootê°€ ë˜ëŠ” ê°ì²´
         /// </summary>
         private GameObject m_panel;
 
         private List<GameObject> m_subElements;
 
         /// <summary>
-        /// ºÎ¸ğ °³Ã¼ÀÇ ID
-        /// ÆĞ³Î °£ÀÇ À§Ä¡ ¹èÄ¡½Ã¿¡ ÇÊ¿äÇÏ´Ù.
+        /// ë¶€ëª¨ ê°œì²´ì˜ ID
+        /// íŒ¨ë„ ê°„ì˜ ìœ„ì¹˜ ë°°ì¹˜ì‹œì— í•„ìš”í•˜ë‹¤.
         /// </summary>
         private string m_parentID;
 
         /// <summary>
-        /// ¹Ş¾Æ¿Â ½Ã¾ÈÀÇ ¿ä¼Òµé
+        /// ë°›ì•„ì˜¨ ì‹œì•ˆì˜ ìš”ì†Œë“¤
         /// </summary>
         private List<Transform> m_inElements;
 
         /// <summary>
-        /// TODO ÀÛ¾÷ º¸·ù (ÀÌ °³Ã¼ÀÇ ¸ñÀûÀº subElements·Î ÀÌÀüµÊ)
-        /// »ı¼º´Ü°èÁß¿¡ »ı¼ºµÈ ¿ä¼Òµé
+        /// TODO ì‘ì—… ë³´ë¥˜ (ì´ ê°œì²´ì˜ ëª©ì ì€ subElementsë¡œ ì´ì „ë¨)
+        /// ìƒì„±ë‹¨ê³„ì¤‘ì— ìƒì„±ëœ ìš”ì†Œë“¤
         /// </summary>
         private Dictionary<LabelCode, List<GameObject>> m_instancedElements;
 
@@ -50,7 +50,7 @@ namespace UIs
         public List<Transform> InElements { get => m_inElements; set => m_inElements = value; }
 
         /// <summary>
-        /// window¿¡¼­ °¡Á®¿Â µ¥ÀÌÅÍ
+        /// windowì—ì„œ ê°€ì ¸ì˜¨ ë°ì´í„°
         /// </summary>
         Automation.Data.AutomationArguments m_arguments;
 
@@ -62,8 +62,8 @@ namespace UIs
         }
 
         /// <summary>
-        /// null¶Ç´Â Á¸ÀçÇÏ´Â ºÎ¸ğ °³Ã¼ÀÇ ID °ªÀ» ¾ò´Â´Ù.
-        /// null°ªÀÎ °æ¿ì Panel »çÀÌÀÇ ºÎ¸ğ°ü°è°¡ ¾ø´Â ·çÆ® Á÷Àü ÃÖ»óÀ§ °³Ã¼ÀÓ
+        /// nullë˜ëŠ” ì¡´ì¬í•˜ëŠ” ë¶€ëª¨ ê°œì²´ì˜ ID ê°’ì„ ì–»ëŠ”ë‹¤.
+        /// nullê°’ì¸ ê²½ìš° Panel ì‚¬ì´ì˜ ë¶€ëª¨ê´€ê³„ê°€ ì—†ëŠ” ë£¨íŠ¸ ì§ì „ ìµœìƒìœ„ ê°œì²´ì„
         /// </summary>
         /// <param name="_id"></param>
         public void SetParentID(string _id)
@@ -74,7 +74,7 @@ namespace UIs
         #region 1 Create Panel
 
         /// <summary>
-        /// ÆĞ³ÎÀ» »ı¼ºÇÑ´Ù.
+        /// íŒ¨ë„ì„ ìƒì„±í•œë‹¤.
         /// </summary>
         /// <param name="_rootPanel"></param>
         public void CreatePanel(GameObject _rootPanel, Automation.Data.AutomationArguments _arguments)
@@ -84,30 +84,30 @@ namespace UIs
             LabelCode lCode = LabelCode.Null;
             string id = "";
 
-            // 1 Element »ı¼º´Ü°è
-            // id ´ÜÀ§·Î element Áı°èµÈ ´ë»ó¿¡ ´ëÇØ »õ·Ó°Ô »ı¼ºµÈ element °´Ã¼¸¦ »ı¼ºÇÑ´Ù.
-            // X ´ÜÀÏ ÆĞ³Î ³»ºÎ¿¡¼­ »ı¼ºµÈ °´Ã¼µéÀº m_instancedElements »çÀü º¯¼ö¿¡ ÇÒ´çÇÑ´Ù.
-            // X ´ÜÀÏ ÆĞ³Î ³»ºÎ¿¡¼­ »ı¼ºµÈ °´Ã¼µéÀº ¶óº§¿¡ µû¶ó target¶Ç´Â subElementº¯¼ö/¸®½ºÆ®¿¡ ÇÒ´çÇÑ´Ù.
-            // 1Â÷ÀûÀ¸·Î rootPanel¿¡ ¼öÆòÀûÀ¸·Î ÇÒ´çÇÑ´Ù.
+            // 1 Element ìƒì„±ë‹¨ê³„
+            // id ë‹¨ìœ„ë¡œ element ì§‘ê³„ëœ ëŒ€ìƒì— ëŒ€í•´ ìƒˆë¡­ê²Œ ìƒì„±ëœ element ê°ì²´ë¥¼ ìƒì„±í•œë‹¤.
+            // X ë‹¨ì¼ íŒ¨ë„ ë‚´ë¶€ì—ì„œ ìƒì„±ëœ ê°ì²´ë“¤ì€ m_instancedElements ì‚¬ì „ ë³€ìˆ˜ì— í• ë‹¹í•œë‹¤.
+            // X ë‹¨ì¼ íŒ¨ë„ ë‚´ë¶€ì—ì„œ ìƒì„±ëœ ê°ì²´ë“¤ì€ ë¼ë²¨ì— ë”°ë¼ targetë˜ëŠ” subElementë³€ìˆ˜/ë¦¬ìŠ¤íŠ¸ì— í• ë‹¹í•œë‹¤.
+            // 1ì°¨ì ìœ¼ë¡œ rootPanelì— ìˆ˜í‰ì ìœ¼ë¡œ í• ë‹¹í•œë‹¤.
             m_inElements.ForEach(x =>
             {
                 CreateElement(_rootPanel, x);
             });
 
-            // 2 Element ³»ºÎ ¹èÄ¡´Ü°è
-            // 1¹ø °úÁ¤¿¡¼­ m_instancedElements »çÀü º¯¼ö¿¡ ÇÒ´çµÈ °´Ã¼µéÀ» ´ë»óÀ¸·Î ÆĞ³Î ³»ºÎÀÇ ¹èÄ¡¸¦ ÁøÇàÇÑ´Ù.
+            // 2 Element ë‚´ë¶€ ë°°ì¹˜ë‹¨ê³„
+            // 1ë²ˆ ê³¼ì •ì—ì„œ m_instancedElements ì‚¬ì „ ë³€ìˆ˜ì— í• ë‹¹ëœ ê°ì²´ë“¤ì„ ëŒ€ìƒìœ¼ë¡œ íŒ¨ë„ ë‚´ë¶€ì˜ ë°°ì¹˜ë¥¼ ì§„í–‰í•œë‹¤.
             SetElementPos(IPanel, SubElements);
 
-            // 3 Elementº° »óÈ£ÀÛ¿ë ´Ü°è
+            // 3 Elementë³„ ìƒí˜¸ì‘ìš© ë‹¨ê³„
             AssembleInPanel(_arguments);
 
 
         }
 
-        #region 1-1 Element »ı¼º´Ü°è
+        #region 1-1 Element ìƒì„±ë‹¨ê³„
 
         /// <summary>
-        /// °¢ ElementµéÀ» »ı¼ºÇÑ´Ù.
+        /// ê° Elementë“¤ì„ ìƒì„±í•œë‹¤.
         /// </summary>
         /// <param name="_tr"></param>
         private void CreateElement(GameObject _rootPanel, Transform _tr)
@@ -140,13 +140,25 @@ namespace UIs
                 case LabelCode.Text:
                     Create_Text(_rootPanel, _tr, lCode, id);
                     break;
+
+                case LabelCode.Progressbar:
+                    Create_ProgressbarPanel(_rootPanel, _tr, lCode, id);
+                    break;
+
+                case LabelCode.Progressbar_background:
+                    Create_ProgressbarBackground(_rootPanel, _tr, lCode, id);
+                    break;
+
+                case LabelCode.Progressbar_highlight:
+                    Create_ProgressbarHighlight(_rootPanel, _tr, lCode, id);
+                    break;
             }
         }
 
         #region Create Element
 
         /// <summary>
-        /// Boundary »ı¼º
+        /// Boundary ìƒì„±
         /// </summary>
         /// <param name="_rootPanel"></param>
         /// <param name="_tr"></param>
@@ -156,19 +168,19 @@ namespace UIs
         {
             string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
-            // tr¿¡¼­ ÃßÃâÇÒ µ¥ÀÌÅÍ : RectTransform
+            // trì—ì„œ ì¶”ì¶œí•  ë°ì´í„° : RectTransform
             GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
 
             obj.transform.SetParent(_rootPanel.transform);
 
-            // ¿ä¼ÒµéÀÇ root·Î ÁöÁ¤ÇÑ´Ù.
+            // ìš”ì†Œë“¤ì˜ rootë¡œ ì§€ì •í•œë‹¤.
             IPanel = obj;
 
             AddNewInstance(obj, _lCode);
         }
 
         /// <summary>
-        /// Button »ı¼º
+        /// Button ìƒì„±
         /// </summary>
         /// <param name="_rootPanel"></param>
         /// <param name="_tr"></param>
@@ -183,14 +195,14 @@ namespace UIs
 
             obj.transform.SetParent(_rootPanel.transform);
 
-            // ¿ä¼ÒµéÀÇ root·Î ÁöÁ¤ÇÑ´Ù.
+            // ìš”ì†Œë“¤ì˜ rootë¡œ ì§€ì •í•œë‹¤.
             IPanel = obj;
 
             AddNewInstance(obj, _lCode);
         }
 
         /// <summary>
-        /// ¹è°æ »ı¼º
+        /// ë°°ê²½ ìƒì„±
         /// </summary>
         /// <param name="_rootPanel"></param>
         /// <param name="_tr"></param>
@@ -200,7 +212,7 @@ namespace UIs
         {
             string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
-            // ÀÌ¹ÌÁö ¿ä¼Ò°¡ Á¸ÀçÇÒ °æ¿ì¿¡¸¸ ½Å±Ô ÀÎ½ºÅÏ½º ÇÒ´ç
+            // ì´ë¯¸ì§€ ìš”ì†Œê°€ ì¡´ì¬í•  ê²½ìš°ì—ë§Œ ì‹ ê·œ ì¸ìŠ¤í„´ìŠ¤ í• ë‹¹
             Image image;
             if (_tr.TryGetComponent<Image>(out image))
             {
@@ -208,7 +220,7 @@ namespace UIs
                 Objects.AddImage(obj, _tr.GetComponent<Image>(), m_arguments);
                 obj.transform.SetParent(_rootPanel.transform);
 
-                // Àç¹èÄ¡ ¿ä¼Ò·Î ÇÒ´çÇÑ´Ù.
+                // ì¬ë°°ì¹˜ ìš”ì†Œë¡œ í• ë‹¹í•œë‹¤.
                 SubElements.Add(obj);
 
                 AddNewInstance(obj, _lCode);
@@ -216,7 +228,7 @@ namespace UIs
         }
 
         /// <summary>
-        /// Image »ı¼º
+        /// Image ìƒì„±
         /// </summary>
         /// <param name="_rootPanel"></param>
         /// <param name="_tr"></param>
@@ -226,17 +238,17 @@ namespace UIs
         {
             string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
-            // ÀÌ¹ÌÁö ¿ä¼Ò°¡ Á¸ÀçÇÒ °æ¿ì¿¡¸¸ ½Å±Ô ÀÎ½ºÅÏ½º ÇÒ´ç
+            // ì´ë¯¸ì§€ ìš”ì†Œê°€ ì¡´ì¬í•  ê²½ìš°ì—ë§Œ ì‹ ê·œ ì¸ìŠ¤í„´ìŠ¤ í• ë‹¹
             Image image;
             if (_tr.TryGetComponent<Image>(out image))
             {
-                // _tr¿¡¼­ ÃßÃâÇÒ µ¥ÀÌÅÍ : Image sprite
+                // _trì—ì„œ ì¶”ì¶œí•  ë°ì´í„° : Image sprite
                 GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
                 Objects.AddImage(obj, _tr.GetComponent<Image>(), m_arguments);
 
                 obj.transform.SetParent(_rootPanel.transform);
 
-                // Àç¹èÄ¡ ¿ä¼Ò·Î ÇÒ´çÇÑ´Ù.
+                // ì¬ë°°ì¹˜ ìš”ì†Œë¡œ í• ë‹¹í•œë‹¤.
                 SubElements.Add(obj);
 
                 AddNewInstance(obj, _lCode);
@@ -244,7 +256,7 @@ namespace UIs
         }
 
         /// <summary>
-        /// Text »ı¼º
+        /// Text ìƒì„±
         /// </summary>
         /// <param name="_rootPanel"></param>
         /// <param name="_tr"></param>
@@ -259,7 +271,46 @@ namespace UIs
 
             obj.transform.SetParent(_rootPanel.transform);
 
-            // Àç¹èÄ¡ ¿ä¼Ò·Î ÇÒ´çÇÑ´Ù.
+            // ì¬ë°°ì¹˜ ìš”ì†Œë¡œ í• ë‹¹í•œë‹¤.
+            SubElements.Add(obj);
+
+            AddNewInstance(obj, _lCode);
+        }
+
+        private void Create_ProgressbarPanel(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
+		{
+            string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+
+            GameObject obj = null;
+
+
+
+            IPanel = obj;
+
+            AddNewInstance(obj, _lCode);
+		}
+
+        private void Create_ProgressbarBackground(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
+        {
+            string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+
+            GameObject obj = null;
+
+
+
+            SubElements.Add(obj);
+
+            AddNewInstance(obj, _lCode);
+        }
+
+        private void Create_ProgressbarHighlight(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
+        {
+            string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+
+            GameObject obj = null;
+
+
+
             SubElements.Add(obj);
 
             AddNewInstance(obj, _lCode);
@@ -283,8 +334,8 @@ namespace UIs
             string result = "";
             string splitCode = _arguments.m_splitKeyValue;
 
-            // lCode¿¡ ´ëÀÀµÇ´Â ÀÌ¸§
-            string lName = SetLabelCodeName(_lCode);
+            // lCodeì— ëŒ€ì‘ë˜ëŠ” ì´ë¦„
+            string lName = LabelCodes.GetLabelString(_lCode, _arguments);
 
             if (_arguments.m_isRemainResourceName)
             {
@@ -313,44 +364,11 @@ namespace UIs
             return result;
         }
 
-        private string SetLabelCodeName(LabelCode _lCode)
-        {
-            string result = "";
-
-            switch (_lCode)
-            {
-                case LabelCode.Boundary:
-                    result = "bb";
-                    break;
-
-                case LabelCode.Button:
-                    result = "btn";
-                    break;
-
-                case LabelCode.Background:
-                    result = "bg";
-                    break;
-
-                case LabelCode.Image:
-                    result = "im";
-                    break;
-
-                case LabelCode.Text:
-                    result = "tx";
-                    break;
-
-                default:
-                    throw new System.Exception("Label code not matched");
-            }
-
-            return result;
-        }
-
         #endregion
 
         #endregion
 
-        #region 1-2 Element ³»ºÎ ¹èÄ¡´Ü°è
+        #region 1-2 Element ë‚´ë¶€ ë°°ì¹˜ë‹¨ê³„
 
         private void SetElementPos(GameObject _panel, List<GameObject> _subs)
         {
@@ -364,19 +382,19 @@ namespace UIs
 
         #endregion
 
-        #region 1-3 Element º° »óÈ£ÀÛ¿ë ´Ü°è
+        #region 1-3 Element ë³„ ìƒí˜¸ì‘ìš© ë‹¨ê³„
 
         private void AssembleInPanel(Automation.Data.AutomationArguments _arguments)
         {
             //LabelCode rlCode = LabelCodes.GetCode(IPanel.name, _arguments);
 
-            //// ¹öÆ°ÀÏ °æ¿ì
+            //// ë²„íŠ¼ì¼ ê²½ìš°
             //if (rlCode == LabelCode.Button)
             //{
             //    Image img = null;
             //    GameObject target = null;
                 
-            //    // ¼­ºê ¿ä¼ÒÁß¿¡¼­ ¹è°æ ¶óº§ÀÎ ÀÌ¹ÌÁö¸¦ °¡Á®¿Â´Ù.
+            //    // ì„œë¸Œ ìš”ì†Œì¤‘ì—ì„œ ë°°ê²½ ë¼ë²¨ì¸ ì´ë¯¸ì§€ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
             //    SubElements.ForEach(x =>
             //    {
             //        if(Panels.TryGetElement(x, LabelCode.Background, _arguments, out target))
@@ -385,11 +403,11 @@ namespace UIs
             //        }
             //    });
 
-            //    // ¹è°æ ¶óº§À» °¡Áø ÀÌ¹ÌÁö°¡ ÀÖÀ» °æ¿ì
+            //    // ë°°ê²½ ë¼ë²¨ì„ ê°€ì§„ ì´ë¯¸ì§€ê°€ ìˆì„ ê²½ìš°
             //    if(img != null)
             //    {
             //        Image rImg;
-            //        // ·çÆ®ÆĞ³ÎÀÇ ÀÌ¹ÌÁö¿¡ ÇÒ´çÇÑ´Ù.
+            //        // ë£¨íŠ¸íŒ¨ë„ì˜ ì´ë¯¸ì§€ì— í• ë‹¹í•œë‹¤.
             //        if(IPanel.TryGetComponent<Image>(out rImg))
             //        {
             //            rImg.sprite = img.sprite;
@@ -397,10 +415,10 @@ namespace UIs
             //    }
 
             //}
-            //// °æ°èÀÏ °æ¿ì
+            //// ê²½ê³„ì¼ ê²½ìš°
             //else if (rlCode == LabelCode.Boundary)
             //{
-            //    // º°ÀÏ ¾øÀ½
+            //    // ë³„ì¼ ì—†ìŒ
             //}
         }
 
@@ -411,18 +429,18 @@ namespace UIs
         #region 2 Set Panel's parent
 
         /// <summary>
-        /// EditorWindow¿¡¼­ °¡°øµÇ¾îÀÖ´Â Dictionary º¯¼ö¸¦ °®°í¿Í¼­ ÀÌ ÆĞ³Î ÀÎ½ºÅÏ½ºÀÇ ºÎ¸ğ¸¦ ÇÒ´çÇÑ´Ù.
+        /// EditorWindowì—ì„œ ê°€ê³µë˜ì–´ìˆëŠ” Dictionary ë³€ìˆ˜ë¥¼ ê°–ê³ ì™€ì„œ ì´ íŒ¨ë„ ì¸ìŠ¤í„´ìŠ¤ì˜ ë¶€ëª¨ë¥¼ í• ë‹¹í•œë‹¤.
         /// </summary>
-        /// <param name="_panels"> ÆĞ³Î »çÀü º¯¼ö </param>
+        /// <param name="_panels"> íŒ¨ë„ ì‚¬ì „ ë³€ìˆ˜ </param>
         public void SetPanelParent(Dictionary<string, Panel> _panels)
         {
-            // ºÎ¸ğÀÇ ID¸¦ °¡Áö°í ¿È
+            // ë¶€ëª¨ì˜ IDë¥¼ ê°€ì§€ê³  ì˜´
             string parentID = m_parentID;
 
-            // ºÎ¸ğ ID¿Í ¸ÅÄªµÇ´Â ÆĞ³ÎÀÌ Á¸ÀçÇÏ´Â °æ¿ì
+            // ë¶€ëª¨ IDì™€ ë§¤ì¹­ë˜ëŠ” íŒ¨ë„ì´ ì¡´ì¬í•˜ëŠ” ê²½ìš°
             if (parentID != null && _panels.ContainsKey(parentID))
             {
-                // ºÎ¸ğ ID¸¦ °¡Áø °´Ã¼·Î ÀÌ ÀÎ½ºÅÏ½ºÀÇ ÆĞ³Î ºÎ¸ğ ÇÒ´ç
+                // ë¶€ëª¨ IDë¥¼ ê°€ì§„ ê°ì²´ë¡œ ì´ ì¸ìŠ¤í„´ìŠ¤ì˜ íŒ¨ë„ ë¶€ëª¨ í• ë‹¹
                 IPanel.transform.SetParent(_panels[parentID].IPanel.transform);
             }
 

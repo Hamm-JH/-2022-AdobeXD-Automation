@@ -133,19 +133,16 @@ namespace Automation
 				//splits[1]; // 아이디
 				string id = "";
 
+				// 객체 이름에서 라벨 코드, 아이디를 가져온다.
 				Utilities.GetSplitDatas(x.name, arguments, out lCode, out id);
 
+				// 가져온 라벨 코드, 아이디 값으로 객체 배치를 시작한다.
 				SetPanel(x, id, lCode, result);
-
-				//string res = "";
-				
-				//string[] splits = x.name.Split(m_split.ToCharArray());
-				//splits.ToList().ForEach(y => res += $" [{y}]");
-				//Debug.Log($"_elem name : {x.name} // {res}");
 			});
 
 			return result;
 		}
+
 
 		/// <summary>
 		/// Dictionary의 패널 Value에 id값에 맞는 Transform을 할당합니다.
@@ -310,33 +307,5 @@ namespace Automation
 		}
 
 		#endregion
-
-		//private string GetLabelString(LabelCode _code)
-		//{
-		//	string result = "";
-
-		//	if(_code == LabelCode.Button)
-		//	{
-		//		result = "btn";
-		//	}
-		//	else if(_code == LabelCode.Boundary)
-		//	{
-		//		result = "bb";
-		//	}
-		//	else if(_code == LabelCode.Background)
-		//	{
-		//		result = "bg";
-		//	}
-		//	else if(_code == LabelCode.Text)
-		//	{
-		//		result = "tx";
-		//	}
-		//	else if(_code == LabelCode.Image)
-		//	{
-		//		result = "im";
-		//	}
-
-		//	return result;
-		//}
 	}
 }

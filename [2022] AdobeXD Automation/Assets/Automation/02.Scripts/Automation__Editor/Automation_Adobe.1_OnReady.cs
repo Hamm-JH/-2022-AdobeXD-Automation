@@ -39,10 +39,10 @@ namespace Automation
 			return result;
 		}
 
-		
+
 
 		/// <summary>
-		/// 자동화 준비 (재귀)
+		/// ★★ 자동화 준비 (재귀)
 		/// </summary>
 		/// <param name="_tr"></param>
 		private void SetAutomationObjectID(Transform _tr, string parentID, int idCount, GameObject _rootObj)
@@ -55,11 +55,11 @@ namespace Automation
 			// 이 Transform이 자동화 대상인가?
 			if (IsTargetObject(_tr, arguments.m_tagID, arguments.m_split))
 			{
-				if(arguments.m_isVer2)
-				{
-					//_tr.name = "hello";
-					SetAutomation_AddIDTag(_tr);
-				}
+				SetAutomation_AddIDTag(_tr);
+				//if(arguments.m_isVer2)
+				//{
+				//	//_tr.name = "hello";
+				//}
 
 
 				// 대상이 자동화 대상인 경우 ID 태그를 찾아서 Replace( -> parentID + idCount )
@@ -67,8 +67,7 @@ namespace Automation
 				// bb_ :: 경계
 				// btn_ :: 버튼
 				// 의 경우에는 부모 아이디에서 변형된 새 아이디를 배치받는다.
-				if(_tr.name.Contains(arguments.m_labelButton) 
-				|| _tr.name.Contains(arguments.m_labelBoundary))
+				if(LabelCodes.IsMainPanelElement(_tr.name, arguments))
 				{
 					ID = $"{parentID}-{idCount}";
 					_tr.name = _tr.name.Replace(IDTag, $"{IDTag}{ID}");
@@ -81,8 +80,7 @@ namespace Automation
 				else
 				{
 					// 부모 개체가 버튼(btn_) 또는 경계(bb_)를 가진 경우
-					if(_tr.parent.name.Contains(arguments.m_labelButton) 
-					|| _tr.parent.name.Contains(arguments.m_labelBoundary))
+					if (LabelCodes.IsMainPanelElement(_tr.parent.name, arguments))
 					{
 						// 자식의 요소(im, tx, bg)를 변환한다.
 						// ★ 부모의 ID값을 따라가야 하므로 parentID를 할당한다.
@@ -129,7 +127,7 @@ namespace Automation
 		private void SetAutomation_AddIDTag(Transform _tr)
 		{
 			LabelCode lCode = LabelCodes.GetCode(_tr.name, arguments);
-			string lString = LabelCodes.GetLabelString(lCode);
+			string lString = LabelCodes.GetLabelString(lCode, arguments);
 
 			//if(lCode != LabelCode.Null && lCode == LabelCode.Text)
 			if(lCode != LabelCode.Null)
