@@ -311,32 +311,32 @@ namespace Automation
 
 		#endregion
 
-		private string GetLabelString(LabelCode _code)
-		{
-			string result = "";
+		//private string GetLabelString(LabelCode _code)
+		//{
+		//	string result = "";
 
-			if(_code == LabelCode.Button)
-			{
-				result = "btn";
-			}
-			else if(_code == LabelCode.Boundary)
-			{
-				result = "bb";
-			}
-			else if(_code == LabelCode.Background)
-			{
-				result = "bg";
-			}
-			else if(_code == LabelCode.Text)
-			{
-				result = "tx";
-			}
-			else if(_code == LabelCode.Image)
-			{
-				result = "im";
-			}
+		//	if(_code == LabelCode.Button)
+		//	{
+		//		result = "btn";
+		//	}
+		//	else if(_code == LabelCode.Boundary)
+		//	{
+		//		result = "bb";
+		//	}
+		//	else if(_code == LabelCode.Background)
+		//	{
+		//		result = "bg";
+		//	}
+		//	else if(_code == LabelCode.Text)
+		//	{
+		//		result = "tx";
+		//	}
+		//	else if(_code == LabelCode.Image)
+		//	{
+		//		result = "im";
+		//	}
 
-			return result;
-		}
+		//	return result;
+		//}
 	}
 }

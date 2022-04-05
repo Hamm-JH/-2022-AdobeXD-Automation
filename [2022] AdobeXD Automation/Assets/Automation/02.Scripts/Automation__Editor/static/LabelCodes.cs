@@ -14,7 +14,22 @@ namespace Automation
 		Boundary,
 		Background,
 		Text,
-		Image
+		Image,
+		
+		/// <summary>
+		/// 프로그레스바
+		/// </summary>
+		Progressbar,
+
+		/// <summary>
+		/// 프로그레스바 배경
+		/// </summary>
+		Progressbar_background,
+		
+		/// <summary>
+		/// 프로그레스바 하이라이트
+		/// </summary>
+		Progressbar_highlight
 	}
 
 	public static class LabelCodes
@@ -43,6 +58,34 @@ namespace Automation
 			else if (_code.Contains(_arguments.m_labelImage))
 			{
 				result = LabelCode.Image;
+			}
+
+			return result;
+		}
+
+		public static string GetLabelString(LabelCode _code)
+		{
+			string result = "";
+
+			if (_code == LabelCode.Button)
+			{
+				result = "btn";
+			}
+			else if (_code == LabelCode.Boundary)
+			{
+				result = "bb";
+			}
+			else if (_code == LabelCode.Background)
+			{
+				result = "bg";
+			}
+			else if (_code == LabelCode.Text)
+			{
+				result = "tx";
+			}
+			else if (_code == LabelCode.Image)
+			{
+				result = "im";
 			}
 
 			return result;

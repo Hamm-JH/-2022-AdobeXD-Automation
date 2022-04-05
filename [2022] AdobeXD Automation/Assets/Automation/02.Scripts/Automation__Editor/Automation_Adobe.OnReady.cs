@@ -129,7 +129,7 @@ namespace Automation
 		private void SetAutomation_AddIDTag(Transform _tr)
 		{
 			LabelCode lCode = LabelCodes.GetCode(_tr.name, arguments);
-			string lString = GetLabelString(lCode);
+			string lString = LabelCodes.GetLabelString(lCode);
 
 			//if(lCode != LabelCode.Null && lCode == LabelCode.Text)
 			if(lCode != LabelCode.Null)
