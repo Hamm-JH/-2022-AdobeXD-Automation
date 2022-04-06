@@ -6,6 +6,7 @@ using UnityEngine;
 namespace UIs
 {
     using Automation;
+    using Automation.Templates.ModernUI;
     using Presets;
     using System.Linq;
     using UnityEngine.UI;
@@ -96,6 +97,7 @@ namespace UIs
 
             // 2 Element 내부 배치단계
             // 1번 과정에서 m_instancedElements 사전 변수에 할당된 객체들을 대상으로 패널 내부의 배치를 진행한다.
+            Debug.Log(_rootPanel.name);
             SetElementPos(IPanel, SubElements);
 
             // 3 Element별 상호작용 단계
@@ -309,7 +311,6 @@ namespace UIs
 
             GameObject obj = Objects.CreateProgressbarBackground(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
-
             //obj.transform.SetParent(_rootPanel.transform);
             SubElements.Add(obj);
             AddNewInstance(obj, _lCode);
@@ -329,7 +330,7 @@ namespace UIs
             GameObject obj = Objects.CreateProgressbarHighlight(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
 
-            obj.transform.SetParent(_rootPanel.transform);
+            //obj.transform.SetParent(_rootPanel.transform);
             SubElements.Add(obj);
             AddNewInstance(obj, _lCode);
         }
@@ -357,10 +358,15 @@ namespace UIs
         {
             if (_panel == null)
             {
+                return;
                 //Debug.LogError($"element : {_subs.First().name} have not parent panel");
-                throw new System.Exception($"element : {_subs.First().name} have not parent panel");
+                Debug.LogError($"element : {_subs.First().name} have not parent panel");
+                //throw new System.Exception($"element : {_subs.First().name} have not parent panel");
             }
-            _subs.ForEach(x => x.transform.SetParent(_panel.transform));
+            else
+            {
+                _subs.ForEach(x => x.transform.SetParent(_panel.transform));
+            }
         }
 
         #endregion
@@ -369,40 +375,102 @@ namespace UIs
 
         private void AssembleInPanel(Automation.Data.AutomationArguments _arguments)
         {
-            //LabelCode rlCode = LabelCodes.GetCode(IPanel.name, _arguments);
+            LabelCode rootLCode = LabelCodes.GetCode(IPanel.name, _arguments);
 
-            //// 버튼일 경우
-            //if (rlCode == LabelCode.Button)
-            //{
-            //    Image img = null;
-            //    GameObject target = null;
-                
-            //    // 서브 요소중에서 배경 라벨인 이미지를 가져온다.
-            //    SubElements.ForEach(x =>
-            //    {
-            //        if(Panels.TryGetElement(x, LabelCode.Background, _arguments, out target))
-            //        {
-            //            img = target.GetComponent<Image>();
-            //        }
-            //    });
+            if(LabelCodes.IsButton(rootLCode))
+            {
+                Assemble_Button(IPanel, SubElements, _arguments);
+            }
+            else if(LabelCodes.IsProgressBar(rootLCode))
+            {
+                Assemble_Progressbar(IPanel, SubElements, _arguments);
+            }
+            else if(LabelCodes.IsBoundary(rootLCode))
+            {
 
-            //    // 배경 라벨을 가진 이미지가 있을 경우
-            //    if(img != null)
-            //    {
-            //        Image rImg;
-            //        // 루트패널의 이미지에 할당한다.
-            //        if(IPanel.TryGetComponent<Image>(out rImg))
-            //        {
-            //            rImg.sprite = img.sprite;
-            //        }
-            //    }
+            }
+            
+        }
 
-            //}
-            //// 경계일 경우
-            //else if (rlCode == LabelCode.Boundary)
-            //{
-            //    // 별일 없음
-            //}
+        /// <summary>
+        /// 버튼 조립
+        /// </summary>
+        /// <param name="_iPanel"></param>
+        /// <param name="_subElems"></param>
+        private void Assemble_Button(GameObject _iPanel, List<GameObject> _subElems,
+            Automation.Data.AutomationArguments _arguments)
+        {
+            Image background = null;
+            GameObject target = null;
+
+            foreach(GameObject obj in _subElems)
+            {
+                if(Panels.TryGetElement(obj, LabelCode.Background, _arguments, out target))
+                {
+                    background = target.GetComponent<Image>();
+                    break;
+                }
+            }
+
+            // bg 라벨을 가진 개체가 있을 경우 이미지 전달 실행
+            if(background != null)
+            {
+                Image rImg;
+                if(_iPanel.TryGetComponent<Image>(out rImg))
+                {
+                    rImg.sprite = rImg.sprite;
+                }
+                GameObject.Destroy(background.gameObject);
+            }
+        }
+
+        /// <summary>
+        /// 프로그레스바 조립
+        /// </summary>
+        /// <param name="_iPanel"></param>
+        /// <param name="_subElems"></param>
+        private void Assemble_Progressbar(GameObject _iPanel, List<GameObject> _subElems,
+            Automation.Data.AutomationArguments _arguments)
+        {
+            MUI_ProgressBar pBar = _iPanel.GetComponent<MUI_ProgressBar>();
+
+            if (pBar == null) return;
+
+            Debug.Log("Hello progressbar");
+
+            Image background = null;
+            Image highlight = null;
+
+            GameObject target = null;
+
+            foreach(GameObject obj in _subElems)
+            {
+                if(Panels.TryGetElement(obj, LabelCode.Progressbar_background, _arguments, out target))
+                {
+                    background = target.GetComponent<Image>();
+                }
+                else if(Panels.TryGetElement(obj, LabelCode.Progressbar_highlight, _arguments, out target))
+                {
+                    highlight = target.GetComponent<Image>();
+                }
+            }
+
+            return;
+            if(background)
+            {
+                Color colr = background.color;
+                //pBar.m_progressBar.
+                pBar.m_mgrProcessBar.UIManagerAsset.progressBarBackgroundColor = new Color(colr.r, colr.g, colr.b, 0.2f);       // 배경색
+                GameObject.DestroyImmediate(background.gameObject);
+            }
+
+            if(highlight)
+            {
+                Color colr = highlight.color;
+                pBar.m_progressBar.loadingBar.color = Color.red; //new Color(colr.r, colr.g, colr.b, colr.a);                 // 하이라이트색
+                //pBar.m_mgrProcessBar.UIManagerAsset.progressBarColor = new Color(colr.r, colr.g, colr.b, colr.a);                 // 하이라이트색
+                GameObject.DestroyImmediate(highlight.gameObject);
+            }
         }
 
         #endregion

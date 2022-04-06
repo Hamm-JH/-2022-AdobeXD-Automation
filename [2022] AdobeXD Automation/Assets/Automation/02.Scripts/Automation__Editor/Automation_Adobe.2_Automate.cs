@@ -166,8 +166,7 @@ namespace Automation
 				_result.Add(_id, pnl);
 			}
 
-			if (_lCode == LabelCode.Boundary ||
-				_lCode == LabelCode.Button)
+			if (LabelCodes.IsMainPanelElement(elem.name, arguments))
 			{
 				_result[_id].SetParentID(GetParentID(elem));
 			}

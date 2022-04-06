@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 7662590972013746462}
   - component: {fileID: 8283715284807301987}
   m_Layer: 5
-  m_Name: MUI ProgressBar 1
+  m_Name: MUI ProgressBar 2
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: be8d03bb95afe0641976d654781e9e44, type: 3}
   m_NavMeshLayer: 0

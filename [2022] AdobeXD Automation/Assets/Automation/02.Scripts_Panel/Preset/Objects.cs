@@ -78,10 +78,8 @@ namespace Presets
 			GameObject obj = GameObject.Instantiate<GameObject>(_arguments.MUI_Templates.progressBar.gameObject, _rootPanel.transform);
 			obj.name = name;
 
-
-
-			Debug.Log(_obj.name);
-			Debug.Log(name);
+			//Debug.Log(_obj.name);
+			//Debug.Log(name);
 
 			return obj;
         }
@@ -91,10 +89,9 @@ namespace Presets
 		{
 			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
 
-			GameObject obj = new GameObject(name);
-
-			Debug.Log(_obj.name);
-			Debug.Log(name);
+			GameObject obj = CreatePanel(name, _obj.GetComponent<RectTransform>());
+			AddImage(obj, _obj.GetComponent<Image>(), _arguments);
+			obj.transform.SetParent(_rootPanel.transform);
 
 			return obj;
         }
@@ -104,10 +101,9 @@ namespace Presets
 		{
 			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
 
-			GameObject obj = new GameObject(name);
-
-			Debug.Log(_obj.name);
-			Debug.Log(name);
+			GameObject obj = CreatePanel(name, _obj.GetComponent<RectTransform>()); //new GameObject(name);
+			AddImage(obj, _obj.GetComponent<Image>(), _arguments);
+			obj.transform.SetParent(_rootPanel.transform);
 
 			return obj;
 		}

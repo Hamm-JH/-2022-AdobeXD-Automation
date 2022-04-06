@@ -19,7 +19,7 @@ namespace Automation.Templates
         {
             progressBar = Init_GetMUI_progressBar();
             m_progressbar = "pbar";
-            m_progressbar_background = "pbbg";
+            m_progressbar_background = "pbbgr";
             m_progressbar_highlight = "pbhl";
         }
 

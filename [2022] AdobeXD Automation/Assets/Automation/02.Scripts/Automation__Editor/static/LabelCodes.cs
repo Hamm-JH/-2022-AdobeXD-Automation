@@ -49,44 +49,80 @@ namespace Automation
 			return result;
 		}
 
+		public static bool IsButton(LabelCode _code)
+        {
+			bool result = false;
+
+			if(_code == LabelCode.Button)
+            {
+				result = true;
+            }
+
+			return result;
+        }
+
+		public static bool IsBoundary(LabelCode _code)
+        {
+			bool result = false;
+
+			if(_code == LabelCode.Boundary)
+            {
+				result = true;
+            }
+
+			return result;
+        }
+
+		public static bool IsProgressBar(LabelCode _code)
+        {
+			bool result = false;
+
+			if(_code == LabelCode.Progressbar)
+            {
+				result = true;
+            }
+
+			return result;
+        }
+
 		public static LabelCode GetCode(string _code, Automation.Data.AutomationArguments _arguments)
 		{
 			LabelCode result = LabelCode.Null;
 
-			if (_code.Contains(_arguments.m_labelButton))
-			{
-				result = LabelCode.Button;
-			}
-			else if (_code.Contains(_arguments.m_labelBoundary))
-			{
-				result = LabelCode.Boundary;
-			}
-			else if (_code.Contains(_arguments.m_labelBackground))
-			{
-				result = LabelCode.Background;
-			}
-			else if (_code.Contains(_arguments.m_labelText))
-			{
-				result = LabelCode.Text;
-			}
-			else if (_code.Contains(_arguments.m_labelImage))
-			{
-				result = LabelCode.Image;
-			}
-			else if(_code.Contains(_arguments.MUI_Templates.m_progressbar))
-			{
-				result = LabelCode.Progressbar;
-			}
-			else if(_code.Contains(_arguments.MUI_Templates.m_progressbar_background))
-			{
-				result = LabelCode.Progressbar_background;
-			}
-			else if(_code.Contains(_arguments.MUI_Templates.m_progressbar_highlight))
-			{
-				result = LabelCode.Progressbar_highlight;
-			}
+            if (_code.Contains($"{_arguments.m_labelButton}{_arguments.m_split}"))
+            {
+                result = LabelCode.Button;
+            }
+            else if (_code.Contains($"{_arguments.m_labelBoundary}{_arguments.m_split}"))
+            {
+                result = LabelCode.Boundary;
+            }
+            else if (_code.Contains($"{_arguments.m_labelBackground}{_arguments.m_split}"))
+            {
+                result = LabelCode.Background;
+            }
+            else if (_code.Contains($"{_arguments.m_labelText}{_arguments.m_split}"))
+            {
+                result = LabelCode.Text;
+            }
+            else if (_code.Contains($"{_arguments.m_labelImage}{_arguments.m_split}"))
+            {
+                result = LabelCode.Image;
+            }
+            else if (_code.Contains($"{_arguments.MUI_Templates.m_progressbar}{_arguments.m_split}"))
+            {
+                result = LabelCode.Progressbar;
+            }
+            else if (_code.Contains($"{_arguments.MUI_Templates.m_progressbar_background}{_arguments.m_split}"))
+            {
+                result = LabelCode.Progressbar_background;
+            }
+            else if (_code.Contains($"{_arguments.MUI_Templates.m_progressbar_highlight}{_arguments.m_split}"))
+            {
+                result = LabelCode.Progressbar_highlight;
+            }
 
-			return result;
+            return result;
 		}
 
 		public static string GetLabelString(LabelCode _code, Automation.Data.AutomationArguments _arguments)

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enableDynamicUpdate: 1
   enableExtendedColorPicker: 0
-  editorHints: 0
+  editorHints: 1
   animatedIconColor: {r: 1, g: 1, b: 1, a: 1}
   contextBackgroundColor: {r: 0.21568628, g: 0.29411766, b: 0.37254903, a: 1}
   buttonThemeType: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   modalWindowDescriptionColor: {r: 1, g: 1, b: 1, a: 1}
   modalWindowIconColor: {r: 1, g: 1, b: 1, a: 1}
   modalWindowBackgroundColor: {r: 0.1764706, g: 0.25490198, b: 0.33333334, a: 1}
-  modalWindowContentPanelColor: {r: 0, g: 0, b: 0, a: 0.39215687}
+  modalWindowContentPanelColor: {r: 1, g: 1, b: 1, a: 0.019607844}
   notificationTitleFont: {fileID: 11400000, guid: fa328c1ae3ffb6b4583cf371153b0be6, type: 2}
   notificationTitleFontSize: 22.5
   notificationDescriptionFont: {fileID: 11400000, guid: 2f17e8bb3967fe14093d5fec798fffd9, type: 2}
@@ -68,7 +68,7 @@ MonoBehaviour:
   progressBarLabelFont: {fileID: 11400000, guid: 84dd14695854bbc43a5faa24fcf93d0d, type: 2}
   progressBarLabelFontSize: 25
   progressBarColor: {r: 1, g: 1, b: 1, a: 1}
-  progressBarBackgroundColor: {r: 1, g: 1, b: 1, a: 0.05882353}
+  progressBarBackgroundColor: {r: 1, g: 1, b: 1, a: 0.2}
   progressBarLoopBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
   progressBarLabelColor: {r: 1, g: 1, b: 1, a: 1}
   scrollbarColor: {r: 1, g: 1, b: 1, a: 1}
@@ -82,7 +82,7 @@ MonoBehaviour:
   sliderPopupLabelColor: {r: 0.37254903, g: 0.40784314, b: 0.4509804, a: 1}
   sliderHandleColor: {r: 1, g: 1, b: 1, a: 1}
   switchBorderColor: {r: 0.1764706, g: 0.25490198, b: 0.33333334, a: 1}
-  switchBackgroundColor: {r: 0, g: 0.5686275, b: 1, a: 1}
+  switchBackgroundColor: {r: 0.05882353, g: 0.5882353, b: 0.99215686, a: 1}
   switchHandleOnColor: {r: 1, g: 1, b: 1, a: 1}
   switchHandleOffColor: {r: 1, g: 1, b: 1, a: 1}
   toggleFont: {fileID: 11400000, guid: 4bd810f1cbcb0f446a8f5a31453e243f, type: 2}

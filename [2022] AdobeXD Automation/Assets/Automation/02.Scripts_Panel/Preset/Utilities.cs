@@ -22,7 +22,7 @@ namespace Presets
 		{
 			string[] splits = _name.Split(_arguments.m_split.ToCharArray());
 
-			_lCode = LabelCodes.GetCode(splits[0], _arguments);
+			_lCode = LabelCodes.GetCode(_name, _arguments);
 
 			_id = GetID(splits[1], _arguments.m_tagID, _arguments.m_splitKeyValue);
 		}
