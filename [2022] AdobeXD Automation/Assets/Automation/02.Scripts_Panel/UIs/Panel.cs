@@ -166,7 +166,7 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_Boundary(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
             // tr에서 추출할 데이터 : RectTransform
             GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
@@ -188,7 +188,7 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_Button(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
             GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
             Objects.AddButton(obj, m_arguments.m_style);
@@ -210,7 +210,7 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_Background(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
             // 이미지 요소가 존재할 경우에만 신규 인스턴스 할당
             Image image;
@@ -236,7 +236,7 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_Image(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
             // 이미지 요소가 존재할 경우에만 신규 인스턴스 할당
             Image image;
@@ -264,7 +264,7 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_Text(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
             GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
             Objects.AddText(obj, _tr.GetComponent<Text>(), m_arguments);
@@ -277,42 +277,60 @@ namespace UIs
             AddNewInstance(obj, _lCode);
         }
 
+        /// <summary>
+        /// 프로그레스 바 패널 생성
+        /// </summary>
+        /// <param name="_rootPanel"></param>
+        /// <param name="_tr"></param>
+        /// <param name="_lCode"></param>
+        /// <param name="_id"></param>
         private void Create_ProgressbarPanel(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
 		{
-            string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
-            GameObject obj = null;
+            GameObject obj = Objects.CreateProgressbar(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
-
-
+            // 내부에서 처리함
+            //obj.transform.SetParent(_rootPanel.transform);
             IPanel = obj;
-
             AddNewInstance(obj, _lCode);
 		}
 
+        /// <summary>
+        /// 프로그레스 바 배경 생성
+        /// </summary>
+        /// <param name="_rootPanel"></param>
+        /// <param name="_tr"></param>
+        /// <param name="_lCode"></param>
+        /// <param name="_id"></param>
         private void Create_ProgressbarBackground(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
-            GameObject obj = null;
+            GameObject obj = Objects.CreateProgressbarBackground(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
 
-
+            //obj.transform.SetParent(_rootPanel.transform);
             SubElements.Add(obj);
-
             AddNewInstance(obj, _lCode);
         }
 
+        /// <summary>
+        /// 프로그레스 하이라이트 생성
+        /// </summary>
+        /// <param name="_rootPanel"></param>
+        /// <param name="_tr"></param>
+        /// <param name="_lCode"></param>
+        /// <param name="_id"></param>
         private void Create_ProgressbarHighlight(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
-            GameObject obj = null;
+            GameObject obj = Objects.CreateProgressbarHighlight(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
 
-
+            obj.transform.SetParent(_rootPanel.transform);
             SubElements.Add(obj);
-
             AddNewInstance(obj, _lCode);
         }
 
@@ -327,41 +345,6 @@ namespace UIs
             {
                 m_instancedElements[_lCode].Add(_instance);
             }
-        }
-
-        private string SetInstanceName(string _originalName, LabelCode _lCode, string _id, Automation.Data.AutomationArguments _arguments)
-        {
-            string result = "";
-            string splitCode = _arguments.m_splitKeyValue;
-
-            // lCode에 대응되는 이름
-            string lName = LabelCodes.GetLabelString(_lCode, _arguments);
-
-            if (_arguments.m_isRemainResourceName)
-            {
-                //Debug.Log(_originalName);
-                string original = "";
-                if (Strings.IsSplitIndexOver(_originalName, 2, _arguments.m_split))
-                {
-                    //_originalName.IndexOf
-                    string splitter = _arguments.m_split;
-                    string[] splits = _originalName.Split(splitter.ToCharArray());
-
-                    original = _originalName.Replace($"{splits[0]}{splitter}{splits[1]}{splitter}", "");
-                }
-                else
-                {
-                    original = "";
-                }
-
-                result = string.Format("ID{0}{1}_{2}_{3}", splitCode, _id, lName, original);
-            }
-            else
-            {
-                result = string.Format("ID{0}{1}_{2}", splitCode, _id, lName);
-            }
-
-            return result;
         }
 
         #endregion

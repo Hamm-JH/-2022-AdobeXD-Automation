@@ -31,7 +31,7 @@ namespace Automation.Data
 		public AutomationArguments()
 		{
 			m_isVer2 = true;
-			m_style = Styles.TextmeshPro;
+			m_style = Styles.ModernUI;
 			Tmp_TMPro = new T_TMPro();
 			MUI_Templates = new MUI_Templates();
 

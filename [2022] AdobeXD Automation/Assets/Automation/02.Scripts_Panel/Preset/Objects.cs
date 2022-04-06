@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace Presets
 {
-	using Automation.Definition;
+    using Automation;
+    using Automation.Definition;
 	using UnityEngine.UI;
 
 	public static class Objects
@@ -49,6 +50,11 @@ namespace Presets
 			return obj;
 		}
 
+		public static void SetPanelPosition(GameObject _tg)
+        {
+
+        }
+
 		public static void AddButton(GameObject _obj, Styles _style)
 		{
 			Template.SetButton(_obj, _style);
@@ -62,6 +68,48 @@ namespace Presets
 		public static void AddText(GameObject _obj, Text _text, Automation.Data.AutomationArguments _arguments)
 		{
 			Template.SetText(_obj, _text, _arguments);
+		}
+
+		public static GameObject CreateProgressbar(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id, 
+			Automation.Data.AutomationArguments _arguments)
+        {
+			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
+
+			GameObject obj = GameObject.Instantiate<GameObject>(_arguments.MUI_Templates.progressBar.gameObject, _rootPanel.transform);
+			obj.name = name;
+
+
+
+			Debug.Log(_obj.name);
+			Debug.Log(name);
+
+			return obj;
+        }
+
+		public static GameObject CreateProgressbarBackground(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id, 
+			Automation.Data.AutomationArguments _arguments)
+		{
+			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
+
+			GameObject obj = new GameObject(name);
+
+			Debug.Log(_obj.name);
+			Debug.Log(name);
+
+			return obj;
+        }
+
+		public static GameObject CreateProgressbarHighlight(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id,
+			Automation.Data.AutomationArguments _arguments)
+		{
+			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
+
+			GameObject obj = new GameObject(name);
+
+			Debug.Log(_obj.name);
+			Debug.Log(name);
+
+			return obj;
 		}
 	}
 }
