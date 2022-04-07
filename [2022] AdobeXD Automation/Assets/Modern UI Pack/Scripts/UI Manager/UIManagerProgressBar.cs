@@ -56,23 +56,23 @@ namespace Michsky.UI.ModernUIPack
             if (Application.isPlaying && webglMode == true)
                 return;
 
-            try
-            {
-                if (overrideColors == false)
-                {
-                    bar.color = UIManagerAsset.progressBarColor;
-                    background.color = UIManagerAsset.progressBarBackgroundColor;
-                    label.color = UIManagerAsset.progressBarLabelColor;
-                }
+			try
+			{
+				if (overrideColors == false)
+				{
+					bar.color = UIManagerAsset.progressBarColor;
+					background.color = UIManagerAsset.progressBarBackgroundColor;
+					label.color = UIManagerAsset.progressBarLabelColor;
+				}
 
-                if (overrideFonts == false)
-                {
-                    label.font = UIManagerAsset.progressBarLabelFont;
-                    label.fontSize = UIManagerAsset.progressBarLabelFontSize;
-                }
-            }
+				if (overrideFonts == false)
+				{
+					label.font = UIManagerAsset.progressBarLabelFont;
+					label.fontSize = UIManagerAsset.progressBarLabelFontSize;
+				}
+			}
 
-            catch { }
-        }
+			catch { }
+		}
     }
 }

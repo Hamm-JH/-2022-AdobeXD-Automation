@@ -41,6 +41,7 @@ namespace Automation.Definition
 			objText.text = _text.text;
 			objText.fontSize = _text.fontSize;
 			objText.alignment = _text.alignment;
+			objText.color = _text.color;
 		}
 
 		private static void SetText_TextmeshPro(GameObject _obj, Text _text, 
@@ -76,6 +77,7 @@ namespace Automation.Definition
 			text.fontSizeMin = _text.fontSize - 5;
 			text.fontSizeMax = _text.fontSize;
 			text.alignment = TextAlignmentOptions.TopLeft;
+			text.color = _text.color;
 		}
 	}
 }

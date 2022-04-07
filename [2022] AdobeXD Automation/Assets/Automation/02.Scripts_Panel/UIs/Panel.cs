@@ -192,14 +192,13 @@ namespace UIs
         {
             string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
 
-            GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
-            Objects.AddButton(obj, m_arguments.m_style);
+            GameObject obj = Objects.Craete_Button(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
+            //GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
+            //Objects.AddButton(obj, m_arguments.m_style);
 
-            obj.transform.SetParent(_rootPanel.transform);
-
-            // 요소들의 root로 지정한다.
-            IPanel = obj;
-
+			// 내부에서 처리함
+			//obj.transform.SetParent(_rootPanel.transform);
+			IPanel = obj;
             AddNewInstance(obj, _lCode);
         }
 
@@ -288,8 +287,6 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_ProgressbarPanel(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
 		{
-            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
-
             GameObject obj = Objects.CreateProgressbar(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
             // 내부에서 처리함
@@ -455,20 +452,19 @@ namespace UIs
                 }
             }
 
-            return;
-            if(background)
+            if (background)
             {
                 Color colr = background.color;
-                //pBar.m_progressBar.
-                pBar.m_mgrProcessBar.UIManagerAsset.progressBarBackgroundColor = new Color(colr.r, colr.g, colr.b, 0.2f);       // 배경색
-                GameObject.DestroyImmediate(background.gameObject);
+				//pBar.m_progressBar.
+				//pBar.m_mgrProcessBar.background.color = new Color(0, 1, 0, 0.2f);       // 배경색
+				pBar.m_mgrProcessBar.background.color = new Color(colr.r, colr.g, colr.b, 0.2f);       // 배경색
+				GameObject.DestroyImmediate(background.gameObject);
             }
 
             if(highlight)
             {
                 Color colr = highlight.color;
-                pBar.m_progressBar.loadingBar.color = Color.red; //new Color(colr.r, colr.g, colr.b, colr.a);                 // 하이라이트색
-                //pBar.m_mgrProcessBar.UIManagerAsset.progressBarColor = new Color(colr.r, colr.g, colr.b, colr.a);                 // 하이라이트색
+                pBar.m_mgrProcessBar.bar.color = new Color(colr.r, colr.g, colr.b, colr.a);                 // 하이라이트색
                 GameObject.DestroyImmediate(highlight.gameObject);
             }
         }

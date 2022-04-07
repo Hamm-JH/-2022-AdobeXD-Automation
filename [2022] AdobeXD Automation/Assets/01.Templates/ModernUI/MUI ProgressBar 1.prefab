@@ -385,8 +385,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIManagerAsset: {fileID: 11400000, guid: 2a619a9609984be49b53b928dd94e61b, type: 2}
   webglMode: 1
-  overrideColors: 0
-  overrideFonts: 0
+  overrideColors: 1
+  overrideFonts: 1
   bar: {fileID: 7662839820216060200}
   background: {fileID: 7662387707867138308}
   label: {fileID: 7662414988909168636}

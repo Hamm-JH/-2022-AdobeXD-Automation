@@ -29,6 +29,7 @@ namespace Automation.Definition
 			}
 
 			img.sprite = _image.sprite;
+			img.color = _image.color;
 			img.enabled = true;
 		}
 	}

@@ -50,14 +50,30 @@ namespace Presets
 			return obj;
 		}
 
-		public static void SetPanelPosition(GameObject _tg)
+		public static void SetPanelPosition(GameObject _target, GameObject _obj)
         {
+			RectTransform tgRectT = _target.GetComponent<RectTransform>();
+			RectTransform objRectT = _obj.GetComponent<RectTransform>();
 
+			tgRectT.position = objRectT.position;
+			tgRectT.sizeDelta = objRectT.sizeDelta;
         }
 
 		public static void AddButton(GameObject _obj, Styles _style)
 		{
-			Template.SetButton(_obj, _style);
+			//Template.SetButton(_obj, _style);
+		}
+
+		public static GameObject Craete_Button(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id,
+			Automation.Data.AutomationArguments _arguments)
+		{
+			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
+
+			GameObject obj = Objects.CreatePanel(name, _obj.GetComponent<RectTransform>());
+			Template.SetButton(obj, _obj, _arguments.m_style);
+
+			obj.transform.SetParent(_rootPanel.transform);
+			return obj;
 		}
 
 		public static void AddImage(GameObject _obj, Image _image, Automation.Data.AutomationArguments _arguments)
@@ -77,6 +93,8 @@ namespace Presets
 
 			GameObject obj = GameObject.Instantiate<GameObject>(_arguments.MUI_Templates.progressBar.gameObject, _rootPanel.transform);
 			obj.name = name;
+			SetPanelPosition(obj, _obj);
+
 
 			//Debug.Log(_obj.name);
 			//Debug.Log(name);
