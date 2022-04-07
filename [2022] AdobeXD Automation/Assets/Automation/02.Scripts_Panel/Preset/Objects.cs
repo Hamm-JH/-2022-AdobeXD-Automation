@@ -59,12 +59,7 @@ namespace Presets
 			tgRectT.sizeDelta = objRectT.sizeDelta;
         }
 
-		public static void AddButton(GameObject _obj, Styles _style)
-		{
-			//Template.SetButton(_obj, _style);
-		}
-
-		public static GameObject Craete_Button(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id,
+		public static GameObject Create_Button(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id,
 			Automation.Data.AutomationArguments _arguments)
 		{
 			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
@@ -76,17 +71,33 @@ namespace Presets
 			return obj;
 		}
 
-		public static void AddImage(GameObject _obj, Image _image, Automation.Data.AutomationArguments _arguments)
+		public static GameObject Create_Image(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id,
+			Automation.Data.AutomationArguments _arguments)
 		{
-			Template.SetImage(_obj, _image, _arguments);
+			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
+
+			GameObject obj = Objects.CreatePanel(name, _obj.GetComponent<RectTransform>());
+			Template.SetImage(obj, _obj.GetComponent<Image>(), _arguments);
+
+			obj.transform.SetParent(_rootPanel.transform);
+			return obj;
 		}
 
-		public static void AddText(GameObject _obj, Text _text, Automation.Data.AutomationArguments _arguments)
+		public static GameObject Create_Text(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id,
+			Automation.Data.AutomationArguments _arguments)
 		{
-			Template.SetText(_obj, _text, _arguments);
+			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
+
+			GameObject obj = Objects.CreatePanel(name, _obj.GetComponent<RectTransform>());
+			Template.SetText(obj, _obj.GetComponent<Text>(), _arguments);
+
+			obj.transform.SetParent(_rootPanel.transform);
+			return obj;
 		}
 
-		public static GameObject CreateProgressbar(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id, 
+		#region Progressbar
+
+		public static GameObject Create_Progressbar(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id, 
 			Automation.Data.AutomationArguments _arguments)
         {
 			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
@@ -102,28 +113,30 @@ namespace Presets
 			return obj;
         }
 
-		public static GameObject CreateProgressbarBackground(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id, 
+		public static GameObject Create_ProgressbarBackground(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id, 
 			Automation.Data.AutomationArguments _arguments)
 		{
 			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
 
 			GameObject obj = CreatePanel(name, _obj.GetComponent<RectTransform>());
-			AddImage(obj, _obj.GetComponent<Image>(), _arguments);
+			Template.SetImage(obj, _obj.GetComponent<Image>(), _arguments);
+			
 			obj.transform.SetParent(_rootPanel.transform);
-
 			return obj;
         }
 
-		public static GameObject CreateProgressbarHighlight(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id,
+		public static GameObject Create_ProgressbarHighlight(GameObject _rootPanel, GameObject _obj, LabelCode _lCode, string _id,
 			Automation.Data.AutomationArguments _arguments)
 		{
 			string name = Panels.SetInstanceName(_obj.name, _lCode, _id, _arguments);
 
-			GameObject obj = CreatePanel(name, _obj.GetComponent<RectTransform>()); //new GameObject(name);
-			AddImage(obj, _obj.GetComponent<Image>(), _arguments);
+			GameObject obj = CreatePanel(name, _obj.GetComponent<RectTransform>());
+			Template.SetImage(obj, _obj.GetComponent<Image>(), _arguments);
+			
 			obj.transform.SetParent(_rootPanel.transform);
-
 			return obj;
 		}
+
+		#endregion
 	}
 }

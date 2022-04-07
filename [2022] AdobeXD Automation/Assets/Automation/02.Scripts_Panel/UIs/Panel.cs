@@ -190,14 +190,8 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_Button(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+            GameObject obj = Objects.Create_Button(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
-            GameObject obj = Objects.Craete_Button(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
-            //GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
-            //Objects.AddButton(obj, m_arguments.m_style);
-
-			// 내부에서 처리함
-			//obj.transform.SetParent(_rootPanel.transform);
 			IPanel = obj;
             AddNewInstance(obj, _lCode);
         }
@@ -211,19 +205,14 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_Background(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
-
             // 이미지 요소가 존재할 경우에만 신규 인스턴스 할당
             Image image;
             if (_tr.TryGetComponent<Image>(out image))
             {
-                GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
-                Objects.AddImage(obj, _tr.GetComponent<Image>(), m_arguments);
-                obj.transform.SetParent(_rootPanel.transform);
+                GameObject obj = Objects.Create_Image(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
                 // 재배치 요소로 할당한다.
                 SubElements.Add(obj);
-
                 AddNewInstance(obj, _lCode);
             }
         }
@@ -237,21 +226,14 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_Image(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
-
             // 이미지 요소가 존재할 경우에만 신규 인스턴스 할당
             Image image;
             if (_tr.TryGetComponent<Image>(out image))
             {
-                // _tr에서 추출할 데이터 : Image sprite
-                GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
-                Objects.AddImage(obj, _tr.GetComponent<Image>(), m_arguments);
-
-                obj.transform.SetParent(_rootPanel.transform);
+                GameObject obj = Objects.Create_Image(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
                 // 재배치 요소로 할당한다.
                 SubElements.Add(obj);
-
                 AddNewInstance(obj, _lCode);
             }
         }
@@ -265,16 +247,10 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_Text(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
-
-            GameObject obj = Objects.CreatePanel(name, _tr.GetComponent<RectTransform>());
-            Objects.AddText(obj, _tr.GetComponent<Text>(), m_arguments);
-
-            obj.transform.SetParent(_rootPanel.transform);
+            GameObject obj = Objects.Create_Text(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
             // 재배치 요소로 할당한다.
             SubElements.Add(obj);
-
             AddNewInstance(obj, _lCode);
         }
 
@@ -287,10 +263,8 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_ProgressbarPanel(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
 		{
-            GameObject obj = Objects.CreateProgressbar(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
+            GameObject obj = Objects.Create_Progressbar(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
-            // 내부에서 처리함
-            //obj.transform.SetParent(_rootPanel.transform);
             IPanel = obj;
             AddNewInstance(obj, _lCode);
 		}
@@ -304,11 +278,8 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_ProgressbarBackground(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+            GameObject obj = Objects.Create_ProgressbarBackground(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
-            GameObject obj = Objects.CreateProgressbarBackground(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
-
-            //obj.transform.SetParent(_rootPanel.transform);
             SubElements.Add(obj);
             AddNewInstance(obj, _lCode);
         }
@@ -322,12 +293,8 @@ namespace UIs
         /// <param name="_id"></param>
         private void Create_ProgressbarHighlight(GameObject _rootPanel, Transform _tr, LabelCode _lCode, string _id)
         {
-            string name = Panels.SetInstanceName(_tr.name, _lCode, _id, m_arguments);
+            GameObject obj = Objects.Create_ProgressbarHighlight(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
 
-            GameObject obj = Objects.CreateProgressbarHighlight(_rootPanel, _tr.gameObject, _lCode, _id, m_arguments);
-
-
-            //obj.transform.SetParent(_rootPanel.transform);
             SubElements.Add(obj);
             AddNewInstance(obj, _lCode);
         }
