@@ -8,19 +8,19 @@ namespace Automation.Definition
 
 	public static partial class Template
 	{
-		public static void Set(Styles _style)
+		public static void Set(Style _style)
 		{
 			switch(_style)
 			{
-				case Styles.Default_UI:
+				case Style.Default_UI:
 
 					break;
 
-				case Styles.TextmeshPro:
+				case Style.TextmeshPro:
 
 					break;
 
-				case Styles.ModernUI:
+				case Style.ModernUI:
 
 					break;
 			}

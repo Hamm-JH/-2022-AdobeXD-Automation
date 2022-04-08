@@ -6,9 +6,11 @@ using UnityEngine;
 namespace UIs
 {
     using Automation;
+    using Automation.Definition;
     using Automation.Templates.ModernUI;
     using Presets;
     using System.Linq;
+    using TMPro;
     using UnityEngine.UI;
     using Utilities;
     using static Automation.Automation_Adobe;
@@ -82,8 +84,8 @@ namespace UIs
         {
             m_arguments = _arguments;
 
-            LabelCode lCode = LabelCode.Null;
-            string id = "";
+            //LabelCode lCode = LabelCode.Null;
+            //string id = "";
 
             // 1 Element 생성단계
             // id 단위로 element 집계된 대상에 대해 새롭게 생성된 element 객체를 생성한다.
@@ -351,7 +353,7 @@ namespace UIs
             }
             else if(LabelCodes.IsBoundary(rootLCode))
             {
-
+                Assemble_Boundary(IPanel, SubElements, _arguments);
             }
             
         }
@@ -382,9 +384,9 @@ namespace UIs
                 Image rImg;
                 if(_iPanel.TryGetComponent<Image>(out rImg))
                 {
-                    rImg.sprite = rImg.sprite;
+                    rImg.sprite = background.sprite;
                 }
-                GameObject.Destroy(background.gameObject);
+                GameObject.DestroyImmediate(background.gameObject);
             }
         }
 
@@ -404,6 +406,7 @@ namespace UIs
 
             Image background = null;
             Image highlight = null;
+            GameObject textObj = null;
 
             GameObject target = null;
 
@@ -416,6 +419,10 @@ namespace UIs
                 else if(Panels.TryGetElement(obj, LabelCode.Progressbar_highlight, _arguments, out target))
                 {
                     highlight = target.GetComponent<Image>();
+                }
+                else if(Panels.TryGetElement(obj, LabelCode.Text, _arguments, out target))
+                {
+                    textObj = target;
                 }
             }
 
@@ -434,6 +441,77 @@ namespace UIs
                 pBar.m_mgrProcessBar.bar.color = new Color(colr.r, colr.g, colr.b, colr.a);                 // 하이라이트색
                 GameObject.DestroyImmediate(highlight.gameObject);
             }
+
+            if(textObj)
+            {
+                Style style = _arguments.m_style;
+                if(Styles.IsDefaultText(style))
+                {
+                    Text txt = textObj.GetComponent<Text>();
+
+                    TextMeshProUGUI tg = pBar.m_mgrProcessBar.label;
+
+                    tg.font = _arguments.Tmp_TMPro.m_fontAsset;
+                    tg.text = txt.text;
+
+                    tg.enableAutoSizing = true;
+                    tg.fontSizeMin = txt.fontSize - 5;
+                    tg.fontSizeMax = txt.fontSize;
+                    tg.alignment = TextAlignmentOptions.Midline;
+                    tg.color = txt.color;
+                }
+                else if(Styles.IsTMProText(style))
+                {
+                    TextMeshProUGUI txt = textObj.GetComponent<TextMeshProUGUI>();
+
+                    TextMeshProUGUI tg = pBar.m_mgrProcessBar.label;
+
+                    tg.font = _arguments.Tmp_TMPro.m_fontAsset;
+                    tg.text = txt.text;
+
+                    tg.enableAutoSizing = true;
+                    tg.fontSizeMin = txt.fontSize - 5;
+                    tg.fontSizeMax = txt.fontSize;
+                    tg.alignment = TextAlignmentOptions.Midline;
+                    tg.color = txt.color;
+                }
+
+                GameObject.DestroyImmediate(textObj);
+            }
+        }
+
+        /// <summary>
+        /// 경계 조립
+        /// </summary>
+        /// <param name="_iPanel"></param>
+        /// <param name="_subElems"></param>
+        /// <param name="_arguements"></param>
+        private void Assemble_Boundary(GameObject _iPanel, List<GameObject> _subElems,
+            Automation.Data.AutomationArguments _arguements)
+        {
+            Image background = null;
+            GameObject target = null;
+
+            foreach(GameObject obj in _subElems)
+            {
+                if(Panels.TryGetElement(obj, LabelCode.Background, _arguements, out target))
+                {
+                    background = target.GetComponent<Image>();
+                    break;
+                }
+            }
+
+            //if(background != null)
+            //{
+            //    Image rImg;
+            //    if(_iPanel.TryGetComponent<Image>(out rImg))
+            //    {
+            //        rImg.enabled = true;
+            //        rImg.sprite = background.sprite;
+            //        GameObject.DestroyImmediate(background.gameObject);
+            //    }
+            //    //GameObject.DestroyImmediate(background.gameObject);
+            //}
         }
 
         #endregion

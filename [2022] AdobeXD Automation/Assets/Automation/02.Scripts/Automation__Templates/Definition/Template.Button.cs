@@ -9,7 +9,7 @@ namespace Automation.Definition
 
     public static partial class Template
 	{
-		public static void SetButton(GameObject _obj, GameObject _originalSource, Styles _style)
+		public static void SetButton(GameObject _obj, GameObject _originalSource, Style _style)
 		{
 			Image btnImg = null;
 			Button objButton;
@@ -17,9 +17,9 @@ namespace Automation.Definition
 			{
 				switch(_style)
 				{
-					case Styles.Default_UI:
-					case Styles.TextmeshPro:
-					case Styles.ModernUI:
+					case Style.Default_UI:
+					case Style.TextmeshPro:
+					case Style.ModernUI:
 						_obj.AddComponent<Button>();
 						_obj.GetComponent<Image>().enabled = true;
 						_obj.AddComponent<UI_Selectable>();

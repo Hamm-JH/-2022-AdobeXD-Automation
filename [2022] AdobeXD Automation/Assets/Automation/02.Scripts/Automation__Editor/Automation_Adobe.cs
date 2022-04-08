@@ -157,19 +157,19 @@ namespace Automation
 		/// </summary>
 		/// <param name="_style"></param>
 		/// <param name="isOn"></param>
-		private void ToggleFields_perStyle(Styles _style, bool isOn)
+		private void ToggleFields_perStyle(Style _style, bool isOn)
 		{
 			if(isOn)
 			{
-				arguments.m_style = (Styles)EditorGUILayout.EnumPopup("Template", arguments.m_style);
+				arguments.m_style = (Style)EditorGUILayout.EnumPopup("Template", arguments.m_style);
 
 				switch (_style)
 				{
-					case Styles.Default_UI:
+					case Style.Default_UI:
 
 						break;
 
-					case Styles.TextmeshPro:
+					case Style.TextmeshPro:
 						{
 							EditorGUILayout.Space();
 							GUILayout.Label("TMPro 템플릿");
@@ -178,7 +178,7 @@ namespace Automation
 						}
 						break;
 
-					case Styles.ModernUI:
+					case Style.ModernUI:
                         {
 							EditorGUILayout.Space();
 							GUILayout.Label("ModernUI 템플릿");

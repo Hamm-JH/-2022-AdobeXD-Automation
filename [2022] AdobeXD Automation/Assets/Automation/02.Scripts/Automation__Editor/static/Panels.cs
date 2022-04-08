@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,12 +9,12 @@ namespace Automation
     public static class Panels 
     {
         /// <summary>
-        /// °´Ã¼ÀÇ ¶óº§ÀÌ ÀÔ·ÂµÈ ¶óº§°ú °°Àº ÀÎ½ºÅÏ½º¸é ÀÎ½ºÅÏ½º¸¦ ¹İÈ¯ÇÑ´Ù.
+        /// ê°ì²´ì˜ ë¼ë²¨ì´ ì…ë ¥ëœ ë¼ë²¨ê³¼ ê°™ì€ ì¸ìŠ¤í„´ìŠ¤ë©´ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ë°˜í™˜í•œë‹¤.
         /// </summary>
-        /// <param name="_obj"> È®ÀÎÇÏ°íÀÚ ÇÏ´Â ÀÎ½ºÅÏ½º </param>
-        /// <param name="_lInputCode"> ÀÔ·Â È®ÀÎÇÒ ¶óº§ÄÚµå </param>
-        /// <param name="_arguments"> arguments ÀÎ½ºÅÏ½º </param>
-        /// <param name="_targetOutput"> _obj ÀÎ½ºÅÏ½º°¡ _lInputCode¸¦ °¡Áö°í ÀÖÀ» °æ¿ì _targetOutput¿¡ °´Ã¼¸¦ ÇÒ´çÇÑ´Ù. </param>
+        /// <param name="_obj"> í™•ì¸í•˜ê³ ì í•˜ëŠ” ì¸ìŠ¤í„´ìŠ¤ </param>
+        /// <param name="_lInputCode"> ì…ë ¥ í™•ì¸í•  ë¼ë²¨ì½”ë“œ </param>
+        /// <param name="_arguments"> arguments ì¸ìŠ¤í„´ìŠ¤ </param>
+        /// <param name="_targetOutput"> _obj ì¸ìŠ¤í„´ìŠ¤ê°€ _lInputCodeë¥¼ ê°€ì§€ê³  ìˆì„ ê²½ìš° _targetOutputì— ê°ì²´ë¥¼ í• ë‹¹í•œë‹¤. </param>
         /// <returns></returns>
         public static bool TryGetElement(GameObject _obj, LabelCode _lInputCode, Automation.Data.AutomationArguments _arguments, out GameObject _targetOutput)
         {
@@ -32,7 +32,7 @@ namespace Automation
         }
 
         /// <summary>
-        /// »ı¼ºµÉ ÀÎ½ºÅÏ½ºÀÇ ÀÌ¸§À» ÁöÁ¤ÇÑ´Ù.
+        /// ìƒì„±ë  ì¸ìŠ¤í„´ìŠ¤ì˜ ì´ë¦„ì„ ì§€ì •í•œë‹¤.
         /// </summary>
         /// <param name="_originalName"></param>
         /// <param name="_lCode"></param>
@@ -44,7 +44,7 @@ namespace Automation
             string result = "";
             string splitCode = _arguments.m_splitKeyValue;
 
-            // lCode¿¡ ´ëÀÀµÇ´Â ÀÌ¸§
+            // lCodeì— ëŒ€ì‘ë˜ëŠ” ì´ë¦„
             string lName = LabelCodes.GetLabelString(_lCode, _arguments);
 
             if (_arguments.m_isRemainResourceName)

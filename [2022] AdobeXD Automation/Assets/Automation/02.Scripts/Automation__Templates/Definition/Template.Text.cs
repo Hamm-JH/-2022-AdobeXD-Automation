@@ -13,12 +13,12 @@ namespace Automation.Definition
 		{
 			switch(_arguments.m_style)
 			{
-				case Styles.Default_UI:
+				case Style.Default_UI:
 					SetText_Default(_obj, _text);
 					break;
 
-				case Styles.TextmeshPro:
-				case Styles.ModernUI:
+				case Style.TextmeshPro:
+				case Style.ModernUI:
 					SetText_TextmeshPro(_obj, _text, _arguments);
 					break;
 			}
@@ -74,8 +74,9 @@ namespace Automation.Definition
 			text.text = _text.text;
 
 			text.enableAutoSizing = true;
-			text.fontSizeMin = _text.fontSize - 5;
-			text.fontSizeMax = _text.fontSize;
+			text.fontSizeMin = _text.fontSize - 6;
+			text.fontSizeMax = _text.fontSize - 1;
+			text.fontSize = _text.fontSize;
 			text.alignment = TextAlignmentOptions.TopLeft;
 			text.color = _text.color;
 		}

@@ -12,9 +12,9 @@ namespace Automation.Definition
 		{
 			switch (_arguments.m_style)
 			{
-				case Styles.Default_UI:
-				case Styles.TextmeshPro:
-				case Styles.ModernUI:
+				case Style.Default_UI:
+				case Style.TextmeshPro:
+				case Style.ModernUI:
 					SetSingleImage<Image>(_obj, _image);
 					break;
 			}

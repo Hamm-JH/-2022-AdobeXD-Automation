@@ -11,7 +11,7 @@ namespace Automation.Data
     public class AutomationArguments
     {
 		public bool m_isVer2;
-		public Styles m_style;
+		public Style m_style;
 		public T_TMPro Tmp_TMPro;
 		public MUI_Templates MUI_Templates;
 
@@ -31,7 +31,7 @@ namespace Automation.Data
 		public AutomationArguments()
 		{
 			m_isVer2 = true;
-			m_style = Styles.ModernUI;
+			m_style = Style.ModernUI;
 			Tmp_TMPro = new T_TMPro();
 			MUI_Templates = new MUI_Templates();
 

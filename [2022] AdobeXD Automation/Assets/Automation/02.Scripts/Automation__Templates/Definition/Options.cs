@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Automation.Definition
 {
-	public enum Styles
+	public enum Style
 	{
 		Default_UI,
 		TextmeshPro,

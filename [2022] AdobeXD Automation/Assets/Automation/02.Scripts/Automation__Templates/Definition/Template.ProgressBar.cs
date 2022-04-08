@@ -15,11 +15,11 @@ namespace Automation.Definition
 		{
 			switch(_arguments.m_style)
 			{
-				case Styles.Default_UI:
-				case Styles.TextmeshPro:
+				case Style.Default_UI:
+				case Style.TextmeshPro:
 					break;
 
-				case Styles.ModernUI:
+				case Style.ModernUI:
 					SetProgressBar_ModernUI(_obj, _bgImg, _hlImg, _arguments);
 					// _obj.rect.width / height
 					// 배경 이미지 색
