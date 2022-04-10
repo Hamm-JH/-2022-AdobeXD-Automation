@@ -11,6 +11,9 @@ namespace Michsky.UI.ModernUIPack
         [HideInInspector] public Toggle toggleObject;
         [HideInInspector] public Animator toggleAnimator;
 
+        [Header("Settings")]
+        public bool invokeOnAwake;
+
         void Awake()
         {
             if (toggleObject == null) { toggleObject = gameObject.GetComponent<Toggle>(); }
@@ -18,6 +21,8 @@ namespace Michsky.UI.ModernUIPack
 
             toggleObject.onValueChanged.AddListener(UpdateStateDynamic);
             UpdateState();
+
+            if (invokeOnAwake == true) { toggleObject.onValueChanged.Invoke(toggleObject.isOn); }
         }
 
         public void UpdateState()

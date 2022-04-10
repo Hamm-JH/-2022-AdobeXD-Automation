@@ -146,7 +146,8 @@ namespace Michsky.UI.ModernUIPack
                         setItemImage.sprite = imageHelper;
                     }
 
-                    StartCoroutine(ExecuteAfterTime(0.01f));
+                    StopCoroutine("ExecuteAfterTime");
+                    StartCoroutine("ExecuteAfterTime", 0.01f);
                 }
             }
 
@@ -164,11 +165,9 @@ namespace Michsky.UI.ModernUIPack
 
         IEnumerator ExecuteAfterTime(float time)
         {
-            yield return new WaitForSeconds(time);
+            yield return new WaitForSecondsRealtime(time);
             itemParent.gameObject.SetActive(false);
             itemParent.gameObject.SetActive(true);
-            StopCoroutine(ExecuteAfterTime(0.01f));
-            StopCoroutine("ExecuteAfterTime");
         }
 
         public void OnMouseOver() 
