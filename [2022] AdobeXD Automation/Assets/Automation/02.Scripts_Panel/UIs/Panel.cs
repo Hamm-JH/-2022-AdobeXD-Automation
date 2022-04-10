@@ -99,7 +99,7 @@ namespace UIs
 
             // 2 Element 내부 배치단계
             // 1번 과정에서 m_instancedElements 사전 변수에 할당된 객체들을 대상으로 패널 내부의 배치를 진행한다.
-            Debug.Log(_rootPanel.name);
+            //Debug.Log(_rootPanel.name);
             SetElementPos(IPanel, SubElements);
 
             // 3 Element별 상호작용 단계
@@ -499,6 +499,10 @@ namespace UIs
                     background = target.GetComponent<Image>();
                     break;
                 }
+                else
+				{
+                    
+				}
             }
 
             //if(background != null)

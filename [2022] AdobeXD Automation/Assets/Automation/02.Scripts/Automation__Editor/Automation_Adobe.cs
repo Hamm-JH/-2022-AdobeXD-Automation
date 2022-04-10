@@ -107,6 +107,10 @@ namespace Automation
 		{
 			// 런타임시 비활성화
 			if (Application.isPlaying) return;
+			if(instance == null)
+			{
+				Init();
+			}
 
 			scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
 
