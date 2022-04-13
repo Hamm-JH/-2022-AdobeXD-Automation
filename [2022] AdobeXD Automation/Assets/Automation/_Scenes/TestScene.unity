@@ -19698,6 +19698,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Panel 2
       objectReference: {fileID: 0}
+    - target: {fileID: 211701669605127604, guid: 84ee61164d696b54fa164e6af2e84d9b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 211701669605127605, guid: 84ee61164d696b54fa164e6af2e84d9b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -20001,6 +20005,10 @@ PrefabInstance:
     - target: {fileID: 8166937403337863034, guid: 00a282de3eaa95745a479825df145486, type: 3}
       propertyPath: m_Name
       value: UI Panel 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8166937403337863034, guid: 00a282de3eaa95745a479825df145486, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8166937403337863037, guid: 00a282de3eaa95745a479825df145486, type: 3}
       propertyPath: m_Pivot.x
