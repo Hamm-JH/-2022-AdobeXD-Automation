@@ -10538,6 +10538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: bridge-admin-03
       objectReference: {fileID: 0}
+    - target: {fileID: 3076170505346375443, guid: 9cddfabbdaed2fa4aa8a17231d7c9a88, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5818883388414634514, guid: 9cddfabbdaed2fa4aa8a17231d7c9a88, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
