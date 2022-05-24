@@ -1,0 +1,1337 @@
+{
+  "info": {
+    "version": "0.9.8",
+    "dependency": []
+  },
+  "root": {
+    "type": "Group",
+    "name": "bb_info_popup",
+    "elements": [
+      {
+        "type": "Image",
+        "name": "im_Layer 8",
+        "guid": "3325cf18-7962-47e7-ac77-1cebdd89ab85",
+        "active": true,
+        "global_draw_bounds": {
+          "x": 1519,
+          "y": 2457,
+          "width": 11,
+          "height": 11,
+          "ex": 1530,
+          "ey": 2468
+        },
+        "rect_transform": {
+          "fix": {
+            "left": 0.8477163673343515,
+            "right": true,
+            "top": true,
+            "bottom": 0.8380780901227679,
+            "width": true,
+            "height": true
+          },
+          "pivot": {
+            "x": 1,
+            "y": 1
+          },
+          "anchor_min": {
+            "x": 1,
+            "y": 1
+          },
+          "anchor_max": {
+            "x": 1,
+            "y": 1
+          },
+          "offset_min": {
+            "x": -40.5074462890625,
+            "y": -36.2705078125
+          },
+          "offset_max": {
+            "x": -29.5074462890625,
+            "y": -25.2705078125
+          }
+        },
+        "layer": "UI",
+        "parsed_names": [
+          "im_Layer_8"
+        ],
+        "opacity": 100,
+        "image": {
+          "source_image": "im_Layer 8+3325c"
+        }
+      },
+      {
+        "type": "Group",
+        "name": "bb_info_desc",
+        "elements": [
+          {
+            "type": "Group",
+            "name": "bb_info_01",
+            "elements": [
+              {
+                "type": "Text",
+                "name": "text",
+                "text": {
+                  "text": "text\n",
+                  "textType": "paragraph",
+                  "font": "NotoSansCJKkr-Regular",
+                  "style": "",
+                  "size": 12.98130989074707,
+                  "color": "#6b6b6b",
+                  "align": "leftupper",
+                  "opacity": 100
+                },
+                "guid": "342db650-5596-4b74-be28-78d65288349b",
+                "active": true,
+                "global_draw_bounds": {
+                  "x": 1392.011962890625,
+                  "y": 2495.10205078125,
+                  "width": 78,
+                  "height": 43,
+                  "ex": 1470.011962890625,
+                  "ey": 2538.10205078125,
+                  "text": {
+                    "fontSize": 12.98130989074707
+                  }
+                },
+                "rect_transform": {
+                  "fix": {
+                    "left": 0.48256988605582785,
+                    "right": true,
+                    "top": true,
+                    "bottom": true,
+                    "width": true,
+                    "height": false
+                  },
+                  "pivot": {
+                    "x": 1,
+                    "y": 0.5
+                  },
+                  "anchor_min": {
+                    "x": 1,
+                    "y": 0
+                  },
+                  "anchor_max": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "offset_min": {
+                    "x": -78,
+                    "y": 0.80908203125
+                  },
+                  "offset_max": {
+                    "x": 0,
+                    "y": -0.19091796875
+                  }
+                },
+                "layer": "UI",
+                "parsed_names": [
+                  "text"
+                ]
+              },
+              {
+                "type": "Text",
+                "name": "등록자",
+                "text": {
+                  "text": "등록자\n",
+                  "textType": "paragraph",
+                  "font": "NotoSansCJKkr-Medium",
+                  "style": "",
+                  "size": 13.979869842529297,
+                  "color": "#2a364a",
+                  "align": "leftupper",
+                  "opacity": 100
+                },
+                "guid": "da886763-368c-4912-b2f0-2f077a0f1991",
+                "active": true,
+                "global_draw_bounds": {
+                  "x": 1319.2669677734375,
+                  "y": 2494.9111328125,
+                  "width": 78,
+                  "height": 44,
+                  "ex": 1397.2669677734375,
+                  "ey": 2538.9111328125,
+                  "text": {
+                    "fontSize": 13.979869842529297
+                  }
+                },
+                "rect_transform": {
+                  "fix": {
+                    "left": true,
+                    "right": 0.48256988605582785,
+                    "top": true,
+                    "bottom": true,
+                    "width": true,
+                    "height": false
+                  },
+                  "pivot": {
+                    "x": 0,
+                    "y": 0.5
+                  },
+                  "anchor_min": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "anchor_max": {
+                    "x": 0,
+                    "y": 1
+                  },
+                  "offset_min": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "offset_max": {
+                    "x": 78,
+                    "y": 0
+                  }
+                },
+                "layer": "UI",
+                "parsed_names": [
+                  "___"
+                ]
+              }
+            ],
+            "guid": "347544af-e622-402d-98cc-bdf0ca94569c",
+            "active": true,
+            "global_draw_bounds": {
+              "x": 1319.2669677734375,
+              "y": 2494.9111328125,
+              "width": 150.7449951171875,
+              "height": 44,
+              "ex": 1470.011962890625,
+              "ey": 2538.9111328125
+            },
+            "rect_transform": {
+              "fix": {
+                "left": true,
+                "right": true,
+                "top": true,
+                "bottom": 0.6843811233849877,
+                "width": false,
+                "height": true
+              },
+              "pivot": {
+                "x": 0.5,
+                "y": 1
+              },
+              "anchor_min": {
+                "x": 0,
+                "y": 1
+              },
+              "anchor_max": {
+                "x": 1,
+                "y": 1
+              },
+              "offset_min": {
+                "x": 0,
+                "y": -49.35205078125
+              },
+              "offset_max": {
+                "x": 0,
+                "y": -5.35205078125
+              }
+            },
+            "layer": "UI",
+            "parsed_names": [
+              "bb_info_01"
+            ]
+          },
+          {
+            "type": "Group",
+            "name": "bb_info_02",
+            "elements": [
+              {
+                "type": "Text",
+                "name": "text",
+                "text": {
+                  "text": "text\n",
+                  "textType": "paragraph",
+                  "font": "NotoSansCJKkr-Regular",
+                  "style": "",
+                  "size": 12.98130989074707,
+                  "color": "#6b6b6b",
+                  "align": "leftupper",
+                  "opacity": 100
+                },
+                "guid": "2a59a725-9081-4ef2-bcc0-817bfa81cc08",
+                "active": true,
+                "global_draw_bounds": {
+                  "x": 1392.011962890625,
+                  "y": 2521.544921875,
+                  "width": 78,
+                  "height": 43,
+                  "ex": 1470.011962890625,
+                  "ey": 2564.544921875,
+                  "text": {
+                    "fontSize": 12.98130989074707
+                  }
+                },
+                "rect_transform": {
+                  "fix": {
+                    "left": 0.48256988605582785,
+                    "right": true,
+                    "top": true,
+                    "bottom": true,
+                    "width": true,
+                    "height": false
+                  },
+                  "pivot": {
+                    "x": 1,
+                    "y": 0.5
+                  },
+                  "anchor_min": {
+                    "x": 1,
+                    "y": 0
+                  },
+                  "anchor_max": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "offset_min": {
+                    "x": -78,
+                    "y": 0.80908203125
+                  },
+                  "offset_max": {
+                    "x": 0,
+                    "y": -0.19091796875
+                  }
+                },
+                "layer": "UI",
+                "parsed_names": [
+                  "text"
+                ]
+              },
+              {
+                "type": "Text",
+                "name": "손상분류",
+                "text": {
+                  "text": "손상분류\n",
+                  "textType": "paragraph",
+                  "font": "NotoSansCJKkr-Medium",
+                  "style": "",
+                  "size": 13.979869842529297,
+                  "color": "#2a364a",
+                  "align": "leftupper",
+                  "opacity": 100
+                },
+                "guid": "843e1ac7-23d8-48ae-aeb5-424f730de9fd",
+                "active": true,
+                "global_draw_bounds": {
+                  "x": 1319.2669677734375,
+                  "y": 2521.35400390625,
+                  "width": 78,
+                  "height": 44,
+                  "ex": 1397.2669677734375,
+                  "ey": 2565.35400390625,
+                  "text": {
+                    "fontSize": 13.979869842529297
+                  }
+                },
+                "rect_transform": {
+                  "fix": {
+                    "left": true,
+                    "right": 0.48256988605582785,
+                    "top": true,
+                    "bottom": true,
+                    "width": true,
+                    "height": false
+                  },
+                  "pivot": {
+                    "x": 0,
+                    "y": 0.5
+                  },
+                  "anchor_min": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "anchor_max": {
+                    "x": 0,
+                    "y": 1
+                  },
+                  "offset_min": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "offset_max": {
+                    "x": 78,
+                    "y": 0
+                  }
+                },
+                "layer": "UI",
+                "parsed_names": [
+                  "____"
+                ]
+              }
+            ],
+            "guid": "e1dabadc-03b2-4ac2-99a9-06cc1ee5ae35",
+            "active": true,
+            "global_draw_bounds": {
+              "x": 1319.2669677734375,
+              "y": 2521.35400390625,
+              "width": 150.7449951171875,
+              "height": 44,
+              "ex": 1470.011962890625,
+              "ey": 2565.35400390625
+            },
+            "rect_transform": {
+              "fix": {
+                "left": true,
+                "right": true,
+                "top": 0.2033365861274835,
+                "bottom": 0.5152722588703696,
+                "width": false,
+                "height": true
+              },
+              "pivot": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "anchor_min": {
+                "x": 0,
+                "y": 0.655967836371443
+              },
+              "anchor_max": {
+                "x": 1,
+                "y": 0.655967836371443
+              },
+              "offset_min": {
+                "x": 0,
+                "y": -22
+              },
+              "offset_max": {
+                "x": 0,
+                "y": 22
+              }
+            },
+            "layer": "UI",
+            "parsed_names": [
+              "bb_info_02"
+            ]
+          },
+          {
+            "type": "Group",
+            "name": "bb_info_03",
+            "elements": [
+              {
+                "type": "Text",
+                "name": "text",
+                "text": {
+                  "text": "text",
+                  "textType": "paragraph",
+                  "font": "NotoSansCJKkr-Regular",
+                  "style": "",
+                  "size": 12.98130989074707,
+                  "color": "#6b6b6b",
+                  "align": "leftupper",
+                  "opacity": 100
+                },
+                "guid": "06881608-df8f-41aa-8fa3-780cc1c41187",
+                "active": true,
+                "global_draw_bounds": {
+                  "x": 1392.011962890625,
+                  "y": 2548.2021484375,
+                  "width": 78,
+                  "height": 43,
+                  "ex": 1470.011962890625,
+                  "ey": 2591.2021484375,
+                  "text": {
+                    "fontSize": 12.98130989074707
+                  }
+                },
+                "rect_transform": {
+                  "fix": {
+                    "left": 0.48256988605582785,
+                    "right": true,
+                    "top": true,
+                    "bottom": true,
+                    "width": true,
+                    "height": false
+                  },
+                  "pivot": {
+                    "x": 1,
+                    "y": 0.5
+                  },
+                  "anchor_min": {
+                    "x": 1,
+                    "y": 0
+                  },
+                  "anchor_max": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "offset_min": {
+                    "x": -78,
+                    "y": 0.808837890625
+                  },
+                  "offset_max": {
+                    "x": 0,
+                    "y": -0.191162109375
+                  }
+                },
+                "layer": "UI",
+                "parsed_names": [
+                  "text"
+                ]
+              },
+              {
+                "type": "Text",
+                "name": "손상부재",
+                "text": {
+                  "text": "손상부재",
+                  "textType": "paragraph",
+                  "font": "NotoSansCJKkr-Medium",
+                  "style": "",
+                  "size": 13.979869842529297,
+                  "color": "#2a364a",
+                  "align": "leftupper",
+                  "opacity": 100
+                },
+                "guid": "0a5b8673-7c5c-4536-8baa-d3c1edb916df",
+                "active": true,
+                "global_draw_bounds": {
+                  "x": 1319.2669677734375,
+                  "y": 2548.010986328125,
+                  "width": 78,
+                  "height": 44,
+                  "ex": 1397.2669677734375,
+                  "ey": 2592.010986328125,
+                  "text": {
+                    "fontSize": 13.979869842529297
+                  }
+                },
+                "rect_transform": {
+                  "fix": {
+                    "left": true,
+                    "right": 0.48256988605582785,
+                    "top": true,
+                    "bottom": true,
+                    "width": true,
+                    "height": false
+                  },
+                  "pivot": {
+                    "x": 0,
+                    "y": 0.5
+                  },
+                  "anchor_min": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "anchor_max": {
+                    "x": 0,
+                    "y": 1
+                  },
+                  "offset_min": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "offset_max": {
+                    "x": 78,
+                    "y": 0
+                  }
+                },
+                "layer": "UI",
+                "parsed_names": [
+                  "____"
+                ]
+              }
+            ],
+            "guid": "d36960f9-505f-4621-bdd6-e1c06ee63fe6",
+            "active": true,
+            "global_draw_bounds": {
+              "x": 1319.2669677734375,
+              "y": 2548.010986328125,
+              "width": 150.7449951171875,
+              "height": 44,
+              "ex": 1470.011962890625,
+              "ey": 2592.010986328125
+            },
+            "rect_transform": {
+              "fix": {
+                "left": true,
+                "right": true,
+                "top": 0.3738147468675592,
+                "bottom": 0.34479409813029394,
+                "width": false,
+                "height": true
+              },
+              "pivot": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "anchor_min": {
+                "x": 0,
+                "y": 0.48548967563136736
+              },
+              "anchor_max": {
+                "x": 1,
+                "y": 0.48548967563136736
+              },
+              "offset_min": {
+                "x": 0,
+                "y": -22
+              },
+              "offset_max": {
+                "x": 0,
+                "y": 22
+              }
+            },
+            "layer": "UI",
+            "parsed_names": [
+              "bb_info_03"
+            ]
+          },
+          {
+            "type": "Group",
+            "name": "bb_info_04",
+            "elements": [
+              {
+                "type": "Text",
+                "name": "text",
+                "text": {
+                  "text": "text\n",
+                  "textType": "paragraph",
+                  "font": "NotoSansCJKkr-Regular",
+                  "style": "",
+                  "size": 13.001440048217773,
+                  "color": "#6b6b6b",
+                  "align": "leftupper",
+                  "opacity": 100
+                },
+                "guid": "edb463af-b9c4-4f98-810b-7a7983a7cb34",
+                "active": true,
+                "global_draw_bounds": {
+                  "x": 1392.011962890625,
+                  "y": 2575.34912109375,
+                  "width": 78,
+                  "height": 43,
+                  "ex": 1470.011962890625,
+                  "ey": 2618.34912109375,
+                  "text": {
+                    "fontSize": 13.001440048217773
+                  }
+                },
+                "rect_transform": {
+                  "fix": {
+                    "left": 0.48256988605582785,
+                    "right": true,
+                    "top": true,
+                    "bottom": true,
+                    "width": true,
+                    "height": false
+                  },
+                  "pivot": {
+                    "x": 1,
+                    "y": 0.5
+                  },
+                  "anchor_min": {
+                    "x": 1,
+                    "y": 0
+                  },
+                  "anchor_max": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "offset_min": {
+                    "x": -78,
+                    "y": 0.81005859375
+                  },
+                  "offset_max": {
+                    "x": 0,
+                    "y": -0.18994140625
+                  }
+                },
+                "layer": "UI",
+                "parsed_names": [
+                  "text"
+                ]
+              },
+              {
+                "type": "Text",
+                "name": "손상등급",
+                "text": {
+                  "text": "손상등급\n",
+                  "textType": "paragraph",
+                  "font": "NotoSansCJKkr-Medium",
+                  "style": "",
+                  "size": 14.00154972076416,
+                  "color": "#2a364a",
+                  "align": "leftupper",
+                  "opacity": 100
+                },
+                "guid": "ef4eedfa-93ee-4793-8847-b9d02ab3004f",
+                "active": true,
+                "global_draw_bounds": {
+                  "x": 1319.2669677734375,
+                  "y": 2575.1591796875,
+                  "width": 78,
+                  "height": 44,
+                  "ex": 1397.2669677734375,
+                  "ey": 2619.1591796875,
+                  "text": {
+                    "fontSize": 14.00154972076416
+                  }
+                },
+                "rect_transform": {
+                  "fix": {
+                    "left": true,
+                    "right": 0.48256988605582785,
+                    "top": true,
+                    "bottom": true,
+                    "width": true,
+                    "height": false
+                  },
+                  "pivot": {
+                    "x": 0,
+                    "y": 0.5
+                  },
+                  "anchor_min": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "anchor_max": {
+                    "x": 0,
+                    "y": 1
+                  },
+                  "offset_min": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "offset_max": {
+                    "x": 78,
+                    "y": 0
+                  }
+                },
+                "layer": "UI",
+                "parsed_names": [
+                  "____"
+                ]
+              }
+            ],
+            "guid": "fae2e8a5-bf97-48d9-8664-31a0cce4b65b",
+            "active": true,
+            "global_draw_bounds": {
+              "x": 1319.2669677734375,
+              "y": 2575.1591796875,
+              "width": 150.7449951171875,
+              "height": 44,
+              "ex": 1470.011962890625,
+              "ey": 2619.1591796875
+            },
+            "rect_transform": {
+              "fix": {
+                "left": true,
+                "right": true,
+                "top": 0.547434326086108,
+                "bottom": 0.17117451891174518,
+                "width": false,
+                "height": true
+              },
+              "pivot": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "anchor_min": {
+                "x": 0,
+                "y": 0.3118700964128187
+              },
+              "anchor_max": {
+                "x": 1,
+                "y": 0.3118700964128187
+              },
+              "offset_min": {
+                "x": 0,
+                "y": -22
+              },
+              "offset_max": {
+                "x": 0,
+                "y": 22
+              }
+            },
+            "layer": "UI",
+            "parsed_names": [
+              "bb_info_04"
+            ]
+          },
+          {
+            "type": "Group",
+            "name": "bb_info_05",
+            "elements": [
+              {
+                "type": "Text",
+                "name": "text",
+                "text": {
+                  "text": "text",
+                  "textType": "paragraph",
+                  "font": "NotoSansCJKkr-Regular",
+                  "style": "",
+                  "size": 13.001440048217773,
+                  "color": "#6b6b6b",
+                  "align": "leftupper",
+                  "opacity": 100
+                },
+                "guid": "b12643c9-da04-40a6-9a9e-c16f926b9166",
+                "active": true,
+                "global_draw_bounds": {
+                  "x": 1392.011962890625,
+                  "y": 2602.114990234375,
+                  "width": 78,
+                  "height": 43,
+                  "ex": 1470.011962890625,
+                  "ey": 2645.114990234375,
+                  "text": {
+                    "fontSize": 13.001440048217773
+                  }
+                },
+                "rect_transform": {
+                  "fix": {
+                    "left": 0.48256988605582785,
+                    "right": true,
+                    "top": true,
+                    "bottom": true,
+                    "width": true,
+                    "height": false
+                  },
+                  "pivot": {
+                    "x": 1,
+                    "y": 0.5
+                  },
+                  "anchor_min": {
+                    "x": 1,
+                    "y": 0
+                  },
+                  "anchor_max": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "offset_min": {
+                    "x": -78,
+                    "y": 0.81005859375
+                  },
+                  "offset_max": {
+                    "x": 0,
+                    "y": -0.18994140625
+                  }
+                },
+                "layer": "UI",
+                "parsed_names": [
+                  "text"
+                ]
+              },
+              {
+                "type": "Text",
+                "name": "등록일자",
+                "text": {
+                  "text": "등록일자",
+                  "textType": "paragraph",
+                  "font": "NotoSansCJKkr-Medium",
+                  "style": "",
+                  "size": 14.00154972076416,
+                  "color": "#2a364a",
+                  "align": "leftupper",
+                  "opacity": 100
+                },
+                "guid": "df0abdfe-4a8c-46cf-a915-6b9f4148c6a5",
+                "active": true,
+                "global_draw_bounds": {
+                  "x": 1319.2669677734375,
+                  "y": 2601.925048828125,
+                  "width": 78,
+                  "height": 44,
+                  "ex": 1397.2669677734375,
+                  "ey": 2645.925048828125,
+                  "text": {
+                    "fontSize": 14.00154972076416
+                  }
+                },
+                "rect_transform": {
+                  "fix": {
+                    "left": true,
+                    "right": 0.48256988605582785,
+                    "top": true,
+                    "bottom": true,
+                    "width": true,
+                    "height": false
+                  },
+                  "pivot": {
+                    "x": 0,
+                    "y": 0.5
+                  },
+                  "anchor_min": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "anchor_max": {
+                    "x": 0,
+                    "y": 1
+                  },
+                  "offset_min": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "offset_max": {
+                    "x": 78,
+                    "y": 0
+                  }
+                },
+                "layer": "UI",
+                "parsed_names": [
+                  "____"
+                ]
+              }
+            ],
+            "guid": "58864273-8114-4fe5-9d93-0a87b7b5784c",
+            "active": true,
+            "global_draw_bounds": {
+              "x": 1319.2669677734375,
+              "y": 2601.925048828125,
+              "width": 150.7449951171875,
+              "height": 44,
+              "ex": 1470.011962890625,
+              "ey": 2645.925048828125
+            },
+            "rect_transform": {
+              "fix": {
+                "left": true,
+                "right": true,
+                "top": 0.7186088449978532,
+                "bottom": true,
+                "width": false,
+                "height": true
+              },
+              "pivot": {
+                "x": 0.5,
+                "y": 0
+              },
+              "anchor_min": {
+                "x": 0,
+                "y": 0
+              },
+              "anchor_max": {
+                "x": 1,
+                "y": 0
+              },
+              "offset_min": {
+                "x": 0,
+                "y": 0
+              },
+              "offset_max": {
+                "x": 0,
+                "y": 44
+              }
+            },
+            "layer": "UI",
+            "parsed_names": [
+              "bb_info_05"
+            ]
+          },
+          {
+            "type": "Image",
+            "name": "bg_Line 1 copy",
+            "guid": "e312b861-bd50-4ab6-abe6-e1400ff37ea7",
+            "active": true,
+            "global_draw_bounds": {
+              "x": 1377.1739501953125,
+              "y": 2489.55908203125,
+              "width": 1,
+              "height": 138.606201171875,
+              "ex": 1378.1739501953125,
+              "ey": 2628.165283203125
+            },
+            "rect_transform": {
+              "fix": {
+                "left": 0.3841386732399225,
+                "right": 0.6092276073505368,
+                "top": true,
+                "bottom": true,
+                "width": true,
+                "height": false
+              },
+              "pivot": {
+                "x": 0.5,
+                "y": 0.5
+              },
+              "anchor_min": {
+                "x": 0.38745553294469287,
+                "y": 0
+              },
+              "anchor_max": {
+                "x": 0.38745553294469287,
+                "y": 1
+              },
+              "offset_min": {
+                "x": -0.5,
+                "y": 17.759765625
+              },
+              "offset_max": {
+                "x": 0.5,
+                "y": 0
+              }
+            },
+            "layer": "UI",
+            "parsed_names": [
+              "bg_Line_1_copy"
+            ],
+            "opacity": 100,
+            "image": {
+              "source_image": "bg_Line 1 copy+e312b"
+            }
+          }
+        ],
+        "guid": "22e06353-f646-41be-8acc-c2fd067814dc",
+        "active": true,
+        "global_draw_bounds": {
+          "x": 1319.2669677734375,
+          "y": 2489.55908203125,
+          "width": 150.7449951171875,
+          "height": 156.365966796875,
+          "ex": 1470.011962890625,
+          "ey": 2645.925048828125
+        },
+        "rect_transform": {
+          "fix": {
+            "left": true,
+            "right": 0.33644918570841165,
+            "top": 0.25816781180245535,
+            "bottom": true,
+            "width": true,
+            "height": true
+          },
+          "pivot": {
+            "x": 0,
+            "y": 0
+          },
+          "anchor_min": {
+            "x": 0,
+            "y": 0
+          },
+          "anchor_max": {
+            "x": 0,
+            "y": 0
+          },
+          "offset_min": {
+            "x": 25.759521484375,
+            "y": 9.804443359375
+          },
+          "offset_max": {
+            "x": 176.5045166015625,
+            "y": 166.17041015625
+          }
+        },
+        "layer": "UI",
+        "parsed_names": [
+          "bb_info_desc"
+        ]
+      },
+      {
+        "type": "Group",
+        "name": "bb_info_tit",
+        "elements": [
+          {
+            "type": "Text",
+            "name": "부재 정보",
+            "text": {
+              "text": "부재 정보",
+              "textType": "point",
+              "font": "NotoSansCJKkr-Regular",
+              "style": "",
+              "size": 14.978429794311523,
+              "color": "#ffffff",
+              "align": "centermiddle",
+              "opacity": 100
+            },
+            "guid": "26ad746d-2ee1-4099-80cf-ca4a3cf25b0c",
+            "active": true,
+            "global_draw_bounds": {
+              "x": 1347.7120361328125,
+              "y": 2450.258056640625,
+              "width": 58,
+              "height": 22,
+              "ex": 1405.7120361328125,
+              "ey": 2472.258056640625,
+              "text": {
+                "fontSize": 14.978429794311523
+              }
+            },
+            "rect_transform": {
+              "fix": {
+                "left": 0.30714861709992725,
+                "right": true,
+                "top": true,
+                "bottom": true,
+                "width": true,
+                "height": false
+              },
+              "pivot": {
+                "x": 1,
+                "y": 0.5
+              },
+              "anchor_min": {
+                "x": 1,
+                "y": 0
+              },
+              "anchor_max": {
+                "x": 1,
+                "y": 1
+              },
+              "offset_min": {
+                "x": -58,
+                "y": 0
+              },
+              "offset_max": {
+                "x": 0,
+                "y": 0
+              }
+            },
+            "layer": "UI",
+            "parsed_names": [
+              "_____"
+            ]
+          },
+          {
+            "type": "Image",
+            "name": "im_Vector Smart Object copy 2",
+            "guid": "7db80858-25db-4c01-9857-70baebf0610c",
+            "active": true,
+            "global_draw_bounds": {
+              "x": 1322,
+              "y": 2452,
+              "width": 19,
+              "height": 19,
+              "ex": 1341,
+              "ey": 2471
+            },
+            "rect_transform": {
+              "fix": {
+                "left": true,
+                "right": 0.7730314435327348,
+                "top": true,
+                "bottom": true,
+                "width": true,
+                "height": false
+              },
+              "pivot": {
+                "x": 0,
+                "y": 0.5
+              },
+              "anchor_min": {
+                "x": 0,
+                "y": 0
+              },
+              "anchor_max": {
+                "x": 0,
+                "y": 1
+              },
+              "offset_min": {
+                "x": 0,
+                "y": 1.258056640625
+              },
+              "offset_max": {
+                "x": 19,
+                "y": -1.741943359375
+              }
+            },
+            "layer": "UI",
+            "parsed_names": [
+              "im_Vector_Smart_Object_copy_2"
+            ],
+            "opacity": 100,
+            "image": {
+              "source_image": "im_Vector Smart Obje+7db80"
+            }
+          }
+        ],
+        "guid": "459c0ad5-1cbe-4a02-9f84-e6bb2978743f",
+        "active": true,
+        "global_draw_bounds": {
+          "x": 1322,
+          "y": 2450.258056640625,
+          "width": 83.7120361328125,
+          "height": 22,
+          "ex": 1405.7120361328125,
+          "ey": 2472.258056640625
+        },
+        "rect_transform": {
+          "fix": {
+            "left": true,
+            "right": 0.5781782336701128,
+            "top": true,
+            "bottom": 0.8190689086914062,
+            "width": true,
+            "height": true
+          },
+          "pivot": {
+            "x": 0,
+            "y": 1
+          },
+          "anchor_min": {
+            "x": 0,
+            "y": 1
+          },
+          "anchor_max": {
+            "x": 0,
+            "y": 1
+          },
+          "offset_min": {
+            "x": 28.4925537109375,
+            "y": -40.528564453125
+          },
+          "offset_max": {
+            "x": 112.20458984375,
+            "y": -18.528564453125
+          }
+        },
+        "layer": "UI",
+        "parsed_names": [
+          "bb_info_tit"
+        ]
+      },
+      {
+        "type": "Image",
+        "name": "bg_Rounded Rectangle 1 copy 9",
+        "guid": "61604ca5-3d6e-4124-a000-07422d836a60",
+        "active": true,
+        "global_draw_bounds": {
+          "x": 1302,
+          "y": 2440,
+          "width": 245,
+          "height": 42,
+          "ex": 1547,
+          "ey": 2482
+        },
+        "rect_transform": {
+          "fix": {
+            "left": true,
+            "right": true,
+            "top": true,
+            "bottom": 0.7755780901227679,
+            "width": false,
+            "height": true
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 1
+          },
+          "anchor_min": {
+            "x": 0,
+            "y": 1
+          },
+          "anchor_max": {
+            "x": 1,
+            "y": 1
+          },
+          "offset_min": {
+            "x": 8.4925537109375,
+            "y": -50.2705078125
+          },
+          "offset_max": {
+            "x": -12.5074462890625,
+            "y": -8.2705078125
+          }
+        },
+        "layer": "UI",
+        "parsed_names": [
+          "bg_Rounded_Rectangle_1_copy_9"
+        ],
+        "opacity": 100,
+        "image": {
+          "source_image": "bg_Rounded Rectangle+61604"
+        }
+      },
+      {
+        "type": "Image",
+        "name": "bg_Rounded Rectangle 1 copy 3",
+        "guid": "37f18ac6-77f2-40d5-b1c1-d8090870d44a",
+        "active": true,
+        "global_draw_bounds": {
+          "x": 1293.5074462890625,
+          "y": 2431.7294921875,
+          "width": 266,
+          "height": 224,
+          "ex": 1559.5074462890625,
+          "ey": 2655.7294921875
+        },
+        "rect_transform": {
+          "fix": {
+            "left": true,
+            "right": true,
+            "top": true,
+            "bottom": true,
+            "width": false,
+            "height": false
+          },
+          "pivot": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "anchor_min": {
+            "x": 0,
+            "y": 0
+          },
+          "anchor_max": {
+            "x": 1,
+            "y": 1
+          },
+          "offset_min": {
+            "x": 0,
+            "y": 0
+          },
+          "offset_max": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "layer": "UI",
+        "parsed_names": [
+          "bg_Rounded_Rectangle_1_copy_3"
+        ],
+        "opacity": 100,
+        "image": {
+          "source_image": "bg_Rounded Rectangle+37f18"
+        }
+      }
+    ],
+    "guid": "14360488-c2ef-4992-9034-bec2abbe126e",
+    "active": true,
+    "global_draw_bounds": {
+      "x": 1293.5074462890625,
+      "y": 2431.7294921875,
+      "width": 266,
+      "height": 224,
+      "ex": 1559.5074462890625,
+      "ey": 2655.7294921875
+    },
+    "rect_transform": {
+      "fix": {
+        "left": null,
+        "right": null,
+        "top": null,
+        "bottom": null,
+        "width": null,
+        "height": null
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "anchor_min": {
+        "x": 0.7429726282755533,
+        "y": 0.8298800998263889
+      },
+      "anchor_max": {
+        "x": 0.7429726282755533,
+        "y": 0.8298800998263889
+      },
+      "offset_min": {
+        "x": -133,
+        "y": -112
+      },
+      "offset_max": {
+        "x": 133,
+        "y": 112
+      }
+    },
+    "layer": "UI",
+    "parsed_names": [
+      "bb_info_popup"
+    ]
+  }
+}
